@@ -10,6 +10,8 @@ Numbers below are from the committed snapshot (`data/artifact.json`, head block 
 Attach the demo video. This is the version the author chose; the short thread below is the earlier draft.
 
 ```
+for near hackathon @nearprotocol #nearhackathon i built subsidized state, an investment thesis on near checked against the chain.
+
 on near intents you can swap bitcoin for zcash without ever holding near. no gas to buy, nothing to top up. so i wanted to know what the near token actually captures once users stop paying for gas.
 
 every swap still writes data, and near locks 10 near for every megabyte a contract stores. the contract behind intents now holds 13.7 gb of state, which means 137,061 near is locked underneath it, and that number went up at every checkpoint i took across the past year.
@@ -23,7 +25,7 @@ every number on the site links to the rpc query behind it, and one command rebui
 site: https://emmagh1.github.io/subsidized-state/
 repo: https://github.com/emmagh1/subsidized-state
 
-built at near hackathon @nearprotocol #nearhackathon @nearbuilders @nearlegion
+built at near hackathon. @nearbuilders @nearlegion
 
 curious what would change your mind on near's value capture.
 ```
