@@ -7,43 +7,69 @@ Numbers below are from the committed snapshot (`data/artifact.json`, head block 
 
 ## X post
 
-Each post is within 280 characters by X's counting (links count as 23). Attach the demo video to the main post, or the four screenshots listed below.
+Post from your own account and attach the demo video to the main post. Character counts are X's (links count as 23).
+Demo video: https://github.com/emmaGH1/subsidized-state/releases/download/v1.0/subsidized-state-demo.mp4
 
-Main post (271 characters):
+Main post (278 characters):
 
 ```
-If chain abstraction killed gas burn, what does the NEAR token capture?
+You can swap on NEAR Intents without holding NEAR. What does the token capture?
 
-I measured its newest sink, state collateral: real, growing, 313x too small, locked not burned, paid by a treasury bot.
+Its contract locks 137k NEAR as state collateral, and all 39 top-ups in 30 days came from one treasury-funded account.
 
 https://emmagh1.github.io/subsidized-state/
 
 Built at NEAR HACKATHON @NEARProtocol #NEARHackathon
 ```
 
-Reply 1 (264 characters):
+Reply 1 (261 characters):
 
 ```
-The receipts, all from mainnet RPC:
+Per 100 NEAR of new supply last year:
+1.05 burned as gas
+12.9 held in two fee vaults
+0.32 locked under intents.near's state
 
-- intents.near locks 137,061 NEAR under 13.7 GB of state, up 101k in a year
-- supply grew 31.8M in the same year
-- each time its spare balance nears ~504 NEAR, 300 arrives from intents_refiller.near. 39 of 39 top-ups in 30 days
+The lock is real and growing, but issuance is 313x larger, and it is locked, not burned. Today the token captures a deposit, not a toll.
 ```
 
-Reply 2 (152 characters):
+Reply 2 (257 characters):
 
 ```
-Every number on the site links to the query behind it. One command rebuilds all of it, no API keys:
+Every number on the site links to the RPC query behind it, and one command rebuilds all of it from mainnet with no API keys:
 
 python3 scripts/rebuild.py
 
 https://github.com/emmaGH1/subsidized-state
+
+What would change your mind on NEAR's value capture? @NearBuilders @NearLegion
 ```
 
-Screenshots to attach if there is no video (in `site/shots/`, taken from the real artifact at block 224,528,333): `s1-1280.png` (the question), `sawtooth-1280.png`, `s5-1280.png` (the gap), `s6-1280.png` (verdict).
+If there is no video, attach these screenshots from `site/shots/` instead: `s1-1440.png` (the answer), `sawtooth-1280.png`, `s4-1280.png` (who pays), `s6-1280.png` (verdict).
 
-## 90-second demo script
+## Submission form
+
+At https://nearhackathon.com/#apply, or through the API described in https://nearhackathon.com/HACKATHON.md. One submission per repository; mistakes are fixed at https://nearhackathon.com/request-changes.
+
+- **Project name:** Subsidized State
+- **Track:** Investment Thesis (`thesis`)
+- **Repository:** https://github.com/emmaGH1/subsidized-state
+- **Demo post:** the link to the main X post above, once it is up
+- **What did you build** (1787 characters):
+
+```
+Subsidized State is an investment thesis on NEAR that asks: if chain abstraction killed gas burn, what does the NEAR token actually capture?
+
+On NEAR Intents users can swap across chains without holding NEAR, so the usual "usage burns the token" story no longer applies. We measured what is left on NEAR mainnet. Every number is read from public RPC by one Python command (standard library, no API keys) and can be re-checked from the public repo and from a live site where every number links to its query.
+
+Findings, at block 224,528,333: for every 100 NEAR of new supply in the last year, 1.05 was burned as gas, 12.9 was held in two fee vaults, and 0.32 was locked as storage collateral under intents.near, the contract behind NEAR Intents (10 NEAR per MB of state; 137,061 NEAR locked under 13.7 GB, higher at each of 13 checkpoints across the year). Issuance is 313x the lock's growth, and the lock is refundable, not burned. A block-level trace shows who pays for it: all 39 top-ups of intents.near in 30 days (about 300 NEAR each, arriving when its spare balance falls to about 504) came from intents_refiller.near, an account to which a DAO treasury has approved 55,000 NEAR in 10 proposals.
+
+Verdict: today the token captures a deposit, not a toll. The thesis sets out the case for and against, three tests with fixed thresholds that run on every rebuild, and the on-chain changes that would reverse the conclusion: the vaults burning what they hold, a different payer identified by receipt, the lock passing 1% of issuance, or gas burn passing 2%.
+
+How NEAR fits: the thesis is built entirely from NEAR's own mechanisms, measured on mainnet: storage staking, total_supply in block headers, the NEAR Intents contract, Sputnik DAO proposals, a staking pool and executed receipts.
+```
+
+## Demo script (the first plan; the final film is narrated and runs 1:55)
 
 Record the live site at 1280 wide, then cut to a terminal. One take, no music needed.
 

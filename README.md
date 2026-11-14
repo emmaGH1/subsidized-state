@@ -5,7 +5,7 @@
 An investment thesis on NEAR, built at NEAR Hackathon (thesis track). Every number in it is read from NEAR
 mainnet by one command, with no API keys, and every number on the site links to the query behind it.
 
-**[Live site](https://emmagh1.github.io/subsidized-state/)** · **[The thesis](THESIS.md)** · **[The data](data/artifact.json)** · **[Every field explained](data/SCHEMA.md)**
+**[Live site](https://emmagh1.github.io/subsidized-state/)** · **[Demo video](https://github.com/emmaGH1/subsidized-state/releases/download/v1.0/subsidized-state-demo.mp4)** · **[The thesis](THESIS.md)** · **[The data](data/artifact.json)** · **[Every field explained](data/SCHEMA.md)**
 
 [![The cover of the live site: a year of new NEAR supply drawn as a square, with what was burned, held and locked drawn to scale inside it](site/shots/s1-1440.png)](https://emmagh1.github.io/subsidized-state/)
 
@@ -228,14 +228,27 @@ data/artifact.sample.json first hand-assembled snapshot, used to build the site 
 tests/claims.json         the three tests
 tests/test_artifact.py    offline consistency checks
 tests/test_refills.py     offline checks of the 30-day refill file
+LICENSE                   MIT
 site/                     the static site (no build step); site/DESIGN.md is its spec
 PLAN.md                   how this was built, and every decision made along the way
 ```
 
 ## How it was made
 
-Built in one day by a team of AI agents directed by a human: an orchestrator that planned, wrote the schema,
-the rebuild script and the design spec, a writer for the thesis, a builder for the site, and an auditor that
-cloned the repo cold and checked every number. `PLAN.md` has the decisions log, including what went wrong.
+Built in one day, 14 November 2026, during NEAR Hackathon; every line is new, in a new repository. A human directed
+a team of AI agents (Claude Fable, Claude Opus, Gemini Carbon): an orchestrator that planned, wrote the schema, the
+rebuild script and the design spec, a writer for the thesis, a builder for the site, and an auditor that cloned
+the repo cold and checked every number. `PLAN.md` has the decisions log, including what went wrong.
+
+**Dependencies:** none. The scripts use the Python standard library only. The site is plain HTML, CSS and
+JavaScript with no build step and no libraries; its two fonts (Instrument Serif and Inter, both under the SIL Open
+Font License) are self-hosted in `site/fonts/`. Data comes from public NEAR RPC endpoints (FastNEAR, Pocket
+Network, Tatum, near.org) and FastNEAR's neardata; the optional USD prices for the `omft.near` float come from
+`1click.chaindefuser.com`.
+
+**Demo video:** [subsidized-state-demo.mp4](https://github.com/emmaGH1/subsidized-state/releases/download/v1.0/subsidized-state-demo.mp4)
+(1 minute 55 seconds).
+
+**License:** MIT, see [LICENSE](LICENSE).
 
 Built at NEAR Hackathon.
