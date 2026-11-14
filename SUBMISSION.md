@@ -1,5 +1,10 @@
 # Submission kit
 
+**Submitted:** 2026-11-14 at 21:41:56 UTC; the submission API returned HTTP 201.
+Demo post: https://x.com/_HEISEMMA/status/2121717527407439904
+YouTube mirror: https://youtu.be/ErJSoDyeb7o
+See `HACKATHON.md` for the final verification record. Do not submit this repository again.
+
 Numbers below are from the committed snapshot (`data/artifact.json`, head block 224,528,333).
 
 - Repo: https://github.com/emmaGH1/subsidized-state
