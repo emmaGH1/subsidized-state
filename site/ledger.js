@@ -36,10 +36,11 @@ export function drawLedger(s, D, o) {
   line(rem, D, ['no offset measured here · ', ['calc.uncaptured_pct', 'pct1']], side - 10, fs + 10, 'lab', 'end');
 
   const xV = 0, xB = vs + gap, xL0 = vs + gap + bs + gap;
+  // the lock sits behind the other two, so when the slider grows it they stay visible on top of it
+  const lock = el('rect', { class: 'lock', x: xL0, y: floor - ls0, width: ls0, height: ls0, fill: 'var(--red)' }, g);
   const sq = el('g', { class: 'speck' }, g);
   el('rect', { x: xV, y: floor - vs, width: vs, height: vs, fill: `url(#${pid})`, stroke: 'var(--ink)', 'stroke-width': 1.2 }, sq);
   el('rect', { x: xB, y: floor - bs, width: bs, height: bs, fill: 'var(--ink)', filter: 'url(#ink-edge)' }, sq);
-  const lock = el('rect', { class: 'lock', x: xL0, y: floor - ls0, width: ls0, height: ls0, fill: 'var(--red)' }, g);
 
   // labels: two or three lines each, ink text (small red text fails contrast), red leader for the lock
   const labs = el('g', { class: 'speck labs' }, g);
@@ -80,15 +81,17 @@ export function drawLedger(s, D, o) {
     const x = Math.max(0, Math.min(xL0, side - s2));
     lock.setAttribute('x', x); lock.setAttribute('y', floor - s2); lock.setAttribute('width', s2); lock.setAttribute('height', s2);
     lockLab.replaceChildren();
-    const big = s2 > side * 0.35;
+    // grown by the slider: the label moves to the top-left corner (inside the red once it reaches there), marked with a red square
+    const grown = s2 > ls0 * 1.4;
     const n = locked.length;
-    let base = big ? floor - s2 + fs + 12 + (n - 1) * lh : Math.min(lb, floor - s2 - 22);
+    const base = grown ? fs + 10 + (n - 1) * lh : Math.min(lb, floor - s2 - 22);
     // keep the text clear of the burn leader to its left
-    const tx = big ? x + 10 : Math.max(fit(x + s2 / 2, locked), x > xB ? xB + bs / 2 + 8 : 6);
-    locked.forEach((p, i) => line(lockLab, D, p, tx, base - (n - 1 - i) * lh, (i === 0 ? 'lab' : '') + (big ? ' paper' : ''), 'start'));
+    const tx = grown ? 22 : Math.max(fit(x + s2 / 2, locked), x > xB ? xB + bs / 2 + 8 : 6);
+    if (grown) el('rect', { x: 10, y: base - (n - 1) * lh - fs + 2, width: 8, height: 8, fill: 'var(--red)', stroke: 'var(--ink)', 'stroke-width': s2 > side - fs * 3 ? 1 : 0 }, lockLab);
+    locked.forEach((p, i) => line(lockLab, D, p, tx, base - (n - 1 - i) * lh, i === 0 ? 'lab' : '', 'start'));
     leader.setAttribute('x', x + s2 / 2 - 0.5);
     leader.setAttribute('y', base + 6);
-    leader.setAttribute('height', big ? 0 : Math.max(0, floor - s2 - base - 10));
+    leader.setAttribute('height', grown ? 0 : Math.max(0, floor - s2 - base - 10));
     rem.style.opacity = v === lN ? '' : '0';
   }
   setLock(lN);
