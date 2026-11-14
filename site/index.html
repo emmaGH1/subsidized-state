@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>subsidized state</title>
+<meta name="description" content="near's newest sink is state collateral. it is real, growing and measurable. it is too small to offset issuance, it is locked rather than burned, and it is paid by a treasury bot rather than by users. every number on this page is a link to its query.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23F3EEE6'/%3E%3Crect x='3' y='3' width='10' height='10' fill='%230A0A0A'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="ink-edge" x="-2%" y="-2%" width="104%" height="104%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="ink-line" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="ink-riser" x="-200%" y="-2%" width="500%" height="104%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <symbol id="figure" viewBox="0 0 24 48">
+    <circle cx="13" cy="5" r="4.2"/>
+    <path d="M10.2 10.4h5.4l2.2 18.4H8.4z"/>
+    <path d="M12.6 27.6h3l4.6 19.6-2.8.8z"/>
+    <path d="M9.8 27.6h3L7.9 48l-2.8-.8z"/>
+  </symbol>
+  <symbol id="figure-stand" viewBox="0 0 24 48">
+    <circle cx="12.4" cy="5" r="4.2"/>
+    <path d="M9.6 10.4h5.6l1.8 18.4H7.8z"/>
+    <path d="M9.4 27.6h2.7l-.2 20.4H9.3z"/>
+    <path d="M12.7 27.6h2.7l.3 20.4h-2.6z"/>
+  </symbol>
+  <symbol id="figure-look-up" viewBox="0 0 24 48">
+    <circle cx="10.4" cy="5.6" r="4.2"/>
+    <path d="M9.4 10.6l5.4-.4 2.4 18.6H8z"/>
+    <path d="M9.2 27.6h2.7l-.2 20.4H9.1z"/>
+    <path d="M12.6 27.6h2.7l.3 20.4H13z"/>
+  </symbol>
+</svg>
+
+<p class="sample-strip" hidden>sample data · block <a class="n" data-f="meta.head_block" data-fmt="int"></a> · run <code>python3 scripts/rebuild.py</code> for the real artifact</p>
+
+<nav class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></nav>
+
+<main>
+
+<!-- 1 · cover -->
+<section id="cover" class="sec s1" data-account="intents.near">
+  <p class="label kicker">subsidized state · an investment thesis on near, checked against the chain</p>
+  <h1 class="question">if chain abstraction killed gas burn, what does the near token actually capture?</h1>
+  <p class="lede bound">near's newest sink is state collateral: <a class="n" data-f="constants.near_per_mb" data-fmt="int"></a> near locked for every megabyte a contract stores. it is real, growing and measurable. in the last year its largest new source, intents.near, locked <a class="n" data-f="gap.lock_near_per_year" data-fmt="near0"></a> more near while the supply grew by <a class="n" data-f="gap.net_issuance_near_per_year" data-fmt="m1"></a>. that is <a class="n" data-f="gap.multiple" data-fmt="x0"></a> too small to offset issuance. it is locked, not burned. and it is paid by a <span class="r">treasury bot</span>, not by users. this page shows the receipts and what would have to change.</p>
+  <p class="fallback" hidden>data unavailable: run <code>python3 scripts/rebuild.py</code></p>
+  <a class="label skip" href="#verdict">skip to verdict ↓</a>
+  <svg class="ground draw" aria-hidden="true"></svg>
+  <p class="label blockline bound">block <a class="n" data-f="meta.head_block" data-fmt="int"></a> · <a class="n" data-f="meta.head_timestamp_utc" data-fmt="datetime"></a> · every number is a link to its query</p>
+</section>
+
+<!-- 2 · the lock -->
+<section id="lock" class="sec s2" data-account="intents.near">
+  <h2 class="hl">the lock</h2>
+  <p class="copy bound">every megabyte a contract stores locks <a class="n" data-f="constants.near_per_mb" data-fmt="int"></a> near. intents.near held <a class="n" data-f="lock.checkpoints[0].storage_usage_bytes" data-fmt="gb1"></a> gb of state a year ago and holds <a class="n" data-f="lock.checkpoints[-1].storage_usage_bytes" data-fmt="gb1"></a> gb now. it has <a class="n" data-f="lock.checkpoints[-1].locked_near" data-fmt="near0"></a> near locked under it. that is <a class="n" data-f="lock.locked_share_of_balance_pct" data-fmt="pct1"></a> of everything the contract owns.</p>
+  <div class="big bound"><span class="bignum">+<a class="n" data-f="lock.growth_365d.near" data-fmt="near0"></a></span><span class="label">near locked in <a class="n" data-f="lock.growth_365d.days" data-fmt="int"></a> days</span></div>
+  <div class="drawing" role="img"></div>
+  <p class="label under bound">locked, not burned. delete the state and the near comes back.</p>
+  <p class="fallback" hidden>data unavailable: run <code>python3 scripts/rebuild.py</code></p>
+</section>
+
+<!-- 3 · the sawtooth -->
+<section id="sawtooth" class="sec s3" data-account="intents.near">
+  <div class="stage">
+    <h2 class="hl">the ground it walks on</h2>
+    <p class="copy bound">intents.near keeps almost nothing spare: between <a class="n" data-f="sawtooth.free_min_near" data-fmt="near0"></a> and <a class="n" data-f="sawtooth.free_max_near" data-fmt="near0"></a> near on top of <a class="n" data-f="lock.checkpoints[-1].locked_near" data-fmt="near0"></a> locked. new state eats the spare. when it falls to about <a class="n" data-f="sawtooth.trigger_free_mean_near" data-fmt="near0"></a>, <span class="r"><a class="n" data-f="sawtooth.refill_amount_median_near" data-fmt="near0"></a> near arrives</span>. <a class="n" data-f="sawtooth.refill_count" data-fmt="int"></a> times in <a class="n" data-f="sawtooth.window.days" data-fmt="num1"></a> days, about every <a class="n" data-f="sawtooth.interval_hours_mean" data-fmt="int"></a> hours.</p>
+    <div class="plot drawing" role="img"></div>
+    <p class="label caption bound">every riser is one transfer from <span class="r">intents_refiller.near</span>. tap one for its receipt.</p>
+    <p class="fallback" hidden>data unavailable: run <code>python3 scripts/rebuild.py</code></p>
+  </div>
+</section>
+
+<!-- 4 · who pays -->
+<section id="payer" class="sec s4" data-account="intents_refiller.near">
+  <h2 class="hl">who pays</h2>
+  <p class="copy bound">the refills come from one account, intents_refiller.near. it is funded by a dao treasury that has approved <span class="r"><a class="n" data-f="payer.approved_to_refiller_near" data-fmt="near0"></a> near</span> to it in <a class="n" data-f="payer.approved_to_refiller_count" data-fmt="int"></a> proposals. in the last <a class="n" data-f="sawtooth.window.days" data-fmt="num1"></a> days, <a class="n" data-f="sawtooth.from_refiller_pct" data-fmt="int"></a>% of top-ups came this way. users pay transaction fees. they do not post the collateral.</p>
+  <div class="drawing" role="img"></div>
+  <p class="fallback" hidden>data unavailable: run <code>python3 scripts/rebuild.py</code></p>
+</section>
+
+<!-- 5 · the gap -->
+<section id="gap" class="sec s5" data-account="intents.near">
+  <h2 class="hl">the gap</h2>
+  <p class="bignum gapnum bound"><a class="n" data-f="gap.multiple" data-fmt="x0"></a></p>
+  <p class="copy bound">in a year the supply grew by <a class="n" data-f="gap.net_issuance_near_per_year" data-fmt="m1"></a> near (<a class="n" data-f="issuance.d365.annualized_pct" data-fmt="pct2"></a>). state collateral at intents.near locked <a class="n" data-f="gap.lock_near_per_year" data-fmt="near0"></a>. gas burned <a class="n" data-f="gas_burn.burned_near_per_year" data-fmt="near0"></a>. the lock is <a class="n" data-f="gap.lock_pct_of_issuance" data-fmt="pct2"></a> of issuance; the burn is <a class="n" data-f="gas_burn.pct_of_net_issuance" data-fmt="pct2"></a>.</p>
+  <div class="drawing" role="img"></div>
+  <div class="slider bound">
+    <label class="label" for="gb">state added per year</label>
+    <input id="gb" type="range" min="0" max="1000" step="1" value="0">
+    <div class="ticks label"><span class="t-today">today · <a class="n" data-f="gap.state_gb_per_year_now" data-fmt="num1"></a> gb</span><span class="t-even">break-even · <a class="n" data-f="gap.state_gb_per_year_to_offset" data-fmt="int"></a> gb</span></div>
+    <p class="readout" aria-live="polite"></p>
+    <p class="label">break-even means the lock equals issuance. it would still be locked, not burned. <a href="#gap" class="reset">reset</a></p>
+  </div>
+  <p class="fallback" hidden>data unavailable: run <code>python3 scripts/rebuild.py</code></p>
+</section>
+
+<!-- 6 · verdict -->
+<section id="verdict" class="sec s6" data-account="intents.near">
+  <h2 class="hl">verdict</h2>
+  <p class="answer bound">today the near token captures a deposit, not a toll: <a class="n" data-f="gap.lock_near_per_year" data-fmt="near0"></a> near a year locked under state and <a class="n" data-f="gas_burn.burned_near_per_year" data-fmt="near0"></a> burned as gas, against <a class="n" data-f="gap.net_issuance_near_per_year" data-fmt="m1"></a> issued.</p>
+  <div class="vfig drawing" role="img"></div>
+  <div class="cases bound">
+    <div>
+      <h3 class="label">the case for</h3>
+      <ul>
+        <li>the lock is real and protocol-enforced: <a class="n" data-f="lock.checkpoints[-1].locked_near" data-fmt="near0"></a> near under one contract, readable with one rpc call.</li>
+        <li>it grew at every one of <a class="n" data-f="calc.checkpoint_count" data-fmt="int"></a> checkpoints across the year, from <a class="n" data-f="lock.checkpoints[0].locked_near" data-fmt="near0"></a> to <a class="n" data-f="lock.checkpoints[-1].locked_near" data-fmt="near0"></a>.</li>
+        <li>it scales with stored state, which is what agents and accounts produce, not with gas price.</li>
+        <li>fee vaults already hold <a class="n" data-f="calc.vaults_total" data-fmt="m1"></a> near that governance could burn.</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="label">the case against</h3>
+      <ul>
+        <li>it is <a class="n" data-f="gap.multiple" data-fmt="x0"></a> too small: <a class="n" data-f="gap.lock_pct_of_issuance" data-fmt="pct2"></a> of net issuance.</li>
+        <li>it is locked, not burned. deleting state returns it.</li>
+        <li>it is paid by a <span class="r">treasury</span>: <a class="n" data-f="sawtooth.refill_count" data-fmt="int"></a> of <a class="n" data-f="sawtooth.refill_count" data-fmt="int"></a> top-ups in <a class="n" data-f="sawtooth.window.days" data-fmt="num1"></a> days came from one funded account.</li>
+        <li>the fee vaults are balances, not burns. the buyback vault moves on <a class="n" data-f="vaults.buybacks.num_confirmations" data-fmt="int"></a> of <a class="n" data-f="vaults.buybacks.access_key_count" data-fmt="int"></a> keys.</li>
+        <li>this measures one contract. it is not a census of chain state.</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="label">what would change my mind</h3>
+      <ul>
+        <li>state growth near <a class="n" data-f="gap.state_gb_per_year_to_offset" data-fmt="int"></a> gb a year instead of <a class="n" data-f="gap.state_gb_per_year_now" data-fmt="num1"></a>; a tenth of that would already matter.</li>
+        <li>the refills stop and the lock keeps growing: someone other than the treasury is posting collateral.</li>
+        <li>vault balances are burned and total supply falls by the same amount.</li>
+        <li>any of the three tests below fails on a rebuild.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tests bound">
+    <h3 class="label">pre-registered tests · tests/claims.json</h3>
+    <div class="rows"></div>
+  </div>
+
+  <div class="duo bound">
+    <div class="facts">
+      <h3 class="label">also true at block <a class="n" data-f="meta.head_block" data-fmt="int"></a></h3>
+      <ul>
+        <li>bridge-mng.near holds the <span class="roles"></span> on omft.near. it has <a class="n" data-f="facts.bridge_mng.access_key_count" data-fmt="int"></a> <span class="plural" data-count="facts.bridge_mng.access_key_count" data-one="access key" data-many="access keys"></span>, <a class="n" data-f="facts.bridge_mng.full_access_key_count" data-fmt="int"></a> of them full access, and no contract.</li>
+        <li>v1.signer signs with a <a class="n" data-f="facts.v1_signer.threshold" data-fmt="int"></a>-of-<a class="n" data-f="facts.v1_signer.participants" data-fmt="int"></a> threshold.</li>
+        <li>omft.near tokens: <a class="n" data-f="facts.omft_float.total_usd" data-fmt="usd0m"></a> across <a class="n" data-f="facts.omft_float.contracts_queried" data-fmt="int"></a> contracts, <a class="n" data-f="facts.omft_float.zec_share_pct" data-fmt="pct1"></a> of it zec (prices from a third-party api).</li>
+        <li>buybacks.multisignature.near holds <a class="n" data-f="vaults.buybacks.balance_near" data-fmt="near0"></a> near, <a class="n" data-f="vaults.buybacks.net_change_30d_near" data-fmt="near0"></a> more than 30 days ago. fefundsadmin.sputnik-dao.near holds <a class="n" data-f="vaults.fefunds.balance_near" data-fmt="near0"></a>. neither is burned.</li>
+      </ul>
+    </div>
+    <div class="verify">
+      <button type="button" class="verify-btn">verify live against mainnet</button>
+      <div class="verify-out" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <p class="label prior">prior work: other entries in this hackathon, including toll road, near toll audit, tollkeeper and stakeout, already cover intents fees against issuance. this adds the storage-collateral ledger, the refill trace and who pays for it.</p>
+
+  <footer class="label">
+    <a href="https://github.com/emmaGH1/subsidized-state">github.com/emmaGH1/subsidized-state</a>
+    <span><code>python3 scripts/rebuild.py</code></span>
+    <span>built at NEAR Hackathon</span>
+    <a href="https://github.com/emmaGH1/subsidized-state/blob/main/THESIS.md">THESIS.md</a>
+    <span class="bound">block <a class="n" data-f="meta.head_block" data-fmt="int"></a> · <a class="n" data-f="meta.head_timestamp_utc" data-fmt="datetime"></a></span>
+  </footer>
+</section>
+
+</main>
+
+<div class="strip" role="dialog" aria-modal="false" aria-labelledby="q-title" hidden tabindex="-1">
+  <p id="q-title" class="q-title"></p>
+  <p class="q-meaning"></p>
+  <p class="q-read"></p>
+  <div class="q-extra"></div>
+  <pre class="q-curl"></pre>
+  <p class="q-actions"><button type="button" class="q-copy">copy</button> <button type="button" class="q-run">run in browser</button> <button type="button" class="q-close">close</button></p>
+  <pre class="q-out" aria-live="polite"></pre>
+</div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+/* subsidized state · three colours, two typefaces, no boxes */
+
+@font-face { font-family: "Instrument Serif"; src: url("fonts/instrument-serif-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("fonts/inter-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("fonts/inter-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+/* metric-matched fallbacks so the swap does not shift lines */
+@font-face { font-family: "serif-fallback"; src: local("Georgia"), local("Times New Roman"), local("DejaVu Serif"); size-adjust: 88%; ascent-override: 98%; descent-override: 26%; }
+@font-face { font-family: "sans-fallback"; src: local("Helvetica"), local("Arial"), local("Liberation Sans"), local("DejaVu Sans"); size-adjust: 107%; ascent-override: 90%; descent-override: 22%; }
+
+:root {
+  --paper: #F3EEE6;
+  --ink: #0A0A0A;
+  --red: #E3271B;
+  --hair: rgba(10, 10, 10, .25);
+  --g: 16px;
+  --serif: "Instrument Serif", serif-fallback, Georgia, serif;
+  --sans: "Inter", sans-fallback, Helvetica, Arial, sans-serif;
+  --hl: clamp(56px, 17vw, 72px);
+  --lede: 20px;
+  --lab: 11px;
+  --num: 11px;
+  --big: 64px;
+  --q: 44px;
+  --ease: cubic-bezier(.2, .7, .1, 1);
+  --strip-h: 0px;
+}
+@media (min-width: 1024px) {
+  :root { --g: 48px; --hl: clamp(120px, 13vw, 200px); --lede: 26px; --lab: 12px; --num: 13px; --big: 140px; --q: 104px; }
+  html { scroll-snap-type: y proximity; }
+}
+
+* { box-sizing: border-box; }
+html { background: var(--paper); color: var(--ink); -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.45; font-variant-numeric: tabular-nums; overflow-x: hidden; }
+main { overflow-x: clip; }
+.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+svg { display: block; overflow: visible; }
+::selection { background: var(--ink); color: var(--paper); }
+code { font-family: var(--sans); font-weight: 500; }
+
+a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+a.n { white-space: nowrap; cursor: pointer; }
+svg a.n { text-decoration: underline; }
+svg a.n:focus-visible { outline: none; }
+svg a.n:focus-visible text { text-decoration-thickness: 2px; }
+.r, .r a.n { color: var(--red); }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+.label { font-family: var(--sans); font-weight: 500; font-size: var(--lab); letter-spacing: .01em; line-height: 1.35; margin: 0; }
+.hl { font-family: var(--serif); font-weight: 400; font-size: var(--hl); line-height: .92; letter-spacing: -.02em; text-transform: lowercase; margin: 0; }
+.copy, .lede { font-family: var(--serif); font-size: var(--lede); line-height: 1.25; max-width: 34ch; margin: 0; }
+.copy a.n, .lede a.n, .answer a.n { font-family: var(--sans); font-weight: 500; font-size: .7em; letter-spacing: 0; }
+.bignum { font-family: var(--serif); font-size: var(--big); line-height: .9; letter-spacing: -.03em; }
+.bignum a.n { text-underline-offset: 6px; }
+.fallback { font-family: var(--sans); font-size: 13px; margin: 24px 0 0; }
+.fallback[hidden] { display: none; }
+@media (min-width: 1024px) { .copy, .lede { max-width: 30ch; } }
+
+/* svg text */
+.t { font-family: var(--sans); font-weight: 500; font-size: var(--num); fill: var(--ink); }
+.t.red { fill: var(--red); }
+.t.paper { fill: var(--paper); }
+.t.lab { font-size: var(--lab); }
+
+/* sample strip */
+.sample-strip { position: fixed; z-index: 20; top: 0; left: 0; right: 0; margin: 0; padding: 5px var(--g) 4px; background: var(--paper); border-bottom: 1px solid var(--ink); font-size: 11px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.has-strip { --strip-h: 24px; }
+
+/* progress ticks */
+.progress { display: none; }
+@media (min-width: 1024px) {
+  .progress { display: flex; position: fixed; z-index: 15; right: 16px; top: 50%; transform: translateY(-50%); flex-direction: column; align-items: flex-end; gap: 10px; }
+  .progress i { display: block; width: 6px; height: 1px; background: var(--ink); transition: width .4s var(--ease); }
+  .progress i.on { width: 16px; }
+}
+
+/* sections */
+.sec { position: relative; min-height: 100svh; padding: calc(var(--strip-h) + 20px) var(--g) 32px; scroll-snap-align: start; }
+
+/* ---------- 3 · the sawtooth ---------- */
+.s3 { height: 280svh; padding: 0; }
+.s3 .stage { position: sticky; top: 0; height: 100svh; overflow: hidden; padding: calc(var(--strip-h) + 20px) var(--g) 0; }
+.s3 .hl { max-width: 6.5em; }
+.s3 .copy { margin-top: 18px; position: relative; z-index: 2; }
+.s3 .plot { position: absolute; left: 0; right: 0; bottom: 0; height: 50%; }
+.s3 .plot svg { position: absolute; left: 0; top: 0; }
+.s3 .plot .pan { will-change: transform; }
+.s3 .caption { position: absolute; left: var(--g); right: var(--g); bottom: 14px; z-index: 2; }
+.s3 .riser { cursor: pointer; }
+.s3 .riser:focus-visible { outline: none; }
+.s3 .riser:focus-visible .rhit { stroke: var(--ink); stroke-width: 1; }
+@media (max-height: 720px) and (max-width: 1023px) { .s3 .copy { font-size: 17px; } }
+@media (min-width: 1024px) {
+  .s3 { height: 180svh; }
+  .s3 .hl { font-size: 160px; max-width: 6em; }
+  .s3 .copy { position: absolute; top: calc(var(--strip-h) + 56px); right: var(--g); width: calc((100vw - 2 * var(--g)) * 4 / 12); margin: 0; }
+  .s3 .plot { height: 55%; }
+  .s3 .caption { left: var(--g); bottom: 20px; }
+}
+.static .s3, .reduce .s3 { height: auto; }
+.static .s3 .stage, .reduce .s3 .stage { position: relative; height: 100svh; }
+
+/* query strip */
+.strip { position: fixed; z-index: 30; left: 0; right: 0; bottom: 0; max-height: 50svh; overflow: auto; background: var(--paper); border-top: 1px solid var(--ink); padding: 14px var(--g) 18px; font-size: 12px; line-height: 1.5; }
+.strip[hidden] { display: none; }
+.strip p { margin: 0; }
+.strip .q-title { font-weight: 500; }
+.strip pre { font-family: var(--sans); font-size: 12px; white-space: pre-wrap; word-break: break-all; margin: 8px 0; }
+.strip .q-curl { font-weight: 500; }
+.strip .q-actions { display: flex; gap: 20px; }
+.strip .q-out:empty { display: none; }
