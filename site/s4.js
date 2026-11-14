@@ -19,7 +19,7 @@ export function drawPayer(D, sec, { reduce }) {
     const st = sec.getBoundingClientRect().top;
     const top = Math.max(...['.hl', '.copy', '.r30'].map(q => sec.querySelector(q)).filter(e => e && !e.hidden).map(e => e.getBoundingClientRect().bottom)) - st;
     const avail = innerHeight - top - 48;
-    ts = Math.max(180, Math.min(avail - 150, 0.36 * (W - 2 * gut), 460));
+    ts = Math.max(180, Math.min(avail - 150, 0.36 * (W - 2 * gut), 600));
   }
   const k = v => Math.max(3, ts * Math.sqrt(v / tN));
   const rs = k(rN), is = k(iN);

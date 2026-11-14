@@ -59,7 +59,7 @@ export function drawCover(D, sec) {
     const top = desk ? 70 : 48;
     // fit the first screen when it is tall enough; on short landscape screens let the cover grow
     side = Math.min(0.42 * (W - 2 * gut), isShort() ? Infinity : Math.max(240, vh - top - GH - 70 - titleH));
-    side = Math.min(side, 720);
+    side = Math.min(side, 820);
   } else side = Math.min(W - 2 * gut, 520);
   side = Math.round(side);
   const s = svg(box, side + 2, side + titleH + 2, 'ledger-svg');

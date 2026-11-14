@@ -83,7 +83,8 @@ export function drawLedger(s, D, o) {
     const big = s2 > side * 0.35;
     const n = locked.length;
     let base = big ? floor - s2 + fs + 12 + (n - 1) * lh : Math.min(lb, floor - s2 - 22);
-    const tx = big ? x + 10 : fit(x + s2 / 2, locked);
+    // keep the text clear of the burn leader to its left
+    const tx = big ? x + 10 : Math.max(fit(x + s2 / 2, locked), x > xB ? xB + bs / 2 + 8 : 6);
     locked.forEach((p, i) => line(lockLab, D, p, tx, base - (n - 1 - i) * lh, (i === 0 ? 'lab' : '') + (big ? ' paper' : ''), 'start'));
     leader.setAttribute('x', x + s2 / 2 - 0.5);
     leader.setAttribute('y', base + 6);
