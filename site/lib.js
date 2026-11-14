@@ -59,7 +59,7 @@ export function fmt(v, f) {
       const d = new Date(v);
       if (isNaN(d)) return String(v);
       const day = d.getUTCDate(), mo = MONTHS[d.getUTCMonth()], y = d.getUTCFullYear();
-      if (f === 'month') return `${mo} ${String(y).slice(2)}`;
+      if (f === 'month') return `${mo} ${y}`;
       if (f === 'date') return `${day} ${mo} ${y}`;
       const hh = String(d.getUTCHours()).padStart(2, '0'), mm = String(d.getUTCMinutes()).padStart(2, '0');
       return `${day} ${mo} ${y}, ${hh}:${mm} utc`;
@@ -120,3 +120,23 @@ export function figure(parent, kind, x, y, h, extra = {}) {
 
 export const isDesk = () => innerWidth >= 1024;
 export const figH = () => (isDesk() ? 28 : 20);
+
+// a label line mixing words and bound numbers: parts = ['word ', ['field', 'fmt', {pre, post, data}], ...]
+export function line(parent, D, parts, x, y, cls = '', anchor = 'start') {
+  const t = el('text', { x, y, class: 't ' + cls, 'text-anchor': anchor }, parent);
+  for (const p of parts) {
+    if (typeof p === 'string') { t.appendChild(document.createTextNode(p)); continue; }
+    const [f, format, o = {}] = p;
+    const a = el('a', { class: 'n', href: '#q', 'data-f': f, 'data-fmt': format }, t);
+    if (o.pre) a.dataset.pre = o.pre;
+    if (o.post) a.dataset.post = o.post;
+    for (const [k, v] of Object.entries(o.data || {})) a.dataset[k] = v;
+    a.textContent = (o.pre || '') + fmt(get(D, f), format) + (o.post || '');
+  }
+  return t;
+}
+
+// a 1px ink hairline as a thin rect, so the pen-wobble filter has a box to work in
+export function hair(parent, x1, x2, y, attrs = {}) {
+  return el('rect', { x: Math.min(x1, x2), y: Math.round(y), width: Math.abs(x2 - x1), height: 1, fill: 'var(--ink)', filter: 'url(#ink-hair)', ...attrs }, parent);
+}

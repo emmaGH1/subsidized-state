@@ -5,7 +5,7 @@ import { fmt, get, CALC } from './lib.js';
 import { initStrip } from './query.js';
 import { drawSawtooth, scrollSawtooth } from './s3.js';
 import { drawLock } from './s2.js';
-import { drawPayer } from './s4.js';
+import { drawPayer, startPayerLoop } from './s4.js';
 import { drawGap } from './s5.js';
 import { drawCover, drawVerdict, renderTests, renderFacts, initVerify } from './s6.js';
 
@@ -72,8 +72,8 @@ function observe() {
   if (reduce || !('IntersectionObserver' in window)) { secs.forEach(s => s.classList.add('in')); }
   else {
     const io = new IntersectionObserver(es => {
-      for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    }, { threshold: 0.35 });
+      for (const e of es) if (e.isIntersecting && e.intersectionRect.height >= Math.min(0.35 * e.boundingClientRect.height, 0.35 * innerHeight)) { e.target.classList.add('in'); io.unobserve(e.target); if (e.target.id === 'payer') startPayerLoop(e.target); }
+    }, { threshold: [0, 0.05, 0.1, 0.2, 0.35] });
     secs.forEach(s => io.observe(s));
   }
   const io2 = new IntersectionObserver(es => {
@@ -84,6 +84,7 @@ function observe() {
 
 async function main() {
   if (reduce) document.documentElement.classList.add('reduce');
+  else document.documentElement.classList.add('js-motion');
   const D = await load();
   if (!D) { fallback(); return; }
   window.__artifact = D;
