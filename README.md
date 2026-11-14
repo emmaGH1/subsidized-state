@@ -237,6 +237,10 @@ PLAN.md                   how this was built, and every decision made along the 
 
 ## How it was made
 
+**Other hackathon entry:** the author also submitted [WORLDWORKS](https://github.com/emmaGH1/worldworks),
+a separate game for building programmable payment machines on NEAR testnet. Subsidized State is an
+independent mainnet research thesis, with its own repository and deliverables.
+
 Built in one day, 14 November 2026, during NEAR Hackathon; every line is new, in a new repository. A human directed
 a team of AI agents (Claude Fable, Claude Opus, Gemini Carbon): an orchestrator that planned, wrote the schema, the
 rebuild script and the design spec, a writer for the thesis, a builder for the site, and an auditor that cloned
