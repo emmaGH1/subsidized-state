@@ -1,11 +1,11 @@
 {
  "schema_version": "1.0",
  "meta": {
-  "generated_at_utc": "2026-11-14T14:44:03Z",
+  "generated_at_utc": "2026-11-14T14:45:11Z",
   "is_sample": false,
-  "head_block": 224528199,
-  "head_timestamp_utc": "2026-11-14T14:43:39Z",
-  "head_hash": "Fjbj3UtkgSUL2V3kp1yrEbZhQBxEqFG9qaXYk5kQhG9i",
+  "head_block": 224528333,
+  "head_timestamp_utc": "2026-11-14T14:44:54Z",
+  "head_hash": "DFCoqa87TufSLD6Hk8eDcbsubsUC8btKsV1XVKSjULFy",
   "endpoints": {
    "live": "https://free.rpc.fastnear.com",
    "archival": "https://archival-rpc.mainnet.fastnear.com",
@@ -13,8 +13,8 @@
     "cache"
    ]
   },
-  "runtime_seconds": 22.1,
-  "network_calls": 145,
+  "runtime_seconds": 14.5,
+  "network_calls": 144,
   "cache_hits": 253,
   "fresh": false,
   "errors": []
@@ -126,21 +126,21 @@
     "free_near": 673.72
    },
    {
-    "block": 224528199,
-    "timestamp_utc": "2026-11-14T14:43:39Z",
-    "storage_usage_bytes": 13706031438,
-    "locked_near": 137060.31,
-    "amount_near": 137682.53,
-    "free_near": 622.22
+    "block": 224528333,
+    "timestamp_utc": "2026-11-14T14:44:54Z",
+    "storage_usage_bytes": 13706086632,
+    "locked_near": 137060.87,
+    "amount_near": 137683.29,
+    "free_near": 622.43
    }
   ],
   "growth_365d": {
    "from_block": 172600000,
-   "to_block": 224528199,
-   "days": 365.089,
-   "bytes": 10151611465,
-   "near": 101516.11,
-   "near_per_year": 101491.35,
+   "to_block": 224528333,
+   "days": 365.09,
+   "bytes": 10151666659,
+   "near": 101516.67,
+   "near_per_year": 101491.66,
    "gb_per_year": 10.149
   },
   "locked_share_of_balance_pct": 99.55,
@@ -154,8 +154,8 @@
   "account": "intents.near",
   "window": {
    "from_block": 224030000,
-   "to_block": 224528199,
-   "days": 3.333
+   "to_block": 224528333,
+   "days": 3.334
   },
   "trace": [
    {
@@ -1007,8 +1007,8 @@
     "free_near": 625.45
    },
    {
-    "block": 224528199,
-    "free_near": 622.22
+    "block": 224528333,
+    "free_near": 622.43
    }
   ],
   "refills": [
@@ -1179,28 +1179,28 @@
   ]
  },
  "issuance": {
-  "total_supply_near": 1311701824.81,
+  "total_supply_near": 1311701823.94,
   "d365": {
    "from_block": 172600000,
-   "to_block": 224528199,
-   "days": 365.089,
+   "to_block": 224528333,
+   "days": 365.09,
    "supply_from_near": 1279940657.69,
-   "supply_to_near": 1311701824.81,
-   "net_near": 31761167.12,
-   "annualized_near": 31753419.93,
-   "annualized_pct": 2.4809
+   "supply_to_near": 1311701823.94,
+   "net_near": 31761166.25,
+   "annualized_near": 31753343.43,
+   "annualized_pct": 2.4808
   },
   "d30": {
    "from_block": 220100000,
-   "to_block": 224528199,
-   "days": 29.94,
+   "to_block": 224528333,
+   "days": 29.941,
    "supply_from_near": 1309031391.17,
-   "supply_to_near": 1311701824.81,
-   "net_near": 2670433.64,
-   "annualized_near": 32555360.78,
-   "annualized_pct": 2.487
+   "supply_to_near": 1311701823.94,
+   "net_near": 2670432.77,
+   "annualized_near": 32554404.72,
+   "annualized_pct": 2.4869
   },
-  "max_gross_near_per_year": 32792545.62,
+  "max_gross_near_per_year": 32792545.6,
   "sources": [
    "block_header_at_height",
    "protocol_config"
@@ -1229,15 +1229,15 @@
    },
    {
     "first_block": 224524337,
-    "last_block": 224528199,
+    "last_block": 224528333,
     "complete": false,
     "supply_first_yocto": "1311701894749689082554282953354720",
-    "supply_last_yocto": "1311701824808296656727994553354720",
-    "burned_near": 69.94,
-    "seconds": 2201.7
+    "supply_last_yocto": "1311701823944240854716428753354720",
+    "burned_near": 70.81,
+    "seconds": 2276.8
    }
   ],
-  "burned_near_per_year": 332119.41,
+  "burned_near_per_year": 332163.85,
   "pct_of_net_issuance": 1.046,
   "sources": [
    "validators_epoch_start",
@@ -1283,14 +1283,14 @@
   }
  },
  "gap": {
-  "lock_near_per_year": 101491.35,
-  "net_issuance_near_per_year": 31753419.93,
+  "lock_near_per_year": 101491.66,
+  "net_issuance_near_per_year": 31753343.43,
   "lock_pct_of_issuance": 0.3196,
   "multiple": 312.9,
   "state_gb_per_year_now": 10.149,
   "state_gb_per_year_to_offset": 3175.3,
   "near_per_gb": 10000.0,
-  "net_issuance_30d_annualized_near": 32555360.78,
+  "net_issuance_30d_annualized_near": 32554404.72,
   "multiple_30d": 320.8
  },
  "facts": {
@@ -1342,10 +1342,10 @@
   },
   "omft_float": {
    "contracts_queried": 112,
-   "total_usd": 238565922.1,
-   "zec_supply": 149694.22,
-   "zec_usd": 132106644.27,
-   "zec_share_pct": 55.38,
+   "total_usd": 238433067.15,
+   "zec_supply": 149604.22,
+   "zec_usd": 132027218.74,
+   "zec_share_pct": 55.37,
    "third_party": true
   }
  },
