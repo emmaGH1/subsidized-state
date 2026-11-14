@@ -109,6 +109,12 @@ class Net:
                 if e.code == 429:
                     self.closed_until[url] = time.time() + (4 if kind == "live" else 8 + 6 * attempt)
                 else:
+                    try:   # some nodes answer a skipped height with HTTP 422 and the JSON-RPC error in the body
+                        text = e.read().decode("utf-8", "replace")
+                    except Exception:
+                        text = ""
+                    if "UNKNOWN_BLOCK" in text or "DB Not Found" in text or "GARBAGE_COLLECTED" in text:
+                        raise UnknownBlock(text[:160])
                     time.sleep(0.3)
                 continue
             except Exception as e:  # timeouts, DNS, bad JSON

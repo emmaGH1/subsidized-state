@@ -20,7 +20,7 @@ We measured it on `intents.near`, the contract behind NEAR Intents.
 4. **The bigger flow is fees, and they are held, not burned.** Two fee vaults gained about 4.1 million NEAR in the same year, about 40 times the lock.
 5. **Users did not post the collateral in the window we traced.** Every top-up of `intents.near` in the last 3.3 days came from one account, `intents_refiller.near`, to which a DAO treasury has approved 55,000 NEAR.
 
-Other entries in this hackathon (Toll Road, NEAR Toll Audit, Tollkeeper, Stakeout and others) already cover
+Other entries in this hackathon (Toll Road, NEAR Toll Audit, Stakeout and others) already cover
 intents fees against issuance. What this adds is the storage-collateral ledger, the refill trace, and who pays.
 
 ## Check it yourself
@@ -148,7 +148,7 @@ queries had shown the rough sizes. Treat them as tripwires for future rebuilds, 
 
 - It measures one contract, `intents.near`, against issuance for the whole network. It is not a census of all state on NEAR, and nothing here ranks contracts by state.
 - The multiple is a trailing-year average. The lock has been growing faster recently: over the last three checkpoint intervals it annualises to about 120 thousand NEAR, which is about 265x rather than 313x.
-- Fee vault inflows are not traced to their source. The artifact shows that the balances grew and that nothing was burned.
+- Fee vault inflows are not traced to their source. The artifact shows that the two balances grew and that the NEAR is still held there. It does not show whether other fee revenue was burned or spent along the way.
 - There is no before-and-after series for gas burn, so this does not test whether chain abstraction caused the low burn.
 - The refill trace covers about 3.3 days, not the year. The link from the DAO's proposals to each refill is by account, not traced transfer by transfer. The first approved proposal is from July 2026; who posted collateral before then is not shown.
 - "About a year" means the exact number of days in `issuance.d365.days`; every per-year figure is annualised by it.

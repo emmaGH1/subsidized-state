@@ -90,7 +90,7 @@ A serious bull case against this thesis rests on five arguments:
 Four concrete on-chain thresholds in `data/artifact.json` would change our conclusion:
 
 1. **Storage scale (`C1` flips and approaches offset).** `gap.lock_pct_of_issuance` reaches at least `1.0` (falsifying `C1`, `claims[0].checks[0].value`), and `gap.state_gb_per_year_now` rises from 10.149 GB/year (`gap.state_gb_per_year_now`) to at least one-tenth of `gap.state_gb_per_year_to_offset` (`3,175.3 / 10 = 317.53` GB/year, i.e., `gap.lock_pct_of_issuance >= 10` and `gap.multiple <= 10.0`).
-2. **User-paid collateral (`C2` flips).** `lock.growth_365d.near` continues growing while `sawtooth.refill_count` drops to `0` (below `3`, `claims[1].checks[0].value`) or `sawtooth.from_refiller_pct` falls well below `100` (`claims[1].checks[1].value`), showing users or solvers posting storage collateral directly rather than relying on `intents_refiller.near`.
+2. **User-paid collateral.** `lock.growth_365d.near` keeps growing while the top-ups of `intents.near` come, by receipt, from accounts that are not funded by the DAO treasury: `sawtooth.from_refiller_pct` falls well below `100` (`claims[1].checks[1].value`) and the new senders are identified. Refills merely stopping would not show this. It could equally mean a larger reserve, another sponsor, or slower state growth, so a `C2` failure on count alone is inconclusive, not evidence that users pay.
 3. **Executed vault burns.** Balances in `vaults.buybacks.balance_near` (`2,282,273.11` NEAR) and `vaults.fefunds.balance_near` (`2,016,572.56` NEAR), totaling `2,282,273.11 + 2,016,572.56 = 4,298,845.67` NEAR, are burned so `issuance.d30.annualized_near` falls correspondingly in block headers (`issuance.total_supply_near`).
 4. **Execution burn recovery (`C3` flips).** `gas_burn.pct_of_net_issuance` reaches `2.0` or more (falsifying `C3`, `claims[2].checks[0].value`) and sustains above `2.0` across complete 43,200-block epochs (`constants.epoch_length_blocks`, `gas_burn.epochs[].complete` = `true`).
 
@@ -106,7 +106,7 @@ Three claims with fixed thresholds, defined in `data/SCHEMA.md` before `scripts/
 
 ## Prior work
 
-Other entries in this hackathon (for example Toll Road, NEAR Toll Audit, Tollkeeper, and Stakeout) already examine intents fees relative to NEAR issuance and staking. What this work adds is the longitudinal storage-collateral ledger on `intents.near`, the block-level refill trace, and on-chain attribution of who pays for that collateral.
+Other entries in this hackathon (for example Toll Road, NEAR Toll Audit and Stakeout) already examine intents fees relative to NEAR issuance and staking. What this work adds is the longitudinal storage-collateral ledger on `intents.near`, the block-level refill trace, and on-chain attribution of who pays for that collateral.
 
 ## How to check this
 
