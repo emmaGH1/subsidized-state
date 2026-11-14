@@ -5,7 +5,9 @@
 An investment thesis on NEAR, built at NEAR Hackathon (thesis track). Every number in it is read from NEAR
 mainnet by one command, with no API keys, and every number on the site links to the query behind it.
 
-**[Live site](https://emmagh1.github.io/subsidized-state/)** · **[Demo video](https://github.com/emmaGH1/subsidized-state/releases/download/v1.0/subsidized-state-demo.mp4)** · **[The thesis](THESIS.md)** · **[The data](data/artifact.json)** · **[Every field explained](data/SCHEMA.md)**
+**[Live site](https://emmagh1.github.io/subsidized-state/)** · **[Watch demo on YouTube](https://youtu.be/ErJSoDyeb7o)** · **[X demo post](https://x.com/_HEISEMMA/status/2121717527407439904)** · **[Download video](https://github.com/emmaGH1/subsidized-state/releases/download/v1.0/subsidized-state-demo.mp4)**
+
+**[The thesis](THESIS.md)** · **[The data](data/artifact.json)** · **[Every field explained](data/SCHEMA.md)**
 
 [![The cover of the live site: a year of new NEAR supply drawn as a square, with what was burned, held and locked drawn to scale inside it](site/shots/s1-1440.png)](https://emmagh1.github.io/subsidized-state/)
 
