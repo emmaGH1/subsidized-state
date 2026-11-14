@@ -1,5 +1,14 @@
 # PLAN — subsidized state
 
+## Cinematic direction study — 14 November, resumed after provider interruption
+
+- User requested a more cinematic experience. Keep the exploration separate from the published submission; no new research claims or live-site replacement in this pass.
+- `review/cinematic-direction.html` replays the frozen observation window by block height over 24 seconds. A small figure follows interpolated sampled balance; this is explicitly not a transaction animation or live feed.
+- Pause, scrub, six receipt selectors, and reduced-motion single-event stepping are implemented. Receipts reveal only once their block is reached in replay. Manual receipt selection restores the complete observation window.
+- Desktop (1280px) and mobile (380px) screenshots: `review/shots/`. Checked with Chromium and Playwright: play/pause, scrubbing, receipt selection, mobile overflow, reduced-motion, and page errors. No fresh RPC rebuild performed in this design pass.
+- Funding attribution remains scoped to the immediate payer. This does not prove ultimate source of funds or permanent token demand. See `review/critical-review.md` for the unresolved research issues.
+
+
 NEAR Hackathon, investment thesis track. Submission due 2026-11-14 23:59 UTC. Internal hard stop 23:00 UTC.
 
 ## The question
