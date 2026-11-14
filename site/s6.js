@@ -1,20 +1,70 @@
 // section 1 · cover, section 6 · verdict (tests, facts, verify live)
 
-import { el, hair, svg, figure, fmt, get, isDesk, figH, yocto } from './lib.js';
+import { el, hair, svg, figure, fmt, get, isDesk, isTwo, isShort, figH, clamp, yocto, CALC } from './lib.js';
+import { drawLedger } from './ledger.js';
 import { gapScale } from './s5.js';
 import { rpc, FALLBACK_LIVE } from './query.js';
 
 const $ = (s, r = document) => r.querySelector(s);
 
 export function drawCover(D, sec) {
+  const desk = isDesk(), two = isTwo();
+  const W = innerWidth, gut = desk ? 48 : 16, fs = desk ? 13 : 11, lh = fs + 4;
+  const vh = innerHeight;
+
+  // the ground: the real spare-balance trace, red risers, the figure standing on it
   const g = sec.querySelector('.ground');
   g.replaceChildren();
-  const W = innerWidth, gut = isDesk() ? 48 : 16;
-  const h = figH() + 4;
-  g.setAttribute('width', W); g.setAttribute('height', h); g.setAttribute('viewBox', `0 0 ${W} ${h}`);
-  hair(g, 0, W, h - 0.5);
-  const fx = isDesk() ? gut + 9.5 * (W - 2 * gut) / 12 : W * 0.7;
-  figure(g, 'figure-stand', fx, h - 0.5, figH());
+  const st = D.sawtooth;
+  const GH = two ? Math.round(clamp(0.13 * vh, 64, 130)) : 76;
+  g.setAttribute('width', W); g.setAttribute('height', GH); g.setAttribute('viewBox', `0 0 ${W} ${GH}`);
+  const trace = [...(st.trace || [])].sort((a, b) => a.block - b.block);
+  if (trace.length > 1) {
+    const from = st.window.from_block, to = st.window.to_block;
+    const x = b => ((b - from) / (to - from)) * W;
+    const max = 1.15 * st.free_max_near;
+    const y = v => GH - (v / max) * GH; // zero-based: the bottom edge is 0 near spare
+    const rBy = new Map((st.refills || []).map(r => [r.block, r]));
+    const pts = [];
+    trace.forEach((p, i) => {
+      const r = rBy.get(p.block);
+      if (r && i > 0) { pts.push([x(p.block), y(r.free_before_near)], [x(p.block), y(r.free_after_near)]); }
+      else pts.push([x(p.block), y(p.free_near)]);
+    });
+    const d = `M-14 ${GH + 14}L-14 ${pts[0][1].toFixed(1)}` + pts.map(([a, b]) => `L${a.toFixed(1)} ${b.toFixed(1)}`).join('') + `L${W + 14} ${pts[pts.length - 1][1].toFixed(1)}L${W + 14} ${GH + 14}Z`;
+    const cid = 'cover-clip';
+    el('rect', { x: -14, y: -40, width: W + 28, height: GH + 40 }, el('clipPath', { id: cid }, el('defs', {}, g)));
+    el('path', { d, fill: 'var(--ink)' }, el('g', { filter: 'url(#ink-edge)' }, el('g', { 'clip-path': `url(#${cid})` }, g)));
+    (st.refills || []).forEach((r, i) => {
+      const rx = x(r.block), y0 = y(r.free_before_near), y1 = y(r.free_after_near);
+      const a = el('a', { class: 'riser', href: '#q', 'data-f': `sawtooth.refills[${i}].amount_near`, 'data-refill': i,
+        'aria-label': `refill of ${fmt(r.amount_near, 'near0')} near at block ${fmt(r.block, 'int')}` }, g);
+      el('rect', { x: rx - 10, y: y1 - 8, width: 20, height: y0 - y1 + 16, fill: 'transparent' }, a);
+      el('rect', { x: rx - 1.5, y: y1, width: 3, height: Math.max(1, y0 - y1), fill: 'var(--red)', filter: 'url(#ink-riser)' }, a);
+    });
+    // the figure stands on the trace, late in the window
+    const fx = W * (two ? 0.86 : 0.78);
+    let fy = pts[0][1];
+    for (const [px, py] of pts) { if (px > fx) break; fy = py; }
+    figure(g, 'figure-stand', fx, fy + 1, figH());
+    g.setAttribute('aria-label', `the ground is the spare balance of intents.near over ${fmt(st.window.days, 'num1')} days: it slides down, then jumps up ${fmt(st.refill_count, 'int')} times, each a red riser.`);
+  }
+
+  // the ledger: a year of new supply and what offset it, to scale by area
+  const box = sec.querySelector('.ledger');
+  box.replaceChildren();
+  const titleH = 2 * lh + 10;
+  let side;
+  if (two) {
+    const top = desk ? 70 : 48;
+    // fit the first screen when it is tall enough; on short landscape screens let the cover grow
+    side = Math.min(0.42 * (W - 2 * gut), isShort() ? Infinity : Math.max(240, vh - top - GH - 70 - titleH));
+    side = Math.min(side, 720);
+  } else side = Math.min(W - 2 * gut, 520);
+  side = Math.round(side);
+  const s = svg(box, side + 2, side + titleH + 2, 'ledger-svg');
+  drawLedger(s, D, { x: 1, y: titleH, side, fs });
+  box.setAttribute('aria-label', `a square whose area is the ${fmt(D.gap.net_issuance_near_per_year, 'near0')} near of new supply in a year. on its floor, to scale: a hatched square for the ${fmt(CALC.vaults_change_365d.v(D), 'near0')} near the two fee vaults gained, a black square for the ${fmt(D.gas_burn.burned_near_per_year, 'near0')} near burned as gas, and a red square for the ${fmt(D.gap.lock_near_per_year, 'near0')} near locked under intents.near. the rest of the square, ${fmt(CALC.uncaptured_pct.v(D), 'pct1')}, has no offset measured here.`);
 }
 
 export function drawVerdict(D, sec) {

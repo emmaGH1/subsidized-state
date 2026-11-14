@@ -26,6 +26,22 @@ export const CALC = {
     formula: 'vaults.buybacks.balance_near + vaults.fefunds.balance_near',
     under: 'vaults.buybacks.balance_near',
   },
+  vaults_pct_of_issuance: {
+    v: D => {
+      const c = CALC.vaults_change_365d.v(D), i = D.gap.net_issuance_near_per_year;
+      return c == null || !i ? null : c / i * 100;
+    },
+    formula: '(vaults.buybacks.net_change_365d_near + vaults.fefunds.net_change_365d_near) / gap.net_issuance_near_per_year × 100',
+    under: 'vaults.buybacks.net_change_365d_near',
+  },
+  uncaptured_pct: {
+    v: D => {
+      const a = CALC.vaults_pct_of_issuance.v(D), b = D.gas_burn.pct_of_net_issuance, c = D.gap.lock_pct_of_issuance;
+      return a == null || b == null || c == null ? null : 100 - a - b - c;
+    },
+    formula: '100 − calc.vaults_pct_of_issuance − gas_burn.pct_of_net_issuance − gap.lock_pct_of_issuance',
+    under: 'gap.net_issuance_near_per_year',
+  },
 };
 
 export function get(D, path) {
@@ -62,6 +78,7 @@ export function fmt(v, f) {
     case 'pct1': return (+v).toFixed(1) + '%';
     case 'gb1': return (v / 1e9).toFixed(1);
     case 'num1': return sep(+v, 1);
+    case 'num2': return sep(+v, 2);
     case 'usd0m': return '$' + Math.round(v / 1e6) + 'm';
     case 'date': case 'month': case 'datetime': {
       const d = new Date(v);
@@ -127,6 +144,10 @@ export function figure(parent, kind, x, y, h, extra = {}) {
 }
 
 export const isDesk = () => innerWidth >= 1024;
+// short landscape screens (phones turned sideways): flowing layouts, no sticky stages
+export const isShort = () => innerHeight < 520 && innerWidth > innerHeight;
+// two-column cover and gap: desktop, or any landscape screen wide enough
+export const isTwo = () => innerWidth >= 1024 || (innerWidth >= 700 && innerWidth > innerHeight);
 export const figH = () => (isDesk() ? 28 : 20);
 
 // a label line mixing words and bound numbers: parts = ['word ', ['field', 'fmt', {pre, post, data}], ...]

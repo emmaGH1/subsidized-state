@@ -64,12 +64,21 @@
 <!-- 1 · cover -->
 <section id="cover" class="sec s1" data-account="intents.near">
   <p class="label kicker">subsidized state · an investment thesis on near, checked against the chain</p>
+  <p class="label blockline bound">block <a class="n" data-f="meta.head_block" data-fmt="int"></a> · <a class="n" data-f="meta.head_timestamp_utc" data-fmt="date"></a> · every number is a link to its query</p>
   <h1 class="question">if chain abstraction killed gas burn, what does the near token actually capture?</h1>
-  <p class="lede bound">near's newest sink is state collateral: <a class="n" data-f="constants.near_per_mb" data-fmt="int"></a> near locked for every megabyte a contract stores. it is real, growing and measurable. in the last year intents.near, the contract behind near intents, locked <a class="n" data-f="gap.lock_near_per_year" data-fmt="near0"></a> more near while the supply grew by <a class="n" data-f="gap.net_issuance_near_per_year" data-fmt="m1"></a>. that is <a class="n" data-f="gap.multiple" data-fmt="x0"></a> too small to offset issuance. it is locked, not burned. and it is paid by a <span class="r">treasury bot</span>, not by users. this page shows the receipts and what would have to change.</p>
+  <p class="lede answer1 bound">so far, almost nothing. against every 100 near of new supply last year, <a class="n" data-f="gas_burn.pct_of_net_issuance" data-fmt="num2"></a> was burned as gas, <a class="n" data-f="calc.vaults_pct_of_issuance" data-fmt="num1"></a> piled up in two fee vaults, and <span class="r"><a class="n" data-f="gap.lock_pct_of_issuance" data-fmt="num2"></a> was locked under one contract&rsquo;s state, topped up by a treasury bot</span>.</p>
+  <ol class="label chapters">
+    <li><a href="#lock"><span>01</span> the lock</a></li>
+    <li><a href="#sawtooth"><span>02</span> the sawtooth</a></li>
+    <li><a href="#payer"><span>03</span> who pays</a></li>
+    <li><a href="#gap"><span>04</span> the gap</a></li>
+    <li><a href="#verdict"><span>05</span> verdict</a></li>
+  </ol>
+  <div class="ledger drawing" role="img"></div>
   <p class="fallback" hidden>data unavailable: run <code>python3 scripts/rebuild.py</code></p>
+  <svg class="ground drawing" role="img"></svg>
+  <p class="label caption bound">the ground is the real trace: intents.near&rsquo;s spare balance over <a class="n" data-f="sawtooth.window.days" data-fmt="num1"></a> days. each red step is about <a class="n" data-f="sawtooth.refill_amount_median_near" data-fmt="near0"></a> near arriving from intents_refiller.near.</p>
   <a class="label skip" href="#verdict">skip to verdict ↓</a>
-  <svg class="ground draw" aria-hidden="true"></svg>
-  <p class="label blockline bound">block <a class="n" data-f="meta.head_block" data-fmt="int"></a> · <a class="n" data-f="meta.head_timestamp_utc" data-fmt="datetime"></a> · every number is a link to its query</p>
 </section>
 
 <!-- 2 · the lock -->
