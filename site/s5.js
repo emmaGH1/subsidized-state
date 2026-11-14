@@ -1,6 +1,7 @@
 // section 5 · the gap: issuance, lock and burn on one area scale
 
-import { el, hair, line, svg, figure, fmt, get, isDesk, figH, CALC } from './lib.js';
+import { el, hair, line, svg, figure, fmt, get, isDesk, isTwo, isShort, figH, CALC } from './lib.js';
+import { drawLedger } from './ledger.js';
 
 export const SL = { gb: null };
 let G = null;
@@ -11,10 +12,13 @@ CALC.slider_near = { v: D => (SL.gb == null || SL.gb === D.gap.state_gb_per_year
 CALC.slider_pct = { v: D => CALC.slider_near.v(D) / D.gap.net_issuance_near_per_year * 100, formula: 'slider gb × gap.near_per_gb / gap.net_issuance_near_per_year × 100', under: 'gap.net_issuance_near_per_year' };
 CALC.slider_x = { v: D => (SL.gb ?? D.gap.state_gb_per_year_now) / D.gap.state_gb_per_year_now, formula: 'slider gb / gap.state_gb_per_year_now', under: 'gap.state_gb_per_year_now' };
 
-// side of a square whose area is the given near, on the shared scale of section 5
+// side of the section 5 ledger square: one shared area scale for the gap and the verdict figure
 export function gapScale(D) {
-  const desk = isDesk();
-  const side = desk ? 0.56 * innerHeight : innerWidth - 32;
+  const W = innerWidth, gut = isDesk() ? 48 : 16;
+  let side;
+  if (isTwo()) side = Math.min(0.5 * (W - 2 * gut), isShort() ? Infinity : Math.max(260, innerHeight - 150));
+  else side = W - 2 * gut;
+  side = Math.round(Math.min(side, 760));
   const iss = D.gap.net_issuance_near_per_year;
   return { side, k: v => Math.max(3, side * Math.sqrt(Math.max(0, v) / iss)) };
 }
@@ -25,55 +29,23 @@ export function drawGap(D, sec) {
   const g = D.gap;
   if (!g || g.net_issuance_near_per_year == null || g.lock_near_per_year == null) throw new Error('no gap');
   const desk = isDesk();
-  const { side, k } = gapScale(D);
-  const fs = desk ? 13 : 11;
-  const burnS = k(D.gas_burn.burned_near_per_year ?? 0);
-  const top = fs + 14;
-  const W = desk ? side + burnS + 140 : side;
-  const SH = top + side + (desk ? 30 : 26);
-  const gy = top + side;
-
-  box.setAttribute('aria-label', `three squares on one area scale. an outline for the ${fmt(g.net_issuance_near_per_year, 'near0')} near issued in a year. inside its corner a black speck for the ${fmt(g.lock_near_per_year, 'near0')} near locked by intents.near, and a small black square for the ${fmt(D.gas_burn.burned_near_per_year, 'near0')} near burned as gas.`);
-
-  const s = svg(box, W, SH, 'gap-svg');
-  // ground
-  hair(s, desk ? -40 : -16, W + (desk ? 40 : 16), gy + 0.5);
-  // issued: outline
-  el('rect', { class: 'outline', x: 0.75, y: top + 0.75, width: side - 1.5, height: side - 1.5, fill: 'none', stroke: 'var(--ink)', 'stroke-width': 1.5, filter: 'url(#ink-pen)', pathLength: 1000 }, s);
-  line(s, D, ['issued · ', ['gap.net_issuance_near_per_year', 'near0'], ' near a year'], 0, fs, 'lab');
-
-  // burned
-  const bx = desk ? side + 40 : side - burnS - 8;
-  const burn = el('g', { class: 'speck' }, s);
-  el('rect', { x: bx, y: gy - burnS, width: burnS, height: burnS, fill: 'var(--ink)', filter: 'url(#ink-edge)' }, burn);
-  const bl = el('g', { class: 'speck' }, s);
-  line(bl, D, ['burned · ', ['gas_burn.burned_near_per_year', 'near0']], desk ? bx : bx + burnS, gy - burnS - 8, 'lab', desk ? 'start' : 'end');
-
-  // locked: true scale, driven by the slider
-  const lock = el('rect', { class: 'locked speck', x: 0, y: gy - k(g.lock_near_per_year), width: k(g.lock_near_per_year), height: k(g.lock_near_per_year), fill: 'var(--ink)' }, s);
-  const ll = el('g', { class: 'speck' }, s);
-  const lw = line(ll, D, ['locked · ', ['calc.slider_near', 'near0']], 8, 0, 'lab');
-  const la = null;
-  const fig = figure(s, 'figure-look-up', 0, gy, figH(), { class: 'fig speck' });
-
-  G = { D, k, gy, lock, lw, fig, side, fs, desk };
-  layoutLocked();
+  const { side } = gapScale(D);
+  const fs = desk ? 13 : 11, lh = fs + 4;
+  const titleH = 2 * lh + 10;
+  const fh = figH();
+  const W = side + 2 + fh;
+  box.setAttribute('aria-label', `a square whose area is the ${fmt(g.net_issuance_near_per_year, 'near0')} near issued in a year. on its floor, to scale: hatched, the ${fmt(CALC.vaults_change_365d.v(D), 'near0')} near the two fee vaults gained; black, the ${fmt(D.gas_burn.burned_near_per_year, 'near0')} near burned as gas; red, the ${fmt(g.lock_near_per_year, 'near0')} near locked by intents.near. the slider grows the red square toward break-even.`);
+  const s = svg(box, W, side + titleH + 2, 'gap-svg');
+  const L = drawLedger(s, D, { x: 1, y: titleH, side, fs, lockF: 'calc.slider_near', lockPctF: 'calc.slider_pct' });
+  hair(s, side + 2, W + 20, titleH + side + 0.5);
+  figure(s, 'figure-look-up', side + 4 + fh / 4, titleH + side, fh, { class: 'fig speck' });
+  G = { D, L };
   initSlider(D, sec);
 }
 
 function layoutLocked() {
   if (!G) return;
-  const { D, k, gy, lock, lw, fig, side, fs } = G;
-  const v = CALC.slider_near.v(D);
-  const s = Math.min(side, k(v));
-  lock.setAttribute('y', gy - s); lock.setAttribute('width', s); lock.setAttribute('height', s);
-  const big = s > side * 0.3;
-  const lx = big ? 10 : 3;
-  const ly = big ? gy - s + fs + 10 : gy - Math.max(s, figH()) - 10;
-  lw.setAttribute('x', lx); lw.setAttribute('y', ly); lw.classList.toggle('paper', big);
-  const a = lw.querySelector('a.n'); a.textContent = fmt(v, 'near0');
-  fig.setAttribute('transform', `translate(${(s + 12 + figH() / 4).toFixed(1)} ${gy})`);
-  fig.style.display = s > side - 30 ? 'none' : '';
+  G.L.setLock(CALC.slider_near.v(G.D));
 }
 
 function initSlider(D, sec) {

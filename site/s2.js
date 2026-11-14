@@ -41,7 +41,9 @@ export function drawLock(D, sec) {
   el('path', { d, fill: 'var(--ink)' }, el('g', { filter: 'url(#ink-edge)' }, el('g', { 'clip-path': 'url(#mono-clip)' }, wipe)));
   hair(s, 0, W, gy + 0.5);
 
-  const show = i => desk || i === 0 || i === N - 1 || i === Math.floor((N - 1) / 2);
+  // label every column only when the month names fit side by side; otherwise every other one
+  const every = cw >= fs * 0.58 * 9 + 10 ? 1 : 2;
+  const show = i => (desk ? (i % every === (N - 1) % every) : (i === 0 || i === N - 1 || i === Math.floor((N - 1) / 2)));
   const labels = el('g', { class: 'labels' }, s);
   cps.forEach((c, i) => {
     const cx = x0 + i * cw + cw / 2;

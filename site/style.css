@@ -68,39 +68,59 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .sample-strip { position: fixed; z-index: 20; top: 0; left: 0; right: 0; margin: 0; padding: 5px var(--g) 4px; background: var(--paper); border-bottom: 1px solid var(--ink); font-size: 11px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .has-strip { --strip-h: 24px; }
 
-/* progress ticks */
+/* progress ticks: the right-edge index, current chapter named beside its tick */
 .progress { display: none; }
 @media (min-width: 1024px) {
-  .progress { display: flex; position: fixed; z-index: 15; right: 16px; top: 50%; transform: translateY(-50%); flex-direction: column; align-items: flex-end; gap: 10px; }
+  .progress { display: flex; position: fixed; z-index: 15; right: 16px; top: 50%; transform: translateY(-50%); flex-direction: column; align-items: flex-end; gap: 4px; }
+  .progress a { display: flex; align-items: center; gap: 10px; height: 12px; text-decoration: none; font-family: var(--sans); font-weight: 500; font-size: 11px; }
+  .progress span { opacity: 0; transition: opacity .3s; white-space: nowrap; background: var(--paper); padding: 0 4px; }
+  .progress.flash a.on span, .progress:hover a.on span, .progress a:hover span { opacity: 1; }
   .progress i { display: block; width: 6px; height: 1px; background: var(--ink); transition: width .4s var(--ease); }
-  .progress i.on { width: 16px; }
+  .progress a.on i { width: 16px; }
 }
+
+/* chapter label: small, lowercase, above each headline */
+.chap { margin: 0 0 10px; }
+.chap::first-letter { font-variant-numeric: tabular-nums; }
 
 /* sections */
 .sec { position: relative; min-height: 100svh; padding: calc(var(--strip-h) + 20px) var(--g) 32px; scroll-snap-align: start; }
 
 /* ---------- 3 · the sawtooth ---------- */
+/* a flex column: headline and copy on top, the plot takes what is left, caption under it. nothing overlaps. */
 .s3 { height: 280svh; padding: 0; }
-.s3 .stage { position: sticky; top: 0; height: 100svh; overflow: hidden; padding: calc(var(--strip-h) + 20px) var(--g) 0; }
+.s3 .stage { position: sticky; top: 0; height: 100svh; overflow: hidden; padding: calc(var(--strip-h) + 20px) var(--g) 0; display: flex; flex-direction: column; }
+.s3 .head { flex: none; position: relative; z-index: 2; }
 .s3 .hl { max-width: 6.5em; }
-.s3 .copy { margin-top: 18px; position: relative; z-index: 2; }
-.s3 .plot { position: absolute; left: 0; right: 0; bottom: 0; height: 50%; }
+.s3 .copy { margin-top: 14px; }
+.s3 .plot { position: relative; flex: 1 1 auto; min-height: 150px; margin: 6px calc(-1 * var(--g)) 0; }
 .s3 .plot svg { position: absolute; left: 0; top: 0; }
 .s3 .plot .pan { will-change: transform; }
-.s3 .caption { position: absolute; left: var(--g); right: var(--g); bottom: 14px; z-index: 2; }
+.s3 .caption { flex: none; margin: 8px 0 14px; }
 .s3 .riser { cursor: pointer; }
 .s3 .riser:focus-visible { outline: none; }
 .s3 .riser:focus-visible .rhit { stroke: var(--ink); stroke-width: 1; }
-@media (max-height: 720px) and (max-width: 1023px) { .s3 .copy { font-size: 17px; } }
+@media (max-height: 720px) and (max-width: 1023px) { .s3 .copy { font-size: 17px; } .s3 .hl { font-size: 52px; } }
 @media (min-width: 1024px) {
   .s3 { height: 180svh; }
-  .s3 .hl { font-size: 160px; max-width: 6em; }
-  .s3 .copy { position: absolute; top: calc(var(--strip-h) + 56px); right: var(--g); width: calc((100vw - 2 * var(--g)) * 4 / 12); margin: 0; }
-  .s3 .plot { height: 55%; }
-  .s3 .caption { left: var(--g); bottom: 20px; }
+  .s3 .head { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); column-gap: 48px; }
+  .s3 .chap { grid-column: 1 / -1; }
+  .s3 .hl { font-size: clamp(96px, min(11vw, 19vh), 170px); max-width: 6em; }
+  .s3 .copy { margin: 6px 0 0; font-size: clamp(19px, min(1.8vw, 3.2vh), 26px); max-width: 34ch; }
+  .s3 .caption { margin-bottom: 20px; }
 }
 .static .s3, .reduce .s3 { height: auto; }
 .static .s3 .stage, .reduce .s3 .stage { position: relative; height: 100svh; }
+/* short landscape screens: no sticky stage; the section grows and the plot gets a fixed height */
+@media (max-height: 519px) and (orientation: landscape) {
+  .s3 { height: auto; }
+  .s3 .stage { position: relative; height: auto; min-height: 100svh; overflow: visible; }
+  .s3 .head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 32px; }
+  .s3 .chap { grid-column: 1 / -1; }
+  .s3 .hl { font-size: 56px; }
+  .s3 .copy { margin-top: 4px; font-size: 17px; }
+  .s3 .plot { flex: none; height: 300px; }
+}
 
 /* query strip */
 .strip { position: fixed; z-index: 30; left: 0; right: 0; bottom: 0; max-height: 50svh; overflow: auto; background: var(--paper); border-top: 1px solid var(--ink); padding: 14px var(--g) 18px; font-size: 12px; line-height: 1.5; }
@@ -169,13 +189,16 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .s4 .copy { margin-top: 18px; }
 .s4 .drawing { margin-top: 36px; }
 @media (min-width: 1024px) {
-  .s4 .hl { text-align: right; }
-  .s4 .copy { margin-left: calc((100vw - 96px) * 8 / 12); margin-top: 24px; }
-  .s4 .drawing { position: absolute; left: var(--g); right: 0; bottom: 24px; margin: 0; }
+  .s4 { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 48px; grid-template-rows: auto auto 1fr; align-content: start; }
+  .s4 .chap { grid-column: 1; grid-row: 1; }
+  .s4 .copy { grid-column: 1; grid-row: 2; margin: 18px 0 0; font-size: clamp(20px, min(1.9vw, 3.3vh), 28px); max-width: 30ch; }
+  .s4 .hl { grid-column: 2; grid-row: 1 / span 2; text-align: right; }
+  .s4 .drawing { grid-column: 1 / -1; grid-row: 3; align-self: end; margin: 24px 0 0; }
 }
 
 /* ---------- 5 · the gap ---------- */
 .s5 { display: grid; grid-template-columns: 1fr auto; align-content: start; column-gap: 12px; }
+.s5 .chap { grid-column: 1 / -1; }
 .s5 .hl { grid-column: 1; }
 .s5 .gapnum { grid-column: 2; margin: 0; align-self: end; font-size: var(--big); }
 .s5 .copy { grid-column: 1 / -1; margin-top: 18px; }
@@ -183,13 +206,20 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .s5 .slider { grid-column: 1 / -1; margin-top: 18px; }
 .s5 .fallback { grid-column: 1 / -1; }
 @media (max-height: 700px) and (max-width: 1023px) { .s5 .copy { font-size: 16px; } }
+/* wide or landscape: words and slider on the left, the ledger square large on the right */
+@media (min-width: 1024px), (min-width: 700px) and (orientation: landscape) {
+  .s5 { grid-template-columns: minmax(0, 1fr) auto; column-gap: 48px; grid-template-rows: auto auto auto auto auto 1fr; }
+  .s5 .chap { grid-column: 1; grid-row: 1; }
+  .s5 .hl { grid-column: 1; grid-row: 2; }
+  .s5 .gapnum { grid-column: 1; grid-row: 3; align-self: start; margin-top: 6px; }
+  .s5 .copy { grid-column: 1; grid-row: 4; max-width: 32ch; }
+  .s5 .slider { grid-column: 1; grid-row: 5; }
+  .s5 .drawing { grid-column: 2; grid-row: 1 / span 6; align-self: center; margin: 0; }
+}
 @media (min-width: 1024px) {
-  .s5 { display: block; }
-  .s5 .left { width: calc((100vw - 96px) * 4 / 12); }
-  .s5 .hl, .s5 .copy, .s5 .gapnum, .s5 .slider { width: calc((100vw - 96px) * 4 / 12); }
-  .s5 .gapnum { font-size: 200px; line-height: .85; margin-top: 10px; }
-  .s5 .copy { font-size: 22px; margin-top: 16px; }
-  .s5 .drawing { position: absolute; left: calc(var(--g) + (100vw - 96px) * 5 / 12 + 24px); bottom: 20svh; margin: 0; }
+  .s5 .hl { font-size: clamp(96px, min(12vw, 17vh), 200px); }
+  .s5 .gapnum { font-size: clamp(90px, min(13vw, 21vh), 210px); line-height: .85; }
+  .s5 .copy { font-size: clamp(18px, min(1.7vw, 2.9vh), 24px); }
 }
 .slider input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 24px; background: transparent; margin: 8px 0 2px; cursor: pointer; }
 .slider input[type=range]::-webkit-slider-runnable-track { height: 1px; background: var(--ink); }

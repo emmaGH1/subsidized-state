@@ -1,6 +1,6 @@
 // section 3 · the sawtooth: the ground the figure walks on
 
-import { el, num, text, svg, figure, fmt, get, tw, clamp, isDesk, figH } from './lib.js';
+import { el, num, text, svg, figure, fmt, get, tw, clamp, isDesk, isShort, figH } from './lib.js';
 
 let S = null; // state for the scroll handler
 
@@ -12,21 +12,27 @@ export function drawSawtooth(D, sec, { reduce }) {
   if (!st || !Array.isArray(st.trace) || st.trace.length < 2) throw new Error('no trace');
 
   const desk = isDesk();
-  const statik = reduce || document.documentElement.classList.contains('static');
+  const statik = reduce || document.documentElement.classList.contains('static') || isShort();
   const W = plot.clientWidth || innerWidth;
   const PH = plot.clientHeight;
   const TW = desk || statik ? W : Math.round(W * 3.2);
   const floorPad = desk ? 64 : 68;
   const floorY = PH - floorPad;
-  const top = 1.25 * st.free_max_near;
   const from = st.window.from_block, to = st.window.to_block;
   const x = b => ((b - from) / (to - from)) * TW;
-  const y = v => floorY - (v / top) * floorY;
   const fs = desk ? 13 : 11;
   const lh = fs + 3;
 
   const trace = [...st.trace].sort((a, b) => a.block - b.block);
   const refills = Array.isArray(st.refills) ? st.refills : [];
+  // only stack block and time under the amount when neighbouring risers leave room for them
+  const gaps = refills.slice(1).map((r, i) => x(r.block) - x(refills[i].block));
+  const minGap = gaps.length ? Math.min(...gaps) : Infinity;
+  const need = tw(desk ? '00 nov 0000, 00:00 utc' : 'block 000,000,000', fs) + 10;
+  const roomy = minGap >= need;
+  // the riser labels must stay inside the plot: leave their height above the highest point
+  const room = (1 + (roomy ? 1 : 0) + (desk && roomy ? 1 : 0)) * lh + 18;
+  const y = v => floorY - (v / st.free_max_near) * Math.max(20, floorY - room);
   const rBy = new Map(refills.map(r => [r.block, r]));
 
   // top edge of the ground mass, as a polyline (vertical jump at every refill)
@@ -59,11 +65,6 @@ export function drawSawtooth(D, sec, { reduce }) {
   }
 
   const rw = desk ? 4 : 3;
-  // only stack block and time under the amount when neighbouring risers leave room for them
-  const gaps = refills.slice(1).map((r, i) => x(r.block) - x(refills[i].block));
-  const minGap = gaps.length ? Math.min(...gaps) : Infinity;
-  const need = tw(desk ? '00 nov 0000, 00:00 utc' : 'block 000,000,000', fs) + 10;
-  const roomy = minGap >= need;
   refills.forEach((r, i) => {
     const rx = x(r.block), y0 = y(r.free_before_near), y1 = y(r.free_after_near);
     const a = el('a', { class: 'riser', href: '#q', 'data-f': `sawtooth.refills[${i}].amount_near`, 'data-refill': i,

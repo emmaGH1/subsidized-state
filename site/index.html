@@ -57,7 +57,7 @@
 
 <p class="sample-strip" hidden>sample data · block <a class="n" data-f="meta.head_block" data-fmt="int"></a> · run <code>python3 scripts/rebuild.py</code> for the real artifact</p>
 
-<nav class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></nav>
+<nav class="progress" aria-hidden="true"><a href="#cover" tabindex="-1"><span>the question</span><i></i></a><a href="#lock" tabindex="-1"><span>01 the lock</span><i></i></a><a href="#sawtooth" tabindex="-1"><span>02 the sawtooth</span><i></i></a><a href="#payer" tabindex="-1"><span>03 who pays</span><i></i></a><a href="#gap" tabindex="-1"><span>04 the gap</span><i></i></a><a href="#verdict" tabindex="-1"><span>05 verdict</span><i></i></a></nav>
 
 <main>
 
@@ -83,6 +83,7 @@
 
 <!-- 2 · the lock -->
 <section id="lock" class="sec s2" data-account="intents.near">
+  <p class="label chap">01 — the lock</p>
   <h2 class="hl">the lock</h2>
   <p class="copy bound">every megabyte a contract stores locks <a class="n" data-f="constants.near_per_mb" data-fmt="int"></a> near. intents.near held <a class="n" data-f="lock.checkpoints[0].storage_usage_bytes" data-fmt="gb1"></a> gb of state a year ago and holds <a class="n" data-f="lock.checkpoints[-1].storage_usage_bytes" data-fmt="gb1"></a> gb now. it has <a class="n" data-f="lock.checkpoints[-1].locked_near" data-fmt="near0"></a> near locked under it. that is <a class="n" data-f="lock.locked_share_of_balance_pct" data-fmt="pct1"></a> of everything the contract owns.</p>
   <div class="big bound"><span class="bignum">+<a class="n" data-f="lock.growth_365d.near" data-fmt="near0"></a></span><span class="label">near locked in <a class="n" data-f="lock.growth_365d.days" data-fmt="int"></a> days</span></div>
@@ -94,8 +95,11 @@
 <!-- 3 · the sawtooth -->
 <section id="sawtooth" class="sec s3" data-account="intents.near">
   <div class="stage">
+    <div class="head">
+    <p class="label chap">02 — the sawtooth</p>
     <h2 class="hl">the ground it walks on</h2>
     <p class="copy bound">intents.near keeps almost nothing spare: between <a class="n" data-f="sawtooth.free_min_near" data-fmt="near0"></a> and <a class="n" data-f="sawtooth.free_max_near" data-fmt="near0"></a> near on top of <a class="n" data-f="lock.checkpoints[-1].locked_near" data-fmt="near0"></a> locked. new state eats the spare. when it falls to about <a class="n" data-f="sawtooth.trigger_free_mean_near" data-fmt="near0"></a>, <span class="r"><a class="n" data-f="sawtooth.refill_amount_median_near" data-fmt="near0"></a> near arrives</span>. <a class="n" data-f="sawtooth.refill_count" data-fmt="int"></a> times in <a class="n" data-f="sawtooth.window.days" data-fmt="num1"></a> days, about every <a class="n" data-f="sawtooth.interval_hours_mean" data-fmt="int"></a> hours.</p>
+    </div>
     <div class="plot drawing" role="img"></div>
     <p class="label caption bound">every riser is one transfer from <span class="r">intents_refiller.near</span>. tap one for its receipt.</p>
     <p class="fallback" hidden>data unavailable: run <code>python3 scripts/rebuild.py</code></p>
@@ -104,6 +108,7 @@
 
 <!-- 4 · who pays -->
 <section id="payer" class="sec s4" data-account="intents_refiller.near">
+  <p class="label chap">03 — who pays</p>
   <h2 class="hl">who pays</h2>
   <p class="copy bound">the refills come from one account, intents_refiller.near. it is funded by a dao treasury that has approved <span class="r"><a class="n" data-f="payer.approved_to_refiller_near" data-fmt="near0"></a> near</span> to it in <a class="n" data-f="payer.approved_to_refiller_count" data-fmt="int"></a> proposals. in the last <a class="n" data-f="sawtooth.window.days" data-fmt="num1"></a> days, <a class="n" data-f="sawtooth.from_refiller_pct" data-fmt="int"></a>% of top-ups came this way. users pay transaction fees. they do not post the collateral.</p>
   <div class="drawing" role="img"></div>
@@ -112,6 +117,7 @@
 
 <!-- 5 · the gap -->
 <section id="gap" class="sec s5" data-account="intents.near">
+  <p class="label chap">04 — the gap</p>
   <h2 class="hl">the gap</h2>
   <p class="bignum gapnum bound"><a class="n" data-f="gap.multiple" data-fmt="x0"></a></p>
   <p class="copy bound">in a year the supply grew by <a class="n" data-f="gap.net_issuance_near_per_year" data-fmt="m1"></a> near (<a class="n" data-f="issuance.d365.annualized_pct" data-fmt="pct2"></a>). state collateral at intents.near locked <a class="n" data-f="gap.lock_near_per_year" data-fmt="near0"></a>. gas burned <a class="n" data-f="gas_burn.burned_near_per_year" data-fmt="near0"></a>. the lock is <a class="n" data-f="gap.lock_pct_of_issuance" data-fmt="pct2"></a> of issuance; the burn is <a class="n" data-f="gas_burn.pct_of_net_issuance" data-fmt="pct2"></a>.</p>
@@ -128,6 +134,7 @@
 
 <!-- 6 · verdict -->
 <section id="verdict" class="sec s6" data-account="intents.near">
+  <p class="label chap">05 — verdict</p>
   <h2 class="hl">verdict</h2>
   <p class="fallback" hidden>data unavailable: run <code>python3 scripts/rebuild.py</code></p>
   <p class="answer bound">today the near token captures a deposit, not a toll: <a class="n" data-f="gap.lock_near_per_year" data-fmt="near0"></a> near a year locked under state and <a class="n" data-f="gas_burn.burned_near_per_year" data-fmt="near0"></a> burned as gas, against <a class="n" data-f="gap.net_issuance_near_per_year" data-fmt="m1"></a> issued. two fee vaults gained <a class="n" data-f="calc.vaults_change_365d" data-fmt="m1"></a> in the same year. that near is held, not burned.</p>

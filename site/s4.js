@@ -13,7 +13,14 @@ export function drawPayer(D, sec, { reduce }) {
   const tN = (p.treasury.staked_near || 0) + (p.treasury.liquid_near || 0);
   const rN = p.refiller.balance_near || 0;
   const iN = D.lock.checkpoints[D.lock.checkpoints.length - 1].free_near || 0;
-  const ts = desk ? 300 : W * 0.46;
+  // desktop: the treasury square takes the height left under the words
+  let ts = W * 0.46;
+  if (desk) {
+    const st = sec.getBoundingClientRect().top;
+    const top = Math.max(...['.hl', '.copy'].map(q => sec.querySelector(q).getBoundingClientRect().bottom)) - st;
+    const avail = innerHeight - top - 48;
+    ts = Math.max(180, Math.min(avail - 150, 0.36 * (W - 2 * gut), 460));
+  }
   const k = v => Math.max(3, ts * Math.sqrt(v / tN));
   const rs = k(rN), is = k(iN);
   const col = c => gut + (c - 1) * (W - 2 * gut) / 12;

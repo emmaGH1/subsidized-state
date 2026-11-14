@@ -68,7 +68,9 @@ function drawAll(D) {
 
 function observe() {
   const secs = $$('.sec');
-  const ticks = $$('.progress i');
+  const ticks = $$('.progress a');
+  const nav = $('.progress');
+  let flashT;
   if (reduce || !('IntersectionObserver' in window)) { secs.forEach(s => s.classList.add('in')); }
   else {
     const io = new IntersectionObserver(es => {
@@ -77,7 +79,11 @@ function observe() {
     secs.forEach(s => io.observe(s));
   }
   const io2 = new IntersectionObserver(es => {
-    for (const e of es) if (e.isIntersecting) ticks.forEach((t, i) => t.classList.toggle('on', secs[i] === e.target));
+    for (const e of es) if (e.isIntersecting) {
+      ticks.forEach((t, i) => t.classList.toggle('on', secs[i] === e.target));
+      // name the chapter beside its tick for a moment, then keep only the tick (hover shows it again)
+      nav.classList.add('flash'); clearTimeout(flashT); flashT = setTimeout(() => nav.classList.remove('flash'), 1800);
+    }
   }, { rootMargin: '-50% 0px -50% 0px' });
   secs.forEach(s => io2.observe(s));
 }
