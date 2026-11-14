@@ -5,7 +5,30 @@ Numbers below are from the committed snapshot (`data/artifact.json`, head block 
 - Repo: https://github.com/emmaGH1/subsidized-state
 - Live site: https://emmagh1.github.io/subsidized-state/
 
-## X post
+## X post (final, one long post)
+
+Attach the demo video. This is the version the author chose; the short thread below is the earlier draft.
+
+```
+on near intents you can swap bitcoin for zcash without ever holding near. no gas to buy, nothing to top up. so i wanted to know what the near token actually captures once users stop paying for gas.
+
+every swap still writes data, and near locks 10 near for every megabyte a contract stores. the contract behind intents now holds 13.7 gb of state, which means 137,061 near is locked underneath it, and that number went up at every checkpoint i took across the past year.
+
+then i noticed something odd. whenever its spare balance runs down to about 504 near, another 300 arrives, and it always comes from the same account. i traced every top-up over the last 30 days on mainnet: 39 of them, all 39 from intents_refiller.near, an account to which a dao treasury has approved 55,000 near.
+
+put it to scale and the picture is clear. for every 100 near of new supply last year, about 1 was burned as gas, about 13 sat in two fee vaults, and 0.32 was locked as state collateral. the lock is real and growing, but issuance is 313x bigger, and it is locked, not burned. so today the token captures a deposit rather than a toll, and i lay out exactly what would have to change for me to be wrong.
+
+every number on the site links to the rpc query behind it, and one command rebuilds all of it from mainnet with no api keys.
+
+site: https://emmagh1.github.io/subsidized-state/
+repo: https://github.com/emmagh1/subsidized-state
+
+built at near hackathon @nearprotocol #nearhackathon @nearbuilders @nearlegion
+
+curious what would change your mind on near's value capture.
+```
+
+## X post (earlier short thread)
 
 Post from your own account and attach the demo video to the main post. Character counts are X's (links count as 23).
 Demo video: https://github.com/emmaGH1/subsidized-state/releases/download/v1.0/subsidized-state-demo.mp4
