@@ -139,7 +139,19 @@
   <p class="label chap">05 — verdict</p>
   <h2 class="hl">verdict</h2>
   <p class="fallback" hidden>data unavailable: run <code>python3 scripts/rebuild.py</code></p>
+  <div class="top">
   <p class="answer bound">today the near token captures a deposit, not a toll: <a class="n" data-f="gap.lock_near_per_year" data-fmt="near0"></a> near a year locked under state and <a class="n" data-f="gas_burn.burned_near_per_year" data-fmt="near0"></a> burned as gas, against <a class="n" data-f="gap.net_issuance_near_per_year" data-fmt="m1"></a> issued. two fee vaults gained <a class="n" data-f="calc.vaults_change_365d" data-fmt="m1"></a> in the same year. that near is held, not burned.</p>
+
+  <div class="watch bound">
+    <h3 class="label">what to watch</h3>
+    <ul>
+      <li>the fee vaults fall from <a class="n" data-f="vaults.buybacks.balance_near" data-fmt="near0"></a> and <a class="n" data-f="vaults.fefunds.balance_near" data-fmt="near0"></a> near, and total supply falls by the same amount: a burn, not a transfer.</li>
+      <li>a different payer is identified by receipt while the lock keeps growing. today <a class="n" data-f="sawtooth.from_refiller_pct" data-fmt="int"></a>% of top-ups come from intents_refiller.near.</li>
+      <li>the lock passes 1% of issuance. today it is <a class="n" data-f="gap.lock_pct_of_issuance" data-fmt="pct2"></a>.</li>
+      <li>gas burn passes 2% of issuance. today it is <a class="n" data-f="gas_burn.pct_of_net_issuance" data-fmt="pct2"></a>.</li>
+    </ul>
+  </div>
+  </div>
   <div class="vfig drawing" role="img"></div>
   <div class="cases bound">
     <div>
@@ -170,16 +182,6 @@
         <li>any of the three tests below fails on a rebuild.</li>
       </ul>
     </div>
-  </div>
-
-  <div class="watch bound">
-    <h3 class="label">what to watch</h3>
-    <ul>
-      <li>the fee vaults fall from <a class="n" data-f="vaults.buybacks.balance_near" data-fmt="near0"></a> and <a class="n" data-f="vaults.fefunds.balance_near" data-fmt="near0"></a> near, and total supply falls by the same amount: a burn, not a transfer.</li>
-      <li>a different payer is identified by receipt while the lock keeps growing. today <a class="n" data-f="sawtooth.from_refiller_pct" data-fmt="int"></a>% of top-ups come from intents_refiller.near.</li>
-      <li>the lock passes 1% of issuance. today it is <a class="n" data-f="gap.lock_pct_of_issuance" data-fmt="pct2"></a>.</li>
-      <li>gas burn passes 2% of issuance. today it is <a class="n" data-f="gas_burn.pct_of_net_issuance" data-fmt="pct2"></a>.</li>
-    </ul>
   </div>
 
   <div class="tests bound">

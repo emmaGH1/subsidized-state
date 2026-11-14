@@ -17,7 +17,7 @@ export function gapScale(D) {
   const W = innerWidth, gut = isDesk() ? 48 : 16;
   let side;
   if (isTwo()) side = Math.min(0.5 * (W - 2 * gut), isShort() ? Infinity : Math.max(260, innerHeight - 150));
-  else side = W - 2 * gut;
+  else side = W - 2 * gut - figH() - 6;
   side = Math.round(Math.min(side, 760));
   const iss = D.gap.net_issuance_near_per_year;
   return { side, k: v => Math.max(3, side * Math.sqrt(Math.max(0, v) / iss)) };

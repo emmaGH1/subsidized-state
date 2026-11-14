@@ -3,6 +3,7 @@
 import { el, num, text, svg, figure, fmt, get, tw, clamp, isDesk, isShort, figH } from './lib.js';
 
 let S = null; // state for the scroll handler
+const fsPad = () => (isDesk() ? 13 : 11) + 18; // room under the floor for its label
 
 export function drawSawtooth(D, sec, { reduce }) {
   const plot = sec.querySelector('.plot');
@@ -16,7 +17,7 @@ export function drawSawtooth(D, sec, { reduce }) {
   const W = plot.clientWidth || innerWidth;
   const PH = plot.clientHeight;
   const TW = desk || statik ? W : Math.round(W * 3.2);
-  const floorPad = desk ? 64 : 68;
+  const floorPad = fsPad();
   const floorY = PH - floorPad;
   const from = st.window.from_block, to = st.window.to_block;
   const x = b => ((b - from) / (to - from)) * TW;

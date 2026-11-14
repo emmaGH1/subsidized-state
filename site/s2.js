@@ -11,7 +11,8 @@ export function drawLock(D, sec) {
   const desk = isDesk();
   const W = innerWidth;
   const vh = innerHeight;
-  const H = Math.round((desk ? 0.64 : 0.5) * vh);
+  // desktop: leave the headline and the big number above the tallest column
+  const H = Math.round(desk ? Math.min(0.64 * vh, vh - 310) : 0.5 * vh);
   const fs = desk ? 13 : 11;
   const below = desk ? 40 : 34;
   const above = fs + 12;

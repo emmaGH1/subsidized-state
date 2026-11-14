@@ -282,8 +282,9 @@ svg .t.red a.n, svg a.n .t.red { text-decoration-color: var(--red); }
   .s6 .row .st, .s6 .row .checks { grid-column: auto; }
   .s6 .row .res { grid-column: auto; grid-row: auto; }
   .s6 .duo { grid-template-columns: 7fr 5fr; gap: 48px; }
-  .s6 .watch ul { columns: 2; column-gap: 48px; }
-  .s6 .watch li { break-inside: avoid; }
+  .s6 .top { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); column-gap: 48px; align-items: end; }
+  .s6 .top .answer { max-width: none; font-size: clamp(44px, min(4.4vw, 7.4vh), 72px); }
+  .s6 .watch { margin: 0; padding-left: 24px; border-left: 1px solid var(--hair); }
 }
 
 /* ---------- motion (only after .in, only without reduced motion) ---------- */
