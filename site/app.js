@@ -3,6 +3,7 @@
 
 import { fmt, get, CALC } from './lib.js';
 import { initStrip } from './query.js';
+import { load30, draw30 } from './r30.js';
 import { drawSawtooth, scrollSawtooth } from './s3.js';
 import { drawLock } from './s2.js';
 import { drawPayer, startPayerLoop } from './s4.js';
@@ -54,6 +55,9 @@ function fallback() {
 const DRAW = { cover: drawCover, lock: drawLock, sawtooth: drawSawtooth, payer: drawPayer, gap: drawGap, verdict: drawVerdict };
 
 function drawAll(D) {
+  for (const id of ['sawtooth', 'payer']) {
+    try { draw30(D, document.getElementById(id)); } catch (e) { console.error('refills_30d', e); }
+  }
   for (const [id, fn] of Object.entries(DRAW)) {
     const sec = document.getElementById(id);
     try { fn(D, sec, { reduce }); }
@@ -94,6 +98,8 @@ async function main() {
   const D = await load();
   if (!D) { fallback(); return; }
   window.__artifact = D;
+  const r30 = await load30();
+  if (r30) D.refills_30d = r30;
   if (D.meta && D.meta.is_sample === true) {
     $('.sample-strip').hidden = false;
     document.documentElement.classList.add('has-strip');

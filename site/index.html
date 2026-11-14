@@ -102,6 +102,7 @@
     </div>
     <div class="plot drawing" role="img"></div>
     <p class="label caption bound">every riser is one transfer from <span class="r">intents_refiller.near</span>. tap one for its receipt.</p>
+    <div class="r30 bound" hidden><p class="label">over <a class="n" data-f="refills_30d.window.days" data-fmt="int"></a> days: <a class="n" data-f="refills_30d.refill_count" data-fmt="int"></a> top-ups, <a class="n" data-f="refills_30d.from_refiller_count" data-fmt="int"></a> from intents_refiller.near</p><svg role="img"></svg></div>
     <p class="fallback" hidden>data unavailable: run <code>python3 scripts/rebuild.py</code></p>
   </div>
 </section>
@@ -111,6 +112,7 @@
   <p class="label chap">03 — who pays</p>
   <h2 class="hl">who pays</h2>
   <p class="copy bound">the refills come from one account, intents_refiller.near. it is funded by a dao treasury that has approved <span class="r"><a class="n" data-f="payer.approved_to_refiller_near" data-fmt="near0"></a> near</span> to it in <a class="n" data-f="payer.approved_to_refiller_count" data-fmt="int"></a> proposals. in the last <a class="n" data-f="sawtooth.window.days" data-fmt="num1"></a> days, <a class="n" data-f="sawtooth.from_refiller_pct" data-fmt="int"></a>% of top-ups came this way. users pay transaction fees. they do not post the collateral.</p>
+  <div class="r30 bound" hidden><p class="label">over <a class="n" data-f="refills_30d.window.days" data-fmt="int"></a> days: <a class="n" data-f="refills_30d.refill_count" data-fmt="int"></a> top-ups, <a class="n" data-f="refills_30d.from_refiller_count" data-fmt="int"></a> from intents_refiller.near</p><svg role="img"></svg></div>
   <div class="drawing" role="img"></div>
   <p class="fallback" hidden>data unavailable: run <code>python3 scripts/rebuild.py</code></p>
 </section>
@@ -163,11 +165,21 @@
       <h3 class="label">what would change my mind</h3>
       <ul>
         <li>state growth near <a class="n" data-f="gap.state_gb_per_year_to_offset" data-fmt="int"></a> gb a year instead of <a class="n" data-f="gap.state_gb_per_year_now" data-fmt="num1"></a>; a tenth of that would already matter.</li>
-        <li>the refills stop and the lock keeps growing: someone other than the treasury is posting collateral.</li>
+        <li>another payer, identified by receipt, posts the collateral while the lock keeps growing. refills stopping on their own would not show that.</li>
         <li>vault balances are burned and total supply falls by the same amount.</li>
         <li>any of the three tests below fails on a rebuild.</li>
       </ul>
     </div>
+  </div>
+
+  <div class="watch bound">
+    <h3 class="label">what to watch</h3>
+    <ul>
+      <li>the fee vaults fall from <a class="n" data-f="vaults.buybacks.balance_near" data-fmt="near0"></a> and <a class="n" data-f="vaults.fefunds.balance_near" data-fmt="near0"></a> near, and total supply falls by the same amount: a burn, not a transfer.</li>
+      <li>a different payer is identified by receipt while the lock keeps growing. today <a class="n" data-f="sawtooth.from_refiller_pct" data-fmt="int"></a>% of top-ups come from intents_refiller.near.</li>
+      <li>the lock passes 1% of issuance. today it is <a class="n" data-f="gap.lock_pct_of_issuance" data-fmt="pct2"></a>.</li>
+      <li>gas burn passes 2% of issuance. today it is <a class="n" data-f="gas_burn.pct_of_net_issuance" data-fmt="pct2"></a>.</li>
+    </ul>
   </div>
 
   <div class="tests bound">
@@ -182,7 +194,7 @@
         <li>bridge-mng.near holds the <span class="roles"></span> on omft.near. it has <a class="n" data-f="facts.bridge_mng.access_key_count" data-fmt="int"></a> <span class="plural" data-count="facts.bridge_mng.access_key_count" data-one="access key" data-many="access keys"></span> (<a class="n" data-f="facts.bridge_mng.full_access_key_count" data-fmt="int"></a> with full access) and no contract.</li>
         <li>v1.signer needs <a class="n" data-f="facts.v1_signer.threshold" data-fmt="int"></a> of its <a class="n" data-f="facts.v1_signer.participants" data-fmt="int"></a> participants to sign.</li>
         <li>omft.near tokens: <a class="n" data-f="facts.omft_float.total_usd" data-fmt="usd0m"></a> across <a class="n" data-f="facts.omft_float.contracts_queried" data-fmt="int"></a> contracts, <a class="n" data-f="facts.omft_float.zec_share_pct" data-fmt="pct1"></a> of it zec (prices from a third-party api).</li>
-        <li>buybacks.multisignature.near holds <a class="n" data-f="vaults.buybacks.balance_near" data-fmt="near0"></a> near, <a class="n" data-f="vaults.buybacks.net_change_30d_near" data-fmt="near0"></a> more than <a class="n" data-f="issuance.d30.days" data-fmt="int"></a> days ago. fefundsadmin.sputnik-dao.near holds <a class="n" data-f="vaults.fefunds.balance_near" data-fmt="near0"></a>. neither is burned.</li>
+        <li>buybacks.multisignature.near holds <a class="n" data-f="vaults.buybacks.balance_near" data-fmt="near0"></a> near, <a class="n" data-f="vaults.buybacks.net_change_30d_near" data-fmt="near0"></a> more than <a class="n" data-f="issuance.d30.days" data-fmt="int"></a> days ago. fefundsadmin.sputnik-dao.near holds <a class="n" data-f="vaults.fefunds.balance_near" data-fmt="near0"></a>. both are balances held at this block.</li>
       </ul>
     </div>
     <div class="verify">

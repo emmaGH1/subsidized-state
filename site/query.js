@@ -62,6 +62,10 @@ const MEANING = {
   'facts.v1_signer.participants': 'number of participants in state().Running on v1.signer',
   'facts.omft_float.total_usd': 'Σ ft_total_supply × third-party price over *.omft.near tokens',
   'facts.omft_float.contracts_queried': '*.omft.near tokens with a supply read',
+  'refills_30d.window.days': 'days between the first and last block of the 30-day refill trace, from header timestamps',
+  'refills_30d.refill_count': 'steps up in the free balance of intents.near inside the 30-day window',
+  'refills_30d.from_refiller_count': 'refills whose receipt predecessor_id is intents_refiller.near',
+  'refills_30d.refills[].amount_near': 'amount at block − amount at block − 1',
   'facts.omft_float.zec_share_pct': 'zec.omft.near supply × price / total_usd × 100',
 };
 
@@ -93,6 +97,17 @@ export function resolve(D, f, depth = 0) {
     const g = D.lock.growth_365d;
     return { ...r, src: 'view_account_at_block', block: g.to_block, account: 'intents.near',
       formula: f.startsWith('lock.growth') || f.startsWith('gap.') ? `read at blocks ${fmt(g.from_block, 'int')} and ${fmt(g.to_block, 'int')}; the curl below is the second` : null };
+  }
+  if (f.startsWith('refills_30d')) {
+    const R = D.refills_30d, i = idx(f, 'refills');
+    if (i !== null) {
+      const rf = at(R.refills, i);
+      return { ...r, src: 'view_account_at_block', block: rf.block, ts: rf.timestamp_utc, account: 'intents.near',
+        extra: [`receipt ${rf.receipt_id ?? 'unavailable'}`, `from ${rf.predecessor_id ?? 'unresolved'}`,
+          `block ${fmt(rf.block - 1, 'int')}: ${fmt(rf.free_before_near, 'near2')} near free`, `block ${fmt(rf.block, 'int')}: ${fmt(rf.free_after_near, 'near2')} near free`] };
+    }
+    return { ...r, src: 'view_account_at_block', block: R.window.to_block, account: 'intents.near',
+      formula: `from data/refills_30d.json: ${fmt(R.refills.length, 'int')} refills between blocks ${fmt(R.window.from_block, 'int')} and ${fmt(R.window.to_block, 'int')}` };
   }
   if (f.startsWith('sawtooth.refills')) {
     const i = idx(f, 'refills'), rf = at(D.sawtooth.refills, i);

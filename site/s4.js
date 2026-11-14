@@ -17,7 +17,7 @@ export function drawPayer(D, sec, { reduce }) {
   let ts = W * 0.46;
   if (desk) {
     const st = sec.getBoundingClientRect().top;
-    const top = Math.max(...['.hl', '.copy'].map(q => sec.querySelector(q).getBoundingClientRect().bottom)) - st;
+    const top = Math.max(...['.hl', '.copy', '.r30'].map(q => sec.querySelector(q)).filter(e => e && !e.hidden).map(e => e.getBoundingClientRect().bottom)) - st;
     const avail = innerHeight - top - 48;
     ts = Math.max(180, Math.min(avail - 150, 0.36 * (W - 2 * gut), 460));
   }
