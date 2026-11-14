@@ -51,15 +51,18 @@ export function drawLock(D, sec) {
     Object.assign(hit.dataset, data);
     el('rect', { x: x0 + i * cw, y: gy - h(c.locked_near), width: cw, height: h(c.locked_near), fill: 'transparent' }, hit);
     const vis = show(i);
+    if (vis) hit.setAttribute('tabindex', '-1');
     const anchor = i === N - 1 && !desk ? 'end' : 'middle';
     const lx = anchor === 'end' ? W - gut : cx;
     const a = num(labels, D, `lock.checkpoints[${i}].locked_near`, 'k0', lx, gy - h(c.locked_near) - 8, { anchor, data });
     a.classList.toggle('opt', !vis);
+    if (!vis) a.setAttribute('tabindex', '-1');
     a.style.setProperty('--i', i);
     const ta = i === 0 && !desk ? 'start' : anchor;
     const tx = ta === 'start' ? Math.max(gut, x0 + 2) : lx;
     const b = num(labels, D, `lock.checkpoints[${i}].timestamp_utc`, desk ? 'month' : 'month', tx, gy + fs + 8, { anchor: ta, data });
     b.classList.toggle('opt', !vis);
+    if (!vis) b.setAttribute('tabindex', '-1');
     b.style.setProperty('--i', i);
   });
   // tapping a hidden column reveals its label
