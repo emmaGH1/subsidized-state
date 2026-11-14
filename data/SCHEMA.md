@@ -1,4 +1,4 @@
-# data/artifact.json — schema v1.0 (FROZEN)
+# data/artifact.json — schema v1.0 (FROZEN, amended 14:40 UTC: see "Amendments")
 
 `scripts/rebuild.py` writes `data/artifact.json`. The site, `THESIS.md` and `README.md` read numbers
 only from that file. `data/artifact.sample.json` has the same shape with real mainnet values and
@@ -82,7 +82,7 @@ Adding a field is a schema change. If a value cannot be fetched, write `null`; n
 | Field | Type | Meaning |
 |---|---|---|
 | `account` | string | `"intents.near"` |
-| `checkpoints` | array, ≥ 13, oldest first | evenly spaced from the 365-days-ago block to `head_block`; the last one is at `head_block` |
+| `checkpoints` | array, ≥ 13, oldest first | 12 evenly spaced heights starting at the `d365` anchor, then `head_block` |
 | `checkpoints[].block` | int | height read |
 | `checkpoints[].timestamp_utc` | string | header timestamp of that block |
 | `checkpoints[].storage_usage_bytes` | int | `view_account.storage_usage` |
@@ -104,9 +104,9 @@ Adding a field is a schema change. If a value cannot be fetched, write `null`; n
 | Field | Type | Meaning |
 |---|---|---|
 | `account` | string | `"intents.near"` |
-| `window.from_block`, `.to_block` | int | `to_block = head_block`, `from_block ≈ head_block − 500000` |
+| `window.from_block`, `.to_block` | int | `to_block = head_block` (or the last fully traced block if rate limits stop the run, with a line in `meta.errors`), `from_block ≈ to_block − 500000` |
 | `window.days` | number | from header timestamps |
-| `trace` | array, ≥ 150, ascending by block | evenly spaced samples plus the block before and the block of every refill |
+| `trace` | array, ≥ 150, ascending by block | one sample every 2,500 blocks (heights that are multiples of 2,500), the window end, plus the block before and the block of every refill |
 | `trace[].block` | int | |
 | `trace[].free_near` | number | derived from `view_account` at that block |
 | `refills` | array, ascending | every step up in free balance of more than 100 NEAR inside the window, located to the exact block by bisection |
@@ -158,7 +158,7 @@ Adding a field is a schema change. If a value cannot be fetched, write `null`; n
 | Field | Type | Meaning |
 |---|---|---|
 | `total_supply_near` | number | header `total_supply` at `head_block` |
-| `d365.from_block`, `.to_block` | int | a block within 60 seconds of head − 365 d (found by interpolating on header timestamps), and `head_block` |
+| `d365.from_block`, `.to_block` | int | the window anchor (see Amendments: a grid block within 5 days of head − 365 d, 2 days for `d30`), and `head_block` |
 | `d365.days` | number | exact, from timestamps |
 | `d365.supply_from_near`, `.supply_to_near` | number | |
 | `d365.net_near` | number | supply change. Net of everything the protocol burned in the window |
@@ -287,3 +287,13 @@ Required ids:
 | `oneclick_tokens` | `https://1click.chaindefuser.com/v0/tokens` | GET | — (third party, optional) |
 
 For `call_function`, `params` carries `args_base64` (base64 of the JSON args) and the entry also carries `args` (the decoded JSON) so a reader can see what was asked.
+
+## Amendments
+
+**14:40 UTC, orchestrator.** No field was added, removed or renamed. Three definitions were loosened so that history can be cached and a rebuild survives rate limits:
+
+1. **Window anchors are sticky.** `issuance.d365.from_block` is the block on a 50,000-block grid nearest to head − 365 days. Once chosen it is reused on later runs while it stays within 5 days of that target (2 days for `d30`). `days` is always the exact span from header timestamps and every "per year" figure is annualised by it, so a 366.4-day window is reported as 366.4 days, not as 365.
+2. **Checkpoints** are the anchor plus 11 more heights at a fixed step, then the head. The last gap can differ from the others by up to a few percent.
+3. **The trace window can end before the head.** If archival endpoints refuse requests before the trace reaches the head, `sawtooth.window.to_block` is the last block of the most recent fully traced window and `meta.errors` says so. Running again resumes.
+
+Also: blocks younger than about 140,000 blocks are read from ordinary RPC nodes (`https://near.api.pocket.network`, `https://free.rpc.fastnear.com`), which keep recent state and do not rate-limit as hard. The query is identical to the archival one.

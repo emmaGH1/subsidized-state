@@ -1,0 +1,1573 @@
+{
+ "schema_version": "1.0",
+ "meta": {
+  "generated_at_utc": "2026-11-14T14:44:03Z",
+  "is_sample": false,
+  "head_block": 224528199,
+  "head_timestamp_utc": "2026-11-14T14:43:39Z",
+  "head_hash": "Fjbj3UtkgSUL2V3kp1yrEbZhQBxEqFG9qaXYk5kQhG9i",
+  "endpoints": {
+   "live": "https://free.rpc.fastnear.com",
+   "archival": "https://archival-rpc.mainnet.fastnear.com",
+   "history": [
+    "cache"
+   ]
+  },
+  "runtime_seconds": 22.1,
+  "network_calls": 145,
+  "cache_hits": 253,
+  "fresh": false,
+  "errors": []
+ },
+ "constants": {
+  "storage_amount_per_byte_yocto": "10000000000000000000",
+  "near_per_mb": 10.0,
+  "max_inflation_rate_pct": 2.5,
+  "protocol_version": 88,
+  "epoch_length_blocks": 43200
+ },
+ "lock": {
+  "account": "intents.near",
+  "checkpoints": [
+   {
+    "block": 172600000,
+    "timestamp_utc": "2025-11-14T12:35:25Z",
+    "storage_usage_bytes": 3554419973,
+    "locked_near": 35544.2,
+    "amount_near": 36278.39,
+    "free_near": 734.19
+   },
+   {
+    "block": 176950000,
+    "timestamp_utc": "2025-12-15T15:09:45Z",
+    "storage_usage_bytes": 4945380599,
+    "locked_near": 49453.81,
+    "amount_near": 49995.4,
+    "free_near": 541.59
+   },
+   {
+    "block": 181300000,
+    "timestamp_utc": "2026-01-15T19:47:25Z",
+    "storage_usage_bytes": 5642906184,
+    "locked_near": 56429.06,
+    "amount_near": 57088.31,
+    "free_near": 659.25
+   },
+   {
+    "block": 185650000,
+    "timestamp_utc": "2026-02-15T10:54:14Z",
+    "storage_usage_bytes": 6401824359,
+    "locked_near": 64018.24,
+    "amount_near": 64609.26,
+    "free_near": 591.02
+   },
+   {
+    "block": 190000000,
+    "timestamp_utc": "2026-03-17T23:43:57Z",
+    "storage_usage_bytes": 7021375635,
+    "locked_near": 70213.76,
+    "amount_near": 70848.69,
+    "free_near": 634.93
+   },
+   {
+    "block": 194350000,
+    "timestamp_utc": "2026-04-17T05:24:28Z",
+    "storage_usage_bytes": 7762836903,
+    "locked_near": 77628.37,
+    "amount_near": 78180.19,
+    "free_near": 551.82
+   },
+   {
+    "block": 198700000,
+    "timestamp_utc": "2026-05-17T10:25:44Z",
+    "storage_usage_bytes": 8443474965,
+    "locked_near": 84434.75,
+    "amount_near": 85056.19,
+    "free_near": 621.44
+   },
+   {
+    "block": 203050000,
+    "timestamp_utc": "2026-06-17T05:14:44Z",
+    "storage_usage_bytes": 9185010027,
+    "locked_near": 91850.1,
+    "amount_near": 92472.99,
+    "free_near": 622.89
+   },
+   {
+    "block": 207400000,
+    "timestamp_utc": "2026-07-17T20:52:00Z",
+    "storage_usage_bytes": 9942077151,
+    "locked_near": 99420.77,
+    "amount_near": 100026.78,
+    "free_near": 606.0
+   },
+   {
+    "block": 211750000,
+    "timestamp_utc": "2026-08-17T17:02:02Z",
+    "storage_usage_bytes": 10789557258,
+    "locked_near": 107895.57,
+    "amount_near": 108522.47,
+    "free_near": 626.9
+   },
+   {
+    "block": 216100000,
+    "timestamp_utc": "2026-09-17T19:22:35Z",
+    "storage_usage_bytes": 11900680010,
+    "locked_near": 119006.8,
+    "amount_near": 119573.05,
+    "free_near": 566.25
+   },
+   {
+    "block": 220450000,
+    "timestamp_utc": "2026-10-18T02:11:47Z",
+    "storage_usage_bytes": 12801621439,
+    "locked_near": 128016.21,
+    "amount_near": 128689.93,
+    "free_near": 673.72
+   },
+   {
+    "block": 224528199,
+    "timestamp_utc": "2026-11-14T14:43:39Z",
+    "storage_usage_bytes": 13706031438,
+    "locked_near": 137060.31,
+    "amount_near": 137682.53,
+    "free_near": 622.22
+   }
+  ],
+  "growth_365d": {
+   "from_block": 172600000,
+   "to_block": 224528199,
+   "days": 365.089,
+   "bytes": 10151611465,
+   "near": 101516.11,
+   "near_per_year": 101491.35,
+   "gb_per_year": 10.149
+  },
+  "locked_share_of_balance_pct": 99.55,
+  "monotonic": true,
+  "sources": [
+   "view_account_at_block",
+   "block_header_at_height"
+  ]
+ },
+ "sawtooth": {
+  "account": "intents.near",
+  "window": {
+   "from_block": 224030000,
+   "to_block": 224528199,
+   "days": 3.333
+  },
+  "trace": [
+   {
+    "block": 224030000,
+    "free_near": 564.55
+   },
+   {
+    "block": 224032500,
+    "free_near": 556.46
+   },
+   {
+    "block": 224035000,
+    "free_near": 550.78
+   },
+   {
+    "block": 224037500,
+    "free_near": 543.37
+   },
+   {
+    "block": 224040000,
+    "free_near": 536.44
+   },
+   {
+    "block": 224042500,
+    "free_near": 527.85
+   },
+   {
+    "block": 224045000,
+    "free_near": 519.75
+   },
+   {
+    "block": 224047500,
+    "free_near": 511.83
+   },
+   {
+    "block": 224050000,
+    "free_near": 505.06
+   },
+   {
+    "block": 224050441,
+    "free_near": 503.86
+   },
+   {
+    "block": 224050442,
+    "free_near": 801.43
+   },
+   {
+    "block": 224052500,
+    "free_near": 798.58
+   },
+   {
+    "block": 224055000,
+    "free_near": 792.88
+   },
+   {
+    "block": 224057500,
+    "free_near": 785.6
+   },
+   {
+    "block": 224060000,
+    "free_near": 777.04
+   },
+   {
+    "block": 224062500,
+    "free_near": 768.0
+   },
+   {
+    "block": 224065000,
+    "free_near": 760.05
+   },
+   {
+    "block": 224067500,
+    "free_near": 750.71
+   },
+   {
+    "block": 224070000,
+    "free_near": 740.33
+   },
+   {
+    "block": 224072500,
+    "free_near": 731.62
+   },
+   {
+    "block": 224075000,
+    "free_near": 722.03
+   },
+   {
+    "block": 224077500,
+    "free_near": 713.44
+   },
+   {
+    "block": 224080000,
+    "free_near": 701.06
+   },
+   {
+    "block": 224082500,
+    "free_near": 692.42
+   },
+   {
+    "block": 224085000,
+    "free_near": 680.47
+   },
+   {
+    "block": 224087500,
+    "free_near": 671.04
+   },
+   {
+    "block": 224090000,
+    "free_near": 661.33
+   },
+   {
+    "block": 224092500,
+    "free_near": 649.8
+   },
+   {
+    "block": 224095000,
+    "free_near": 640.91
+   },
+   {
+    "block": 224097500,
+    "free_near": 630.93
+   },
+   {
+    "block": 224100000,
+    "free_near": 622.29
+   },
+   {
+    "block": 224102500,
+    "free_near": 612.24
+   },
+   {
+    "block": 224105000,
+    "free_near": 603.52
+   },
+   {
+    "block": 224107500,
+    "free_near": 593.67
+   },
+   {
+    "block": 224110000,
+    "free_near": 585.6
+   },
+   {
+    "block": 224112500,
+    "free_near": 576.23
+   },
+   {
+    "block": 224115000,
+    "free_near": 565.09
+   },
+   {
+    "block": 224117500,
+    "free_near": 557.83
+   },
+   {
+    "block": 224120000,
+    "free_near": 548.75
+   },
+   {
+    "block": 224122500,
+    "free_near": 539.18
+   },
+   {
+    "block": 224125000,
+    "free_near": 531.74
+   },
+   {
+    "block": 224127500,
+    "free_near": 523.09
+   },
+   {
+    "block": 224130000,
+    "free_near": 514.1
+   },
+   {
+    "block": 224132500,
+    "free_near": 508.08
+   },
+   {
+    "block": 224133037,
+    "free_near": 504.91
+   },
+   {
+    "block": 224133038,
+    "free_near": 804.86
+   },
+   {
+    "block": 224135000,
+    "free_near": 800.98
+   },
+   {
+    "block": 224137500,
+    "free_near": 794.09
+   },
+   {
+    "block": 224140000,
+    "free_near": 788.88
+   },
+   {
+    "block": 224142500,
+    "free_near": 783.42
+   },
+   {
+    "block": 224145000,
+    "free_near": 776.27
+   },
+   {
+    "block": 224147500,
+    "free_near": 770.99
+   },
+   {
+    "block": 224150000,
+    "free_near": 766.16
+   },
+   {
+    "block": 224152500,
+    "free_near": 759.6
+   },
+   {
+    "block": 224155000,
+    "free_near": 754.59
+   },
+   {
+    "block": 224157500,
+    "free_near": 749.83
+   },
+   {
+    "block": 224160000,
+    "free_near": 745.44
+   },
+   {
+    "block": 224162500,
+    "free_near": 740.08
+   },
+   {
+    "block": 224165000,
+    "free_near": 733.22
+   },
+   {
+    "block": 224167500,
+    "free_near": 727.44
+   },
+   {
+    "block": 224170000,
+    "free_near": 722.22
+   },
+   {
+    "block": 224172500,
+    "free_near": 716.13
+   },
+   {
+    "block": 224175000,
+    "free_near": 710.82
+   },
+   {
+    "block": 224177500,
+    "free_near": 705.87
+   },
+   {
+    "block": 224180000,
+    "free_near": 700.12
+   },
+   {
+    "block": 224182500,
+    "free_near": 693.6
+   },
+   {
+    "block": 224185000,
+    "free_near": 688.02
+   },
+   {
+    "block": 224187500,
+    "free_near": 680.84
+   },
+   {
+    "block": 224190000,
+    "free_near": 673.28
+   },
+   {
+    "block": 224192500,
+    "free_near": 664.88
+   },
+   {
+    "block": 224195000,
+    "free_near": 657.52
+   },
+   {
+    "block": 224197500,
+    "free_near": 648.82
+   },
+   {
+    "block": 224200000,
+    "free_near": 640.88
+   },
+   {
+    "block": 224202500,
+    "free_near": 634.4
+   },
+   {
+    "block": 224205000,
+    "free_near": 624.83
+   },
+   {
+    "block": 224207500,
+    "free_near": 615.26
+   },
+   {
+    "block": 224210000,
+    "free_near": 605.12
+   },
+   {
+    "block": 224212500,
+    "free_near": 595.39
+   },
+   {
+    "block": 224215000,
+    "free_near": 584.51
+   },
+   {
+    "block": 224217500,
+    "free_near": 574.0
+   },
+   {
+    "block": 224220000,
+    "free_near": 562.38
+   },
+   {
+    "block": 224222500,
+    "free_near": 549.83
+   },
+   {
+    "block": 224225000,
+    "free_near": 536.14
+   },
+   {
+    "block": 224227500,
+    "free_near": 521.3
+   },
+   {
+    "block": 224230000,
+    "free_near": 505.12
+   },
+   {
+    "block": 224230223,
+    "free_near": 503.36
+   },
+   {
+    "block": 224230224,
+    "free_near": 802.77
+   },
+   {
+    "block": 224232500,
+    "free_near": 786.54
+   },
+   {
+    "block": 224235000,
+    "free_near": 773.05
+   },
+   {
+    "block": 224237500,
+    "free_near": 761.75
+   },
+   {
+    "block": 224240000,
+    "free_near": 748.63
+   },
+   {
+    "block": 224242500,
+    "free_near": 736.89
+   },
+   {
+    "block": 224245000,
+    "free_near": 724.3
+   },
+   {
+    "block": 224247500,
+    "free_near": 714.11
+   },
+   {
+    "block": 224250000,
+    "free_near": 702.11
+   },
+   {
+    "block": 224252500,
+    "free_near": 692.93
+   },
+   {
+    "block": 224255000,
+    "free_near": 681.03
+   },
+   {
+    "block": 224257500,
+    "free_near": 671.85
+   },
+   {
+    "block": 224260000,
+    "free_near": 662.02
+   },
+   {
+    "block": 224262500,
+    "free_near": 661.88
+   },
+   {
+    "block": 224265000,
+    "free_near": 654.91
+   },
+   {
+    "block": 224267500,
+    "free_near": 647.38
+   },
+   {
+    "block": 224270000,
+    "free_near": 634.88
+   },
+   {
+    "block": 224272500,
+    "free_near": 625.13
+   },
+   {
+    "block": 224275000,
+    "free_near": 615.48
+   },
+   {
+    "block": 224277500,
+    "free_near": 607.18
+   },
+   {
+    "block": 224280000,
+    "free_near": 598.44
+   },
+   {
+    "block": 224282500,
+    "free_near": 590.54
+   },
+   {
+    "block": 224285000,
+    "free_near": 583.29
+   },
+   {
+    "block": 224287500,
+    "free_near": 576.14
+   },
+   {
+    "block": 224290000,
+    "free_near": 569.74
+   },
+   {
+    "block": 224292500,
+    "free_near": 563.16
+   },
+   {
+    "block": 224295000,
+    "free_near": 558.06
+   },
+   {
+    "block": 224297500,
+    "free_near": 551.55
+   },
+   {
+    "block": 224300000,
+    "free_near": 546.53
+   },
+   {
+    "block": 224302500,
+    "free_near": 539.28
+   },
+   {
+    "block": 224305000,
+    "free_near": 533.35
+   },
+   {
+    "block": 224307500,
+    "free_near": 524.54
+   },
+   {
+    "block": 224310000,
+    "free_near": 517.1
+   },
+   {
+    "block": 224312500,
+    "free_near": 506.62
+   },
+   {
+    "block": 224313479,
+    "free_near": 502.86
+   },
+   {
+    "block": 224313480,
+    "free_near": 803.43
+   },
+   {
+    "block": 224315000,
+    "free_near": 798.44
+   },
+   {
+    "block": 224317500,
+    "free_near": 787.37
+   },
+   {
+    "block": 224320000,
+    "free_near": 777.69
+   },
+   {
+    "block": 224322500,
+    "free_near": 767.28
+   },
+   {
+    "block": 224325000,
+    "free_near": 757.56
+   },
+   {
+    "block": 224327500,
+    "free_near": 747.01
+   },
+   {
+    "block": 224330000,
+    "free_near": 736.95
+   },
+   {
+    "block": 224332500,
+    "free_near": 727.52
+   },
+   {
+    "block": 224335000,
+    "free_near": 714.46
+   },
+   {
+    "block": 224337500,
+    "free_near": 704.11
+   },
+   {
+    "block": 224340000,
+    "free_near": 691.88
+   },
+   {
+    "block": 224342500,
+    "free_near": 681.16
+   },
+   {
+    "block": 224345000,
+    "free_near": 669.8
+   },
+   {
+    "block": 224347500,
+    "free_near": 658.7
+   },
+   {
+    "block": 224350000,
+    "free_near": 648.76
+   },
+   {
+    "block": 224352500,
+    "free_near": 638.37
+   },
+   {
+    "block": 224355000,
+    "free_near": 626.79
+   },
+   {
+    "block": 224357500,
+    "free_near": 616.72
+   },
+   {
+    "block": 224360000,
+    "free_near": 605.17
+   },
+   {
+    "block": 224362500,
+    "free_near": 595.31
+   },
+   {
+    "block": 224365000,
+    "free_near": 585.3
+   },
+   {
+    "block": 224367500,
+    "free_near": 574.15
+   },
+   {
+    "block": 224370000,
+    "free_near": 562.6
+   },
+   {
+    "block": 224372500,
+    "free_near": 551.53
+   },
+   {
+    "block": 224375000,
+    "free_near": 540.39
+   },
+   {
+    "block": 224377500,
+    "free_near": 526.95
+   },
+   {
+    "block": 224380000,
+    "free_near": 516.54
+   },
+   {
+    "block": 224382500,
+    "free_near": 504.9
+   },
+   {
+    "block": 224382918,
+    "free_near": 502.92
+   },
+   {
+    "block": 224382919,
+    "free_near": 803.19
+   },
+   {
+    "block": 224385000,
+    "free_near": 793.99
+   },
+   {
+    "block": 224387500,
+    "free_near": 780.31
+   },
+   {
+    "block": 224390000,
+    "free_near": 770.23
+   },
+   {
+    "block": 224392500,
+    "free_near": 759.92
+   },
+   {
+    "block": 224395000,
+    "free_near": 750.85
+   },
+   {
+    "block": 224397500,
+    "free_near": 739.61
+   },
+   {
+    "block": 224400000,
+    "free_near": 729.59
+   },
+   {
+    "block": 224402500,
+    "free_near": 719.52
+   },
+   {
+    "block": 224405000,
+    "free_near": 710.6
+   },
+   {
+    "block": 224407500,
+    "free_near": 702.37
+   },
+   {
+    "block": 224410000,
+    "free_near": 691.68
+   },
+   {
+    "block": 224412500,
+    "free_near": 683.41
+   },
+   {
+    "block": 224415000,
+    "free_near": 675.01
+   },
+   {
+    "block": 224417500,
+    "free_near": 665.27
+   },
+   {
+    "block": 224420000,
+    "free_near": 655.28
+   },
+   {
+    "block": 224422500,
+    "free_near": 647.39
+   },
+   {
+    "block": 224425000,
+    "free_near": 637.78
+   },
+   {
+    "block": 224427500,
+    "free_near": 629.97
+   },
+   {
+    "block": 224430000,
+    "free_near": 621.99
+   },
+   {
+    "block": 224432500,
+    "free_near": 615.16
+   },
+   {
+    "block": 224435000,
+    "free_near": 608.69
+   },
+   {
+    "block": 224437500,
+    "free_near": 602.47
+   },
+   {
+    "block": 224440000,
+    "free_near": 597.02
+   },
+   {
+    "block": 224442500,
+    "free_near": 590.24
+   },
+   {
+    "block": 224445000,
+    "free_near": 585.04
+   },
+   {
+    "block": 224447500,
+    "free_near": 579.82
+   },
+   {
+    "block": 224450000,
+    "free_near": 574.71
+   },
+   {
+    "block": 224452500,
+    "free_near": 567.58
+   },
+   {
+    "block": 224455000,
+    "free_near": 560.43
+   },
+   {
+    "block": 224457500,
+    "free_near": 553.41
+   },
+   {
+    "block": 224460000,
+    "free_near": 548.23
+   },
+   {
+    "block": 224462500,
+    "free_near": 538.92
+   },
+   {
+    "block": 224465000,
+    "free_near": 532.47
+   },
+   {
+    "block": 224467500,
+    "free_near": 525.82
+   },
+   {
+    "block": 224470000,
+    "free_near": 520.33
+   },
+   {
+    "block": 224472500,
+    "free_near": 513.87
+   },
+   {
+    "block": 224475000,
+    "free_near": 507.81
+   },
+   {
+    "block": 224475666,
+    "free_near": 504.29
+   },
+   {
+    "block": 224475667,
+    "free_near": 804.59
+   },
+   {
+    "block": 224477500,
+    "free_near": 800.26
+   },
+   {
+    "block": 224480000,
+    "free_near": 793.24
+   },
+   {
+    "block": 224482500,
+    "free_near": 786.41
+   },
+   {
+    "block": 224485000,
+    "free_near": 777.75
+   },
+   {
+    "block": 224487500,
+    "free_near": 770.27
+   },
+   {
+    "block": 224490000,
+    "free_near": 761.38
+   },
+   {
+    "block": 224492500,
+    "free_near": 754.56
+   },
+   {
+    "block": 224495000,
+    "free_near": 746.56
+   },
+   {
+    "block": 224497500,
+    "free_near": 738.82
+   },
+   {
+    "block": 224500000,
+    "free_near": 731.9
+   },
+   {
+    "block": 224502500,
+    "free_near": 724.23
+   },
+   {
+    "block": 224505000,
+    "free_near": 714.6
+   },
+   {
+    "block": 224507500,
+    "free_near": 706.58
+   },
+   {
+    "block": 224510000,
+    "free_near": 697.78
+   },
+   {
+    "block": 224512500,
+    "free_near": 689.19
+   },
+   {
+    "block": 224515000,
+    "free_near": 679.36
+   },
+   {
+    "block": 224517500,
+    "free_near": 670.54
+   },
+   {
+    "block": 224520000,
+    "free_near": 659.81
+   },
+   {
+    "block": 224522500,
+    "free_near": 650.21
+   },
+   {
+    "block": 224525000,
+    "free_near": 638.12
+   },
+   {
+    "block": 224527500,
+    "free_near": 625.45
+   },
+   {
+    "block": 224528199,
+    "free_near": 622.22
+   }
+  ],
+  "refills": [
+   {
+    "block": 224050442,
+    "timestamp_utc": "2026-11-11T10:05:19Z",
+    "free_before_near": 503.86,
+    "free_after_near": 801.43,
+    "amount_near": 297.59,
+    "receipt_id": "61KTes18PPG3MGpQGYNA9R7kkhHUWHhiHsRs5UPNAcM8",
+    "predecessor_id": "intents_refiller.near"
+   },
+   {
+    "block": 224133038,
+    "timestamp_utc": "2026-11-11T23:35:19Z",
+    "free_before_near": 504.91,
+    "free_after_near": 804.86,
+    "amount_near": 300.0,
+    "receipt_id": "13kHdM2vAvP4siDK3RvPG2V77e47xokKViDZUuuZQFpC",
+    "predecessor_id": "intents_refiller.near"
+   },
+   {
+    "block": 224230224,
+    "timestamp_utc": "2026-11-12T15:11:19Z",
+    "free_before_near": 503.36,
+    "free_after_near": 802.77,
+    "amount_near": 299.41,
+    "receipt_id": "DJL72JgQGYwYsRy3RUCunpWPw87b5K9dBTvPadM1PKwy",
+    "predecessor_id": "intents_refiller.near"
+   },
+   {
+    "block": 224313480,
+    "timestamp_utc": "2026-11-13T04:29:19Z",
+    "free_before_near": 502.86,
+    "free_after_near": 803.43,
+    "amount_near": 300.58,
+    "receipt_id": "BA5P85EkXsPVDwYc3u485cVcwArh6fnLTTxgePmbhysK",
+    "predecessor_id": "intents_refiller.near"
+   },
+   {
+    "block": 224382919,
+    "timestamp_utc": "2026-11-13T15:35:19Z",
+    "free_before_near": 502.92,
+    "free_after_near": 803.19,
+    "amount_near": 300.28,
+    "receipt_id": "4JrTGsZ7mMStswPeqUHCADBfZiPSuZysio644CvPPcP1",
+    "predecessor_id": "intents_refiller.near"
+   },
+   {
+    "block": 224475667,
+    "timestamp_utc": "2026-11-14T06:23:19Z",
+    "free_before_near": 504.29,
+    "free_after_near": 804.59,
+    "amount_near": 300.3,
+    "receipt_id": "J4rni9K2ebvKJeEVBocvrrJ1fsw7H5JYhS63YzM77VhW",
+    "predecessor_id": "intents_refiller.near"
+   }
+  ],
+  "refill_count": 6,
+  "refilled_near": 1798.16,
+  "refill_amount_median_near": 300.14,
+  "trigger_free_mean_near": 503.7,
+  "interval_blocks_mean": 85045,
+  "interval_hours_mean": 13.66,
+  "from_refiller_pct": 100.0,
+  "free_min_near": 502.86,
+  "free_max_near": 804.86,
+  "sources": [
+   "view_account_at_block",
+   "block_header_at_height",
+   "neardata_block"
+  ]
+ },
+ "payer": {
+  "treasury": {
+   "account": "dll-treasury.sputnik-dao.near",
+   "liquid_near": 23011.11,
+   "staking_pool": "zavodil.poolv1.near",
+   "staked_near": 328410.57,
+   "unstaked_near": 0.0,
+   "last_proposal_id": 133
+  },
+  "refiller": {
+   "account": "intents_refiller.near",
+   "balance_near": 10401.61,
+   "access_key_count": 12,
+   "has_contract": false
+  },
+  "proposals_to_refiller": [
+   {
+    "id": 74,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-07-17T08:04:47Z",
+    "description": ""
+   },
+   {
+    "id": 93,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-08-13T03:44:58Z",
+    "description": ""
+   },
+   {
+    "id": 99,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-08-20T14:36:49Z",
+    "description": ""
+   },
+   {
+    "id": 102,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-09-01T03:53:01Z",
+    "description": ""
+   },
+   {
+    "id": 103,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-09-09T03:39:24Z",
+    "description": ""
+   },
+   {
+    "id": 109,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-09-22T08:05:52Z",
+    "description": ""
+   },
+   {
+    "id": 111,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-10-01T08:31:51Z",
+    "description": ""
+   },
+   {
+    "id": 122,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-10-16T06:48:13Z",
+    "description": ""
+   },
+   {
+    "id": 124,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-11-02T10:45:55Z",
+    "description": ""
+   },
+   {
+    "id": 129,
+    "amount_near": 10000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-11-09T17:13:57Z",
+    "description": ""
+   }
+  ],
+  "approved_to_refiller_near": 55000.0,
+  "approved_to_refiller_count": 10,
+  "sources": [
+   "view_account",
+   "pool_get_account",
+   "dao_get_proposals",
+   "view_access_key_list"
+  ]
+ },
+ "issuance": {
+  "total_supply_near": 1311701824.81,
+  "d365": {
+   "from_block": 172600000,
+   "to_block": 224528199,
+   "days": 365.089,
+   "supply_from_near": 1279940657.69,
+   "supply_to_near": 1311701824.81,
+   "net_near": 31761167.12,
+   "annualized_near": 31753419.93,
+   "annualized_pct": 2.4809
+  },
+  "d30": {
+   "from_block": 220100000,
+   "to_block": 224528199,
+   "days": 29.94,
+   "supply_from_near": 1309031391.17,
+   "supply_to_near": 1311701824.81,
+   "net_near": 2670433.64,
+   "annualized_near": 32555360.78,
+   "annualized_pct": 2.487
+  },
+  "max_gross_near_per_year": 32792545.62,
+  "sources": [
+   "block_header_at_height",
+   "protocol_config"
+  ]
+ },
+ "gas_burn": {
+  "method": "Inside an epoch no NEAR is minted, so total_supply in block headers only falls. Supply at the first block of an epoch minus supply at the last block read in the same epoch is what the protocol burned.",
+  "epochs": [
+   {
+    "first_block": 224437937,
+    "last_block": 224481136,
+    "complete": true,
+    "supply_first_yocto": "1311650813842331832664688493001137",
+    "supply_last_yocto": "1311650593397030627003736293001137",
+    "burned_near": 220.45,
+    "seconds": 24992.9
+   },
+   {
+    "first_block": 224481137,
+    "last_block": 224524336,
+    "complete": true,
+    "supply_first_yocto": "1311676559659316056050032373585614",
+    "supply_last_yocto": "1311676304256375489494531173585616",
+    "burned_near": 255.4,
+    "seconds": 24630.2
+   },
+   {
+    "first_block": 224524337,
+    "last_block": 224528199,
+    "complete": false,
+    "supply_first_yocto": "1311701894749689082554282953354720",
+    "supply_last_yocto": "1311701824808296656727994553354720",
+    "burned_near": 69.94,
+    "seconds": 2201.7
+   }
+  ],
+  "burned_near_per_year": 332119.41,
+  "pct_of_net_issuance": 1.046,
+  "sources": [
+   "validators_epoch_start",
+   "block_header_at_height"
+  ]
+ },
+ "vaults": {
+  "buybacks": {
+   "account": "buybacks.multisignature.near",
+   "balance_near": 2282273.11,
+   "balance_30d_ago_near": 1995399.74,
+   "balance_365d_ago_near": 0.0,
+   "net_change_30d_near": 286873.37,
+   "net_change_365d_near": 2282273.11,
+   "inflow_method": "onchain_net_balance_change",
+   "num_confirmations": 2,
+   "access_key_count": 4,
+   "burned": false,
+   "sources": [
+    "view_account",
+    "view_account_at_block",
+    "multisig_confirmations",
+    "view_access_key_list"
+   ]
+  },
+  "fefunds": {
+   "account": "fefundsadmin.sputnik-dao.near",
+   "balance_near": 2016572.56,
+   "balance_30d_ago_near": 1904406.35,
+   "balance_365d_ago_near": 215138.48,
+   "net_change_30d_near": 112166.21,
+   "net_change_365d_near": 1801434.08,
+   "inflow_method": "onchain_net_balance_change",
+   "num_confirmations": null,
+   "access_key_count": 0,
+   "burned": false,
+   "sources": [
+    "view_account",
+    "view_account_at_block",
+    "multisig_confirmations",
+    "view_access_key_list"
+   ]
+  }
+ },
+ "gap": {
+  "lock_near_per_year": 101491.35,
+  "net_issuance_near_per_year": 31753419.93,
+  "lock_pct_of_issuance": 0.3196,
+  "multiple": 312.9,
+  "state_gb_per_year_now": 10.149,
+  "state_gb_per_year_to_offset": 3175.3,
+  "near_per_gb": 10000.0,
+  "net_issuance_30d_annualized_near": 32555360.78,
+  "multiple_30d": 320.8
+ },
+ "facts": {
+  "omft_acl": {
+   "super_admins": [
+    "omft.near",
+    "intents.sputnik-dao.near"
+   ],
+   "roles": {
+    "TokenDeployer": {
+     "admins": [],
+     "grantees": [
+      "bridge-mng.near",
+      "int-dpl-dao.sputnik-dao.near"
+     ]
+    },
+    "TokenDepositer": {
+     "admins": [],
+     "grantees": [
+      "bridge-mng.near",
+      "int-mnt-dao.sputnik-dao.near"
+     ]
+    },
+    "UnpauseManager": {
+     "admins": [],
+     "grantees": []
+    },
+    "DAO": {
+     "admins": [],
+     "grantees": [
+      "intents.sputnik-dao.near"
+     ]
+    },
+    "PauseManager": {
+     "admins": [],
+     "grantees": []
+    }
+   }
+  },
+  "bridge_mng": {
+   "account": "bridge-mng.near",
+   "access_key_count": 1,
+   "full_access_key_count": 1,
+   "has_contract": false
+  },
+  "v1_signer": {
+   "threshold": 11,
+   "participants": 16
+  },
+  "omft_float": {
+   "contracts_queried": 112,
+   "total_usd": 238565922.1,
+   "zec_supply": 149694.22,
+   "zec_usd": 132106644.27,
+   "zec_share_pct": 55.38,
+   "third_party": true
+  }
+ },
+ "claims": [
+  {
+   "id": "C1",
+   "statement": "State collateral locked by intents.near over the trailing 365 days is under 1% of net NEAR issuance over the same window.",
+   "falsified_if": "gap.lock_pct_of_issuance is 1.0 or more.",
+   "checks": [
+    {
+     "field": "gap.lock_pct_of_issuance",
+     "op": "<",
+     "value": 1.0,
+     "observed": 0.3196,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "id": "C2",
+   "statement": "Every refill of intents.near in the trace window comes from intents_refiller.near, and there are at least 3.",
+   "falsified_if": "Fewer than 3 refills are found, or any refill has a different predecessor, or a receipt cannot be resolved.",
+   "checks": [
+    {
+     "field": "sawtooth.refill_count",
+     "op": ">=",
+     "value": 3,
+     "observed": 6,
+     "pass": true
+    },
+    {
+     "field": "sawtooth.from_refiller_pct",
+     "op": "==",
+     "value": 100,
+     "observed": 100.0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "id": "C3",
+   "statement": "Protocol burn measured from intra-epoch total_supply decline is under 2% of net issuance.",
+   "falsified_if": "gas_burn.pct_of_net_issuance is 2.0 or more.",
+   "checks": [
+    {
+     "field": "gas_burn.pct_of_net_issuance",
+     "op": "<",
+     "value": 2.0,
+     "observed": 1.046,
+     "pass": true
+    }
+   ],
+   "pass": true
+  }
+ ],
+ "sources": {
+  "block_final": {
+   "endpoint": "live",
+   "method": "block",
+   "params": {
+    "finality": "final"
+   },
+   "note": "head block header: height, timestamp, total_supply"
+  },
+  "block_header_at_height": {
+   "endpoint": "archival",
+   "method": "block",
+   "params": {
+    "block_id": "<block>"
+   },
+   "note": "header.total_supply and header.timestamp at a height; <block> is an integer"
+  },
+  "view_account": {
+   "endpoint": "live",
+   "method": "query",
+   "params": {
+    "request_type": "view_account",
+    "finality": "final",
+    "account_id": "<account>"
+   },
+   "note": "amount and storage_usage now"
+  },
+  "view_account_at_block": {
+   "endpoint": "archival",
+   "method": "query",
+   "params": {
+    "request_type": "view_account",
+    "block_id": "<block>",
+    "account_id": "<account>"
+   },
+   "note": "amount and storage_usage at a height; <block> is an integer"
+  },
+  "view_access_key_list": {
+   "endpoint": "live",
+   "method": "query",
+   "params": {
+    "request_type": "view_access_key_list",
+    "finality": "final",
+    "account_id": "<account>"
+   },
+   "note": "count keys[]"
+  },
+  "chunk_receipts": {
+   "endpoint": "archival",
+   "method": "chunk",
+   "params": {
+    "chunk_id": "<chunk_hash>"
+   },
+   "note": "receipts of one chunk; chunk hashes are in block.chunks[]"
+  },
+  "neardata_block": {
+   "endpoint": "https://mainnet.neardata.xyz/v0/block/<block>",
+   "method": "GET",
+   "params": null,
+   "note": "header, account_update state changes and executed receipts of one block"
+  },
+  "protocol_config": {
+   "endpoint": "live",
+   "method": "EXPERIMENTAL_protocol_config",
+   "params": {
+    "finality": "final"
+   },
+   "note": "runtime_config.storage_amount_per_byte, max_inflation_rate"
+  },
+  "validators_epoch_start": {
+   "endpoint": "live",
+   "method": "validators",
+   "params": [
+    null
+   ],
+   "note": "epoch_start_height of the current epoch"
+  },
+  "pool_get_account": {
+   "endpoint": "live",
+   "method": "query",
+   "params": {
+    "request_type": "call_function",
+    "finality": "final",
+    "account_id": "zavodil.poolv1.near",
+    "method_name": "get_account",
+    "args_base64": "eyJhY2NvdW50X2lkIjoiZGxsLXRyZWFzdXJ5LnNwdXRuaWstZGFvLm5lYXIifQ=="
+   },
+   "args": {
+    "account_id": "dll-treasury.sputnik-dao.near"
+   },
+   "note": "staked_balance of the treasury DAO"
+  },
+  "dao_get_proposals": {
+   "endpoint": "live",
+   "method": "query",
+   "params": {
+    "request_type": "call_function",
+    "finality": "final",
+    "account_id": "dll-treasury.sputnik-dao.near",
+    "method_name": "get_proposals",
+    "args_base64": "eyJmcm9tX2luZGV4IjowLCJsaW1pdCI6NTB9"
+   },
+   "args": {
+    "from_index": 0,
+    "limit": 50
+   },
+   "note": "page through from_index 0, 50, 100; filter kind.Transfer.receiver_id == intents_refiller.near"
+  },
+  "multisig_confirmations": {
+   "endpoint": "live",
+   "method": "query",
+   "params": {
+    "request_type": "call_function",
+    "finality": "final",
+    "account_id": "buybacks.multisignature.near",
+    "method_name": "get_num_confirmations",
+    "args_base64": "e30="
+   },
+   "args": {},
+   "note": "confirmations needed"
+  },
+  "omft_acl": {
+   "endpoint": "live",
+   "method": "query",
+   "params": {
+    "request_type": "call_function",
+    "finality": "final",
+    "account_id": "omft.near",
+    "method_name": "acl_get_permissioned_accounts",
+    "args_base64": "e30="
+   },
+   "args": {},
+   "note": "roles and grantees"
+  },
+  "signer_state": {
+   "endpoint": "live",
+   "method": "query",
+   "params": {
+    "request_type": "call_function",
+    "finality": "final",
+    "account_id": "v1.signer",
+    "method_name": "state",
+    "args_base64": "e30="
+   },
+   "args": {},
+   "note": "Running.parameters.threshold and participants"
+  },
+  "ft_total_supply": {
+   "endpoint": "live",
+   "method": "query",
+   "params": {
+    "request_type": "call_function",
+    "finality": "final",
+    "account_id": "zec.omft.near",
+    "method_name": "ft_total_supply",
+    "args_base64": "e30="
+   },
+   "args": {},
+   "note": "same call on every <token>.omft.near"
+  },
+  "oneclick_tokens": {
+   "endpoint": "https://1click.chaindefuser.com/v0/tokens",
+   "method": "GET",
+   "params": null,
+   "note": "third party: token list and USD prices. optional"
+  }
+ }
+}

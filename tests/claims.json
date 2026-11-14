@@ -1,0 +1,46 @@
+[
+  {
+    "id": "C1",
+    "statement": "State collateral locked by intents.near over the trailing 365 days is under 1% of net NEAR issuance over the same window.",
+    "falsified_if": "gap.lock_pct_of_issuance is 1.0 or more.",
+    "checks": [
+      {
+        "field": "gap.lock_pct_of_issuance",
+        "op": "<",
+        "value": 1.0
+      }
+    ],
+    "registered_utc": "2026-11-14T13:30:00Z"
+  },
+  {
+    "id": "C2",
+    "statement": "Every refill of intents.near in the trace window comes from intents_refiller.near, and there are at least 3.",
+    "falsified_if": "Fewer than 3 refills are found, or any refill has a different predecessor, or a receipt cannot be resolved.",
+    "checks": [
+      {
+        "field": "sawtooth.refill_count",
+        "op": ">=",
+        "value": 3
+      },
+      {
+        "field": "sawtooth.from_refiller_pct",
+        "op": "==",
+        "value": 100
+      }
+    ],
+    "registered_utc": "2026-11-14T13:30:00Z"
+  },
+  {
+    "id": "C3",
+    "statement": "Protocol burn measured from intra-epoch total_supply decline is under 2% of net issuance.",
+    "falsified_if": "gas_burn.pct_of_net_issuance is 2.0 or more.",
+    "checks": [
+      {
+        "field": "gas_burn.pct_of_net_issuance",
+        "op": "<",
+        "value": 2.0
+      }
+    ],
+    "registered_utc": "2026-11-14T13:30:00Z"
+  }
+]
