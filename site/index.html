@@ -120,6 +120,7 @@
 <!-- 6 · verdict -->
 <section id="verdict" class="sec s6" data-account="intents.near">
   <h2 class="hl">verdict</h2>
+  <p class="fallback" hidden>data unavailable: run <code>python3 scripts/rebuild.py</code></p>
   <p class="answer bound">today the near token captures a deposit, not a toll: <a class="n" data-f="gap.lock_near_per_year" data-fmt="near0"></a> near a year locked under state and <a class="n" data-f="gas_burn.burned_near_per_year" data-fmt="near0"></a> burned as gas, against <a class="n" data-f="gap.net_issuance_near_per_year" data-fmt="m1"></a> issued.</p>
   <div class="vfig drawing" role="img"></div>
   <div class="cases bound">
@@ -165,7 +166,7 @@
         <li>bridge-mng.near holds the <span class="roles"></span> on omft.near. it has <a class="n" data-f="facts.bridge_mng.access_key_count" data-fmt="int"></a> <span class="plural" data-count="facts.bridge_mng.access_key_count" data-one="access key" data-many="access keys"></span>, <a class="n" data-f="facts.bridge_mng.full_access_key_count" data-fmt="int"></a> of them full access, and no contract.</li>
         <li>v1.signer signs with a <a class="n" data-f="facts.v1_signer.threshold" data-fmt="int"></a>-of-<a class="n" data-f="facts.v1_signer.participants" data-fmt="int"></a> threshold.</li>
         <li>omft.near tokens: <a class="n" data-f="facts.omft_float.total_usd" data-fmt="usd0m"></a> across <a class="n" data-f="facts.omft_float.contracts_queried" data-fmt="int"></a> contracts, <a class="n" data-f="facts.omft_float.zec_share_pct" data-fmt="pct1"></a> of it zec (prices from a third-party api).</li>
-        <li>buybacks.multisignature.near holds <a class="n" data-f="vaults.buybacks.balance_near" data-fmt="near0"></a> near, <a class="n" data-f="vaults.buybacks.net_change_30d_near" data-fmt="near0"></a> more than 30 days ago. fefundsadmin.sputnik-dao.near holds <a class="n" data-f="vaults.fefunds.balance_near" data-fmt="near0"></a>. neither is burned.</li>
+        <li>buybacks.multisignature.near holds <a class="n" data-f="vaults.buybacks.balance_near" data-fmt="near0"></a> near, <a class="n" data-f="vaults.buybacks.net_change_30d_near" data-fmt="near0"></a> more than <a class="n" data-f="issuance.d30.days" data-fmt="int"></a> days ago. fefundsadmin.sputnik-dao.near holds <a class="n" data-f="vaults.fefunds.balance_near" data-fmt="near0"></a>. neither is burned.</li>
       </ul>
     </div>
     <div class="verify">

@@ -59,6 +59,11 @@ export function drawSawtooth(D, sec, { reduce }) {
   }
 
   const rw = desk ? 4 : 3;
+  // only stack block and time under the amount when neighbouring risers leave room for them
+  const gaps = refills.slice(1).map((r, i) => x(r.block) - x(refills[i].block));
+  const minGap = gaps.length ? Math.min(...gaps) : Infinity;
+  const need = tw(desk ? '00 nov 0000, 00:00 utc' : 'block 000,000,000', fs) + 10;
+  const roomy = minGap >= need;
   refills.forEach((r, i) => {
     const rx = x(r.block), y0 = y(r.free_before_near), y1 = y(r.free_after_near);
     const a = el('a', { class: 'riser', href: '#q', 'data-f': `sawtooth.refills[${i}].amount_near`, 'data-refill': i,
@@ -68,8 +73,9 @@ export function drawSawtooth(D, sec, { reduce }) {
     el('rect', { x: rx - 3, y: y1 - 6, width: 6, height: 6, fill: 'var(--red)' }, a);
 
     // label stack above the cap: +amount (red), block, [datetime]
-    const lines = [[`sawtooth.refills[${i}].amount_near`, 'near0', 'red', '+'], [`sawtooth.refills[${i}].block`, 'int', '', 'block ']];
-    if (desk) lines.push([`sawtooth.refills[${i}].timestamp_utc`, 'datetime', '', '']);
+    const lines = [[`sawtooth.refills[${i}].amount_near`, 'near0', 'red', '+']];
+    if (roomy) lines.push([`sawtooth.refills[${i}].block`, 'int', '', 'block ']);
+    if (desk && roomy) lines.push([`sawtooth.refills[${i}].timestamp_utc`, 'datetime', '', '']);
     const widest = Math.max(...lines.map(([f, ff, , pre]) => tw(pre + fmt(get(D, f), ff), fs)));
     const cx = clamp(rx, 8 + widest / 2, TW - 8 - widest / 2);
     const base = y1 - 6 - 7;
@@ -114,7 +120,7 @@ export function scrollSawtooth() {
     p = span > 0 ? clamp(-r.top / span, 0, 1) : 0;
   }
   let fx, xt, panX = 0;
-  if (statik) { fx = clamp(pts[pts.length - 1][0], gut, W - gut); xt = pts[pts.length - 1][0] - 0.01; }
+  if (statik) { fx = clamp(pts[pts.length - 1][0], gut, W - gut); xt = fx; }
   else if (desk) { fx = gut + p * (W - 2 * gut); xt = fx; }
   else { panX = -p * (TW - W); fx = W * 0.3; xt = fx - panX; }
   pan.style.transform = `translate3d(${panX.toFixed(1)}px,0,0)`;

@@ -90,7 +90,7 @@ export function drawPayer(D, sec, { reduce }) {
 
     // loop: one small red square travelling the path
     if (!reduce) {
-      const m = el('rect', { x: -2, y: -2, width: 4, height: 4, fill: 'var(--red)', class: 'traveller' }, red);
+      const m = el('rect', { x: -2, y: -2, width: 4, height: 4, fill: 'var(--red)', class: 'traveller', visibility: 'hidden' }, red);
       const am = el('animateMotion', { dur: '4s', repeatCount: 'indefinite', path: (path1 + (desk ? '' : '') + ' ' + path2.replace(/^M[^HV]+/, m => 'L' + m.slice(1))), begin: 'indefinite' }, m);
       m._am = am;
     }
@@ -136,5 +136,5 @@ export function drawPayer(D, sec, { reduce }) {
 
 export function startPayerLoop(sec) {
   const t = sec.querySelector('.traveller');
-  if (t && t._am && !t._started) { t._started = true; try { t._am.beginElementAt(2.6); } catch (e) { /* no smil */ } }
+  if (t && t._am && !t._started) { t._started = true; try { t._am.beginElementAt(2.6); setTimeout(() => t.setAttribute('visibility', 'visible'), 2600); } catch (e) { /* no smil */ } }
 }
