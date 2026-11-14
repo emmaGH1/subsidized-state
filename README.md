@@ -39,9 +39,15 @@ passing 2%.
 
 ```
 git clone https://github.com/emmaGH1/subsidized-state && cd subsidized-state
-python3 -m unittest discover tests     # 15 offline checks of every derived number: "Ran 15 tests", "OK"
-python3 scripts/trace_refills.py       # the 30-day refill trace, from its cache: "39 top-ups ... from intents_refiller.near: 39"
-python3 scripts/rebuild.py             # every number again from mainnet at today's head block, ending in PASS C1, C2, C3
+
+# 15 offline checks of every derived number -> "Ran 15 tests", "OK"
+python3 -m unittest discover tests
+
+# the 30-day refill trace, from its cache -> "39 top-ups ... from intents_refiller.near: 39"
+python3 scripts/trace_refills.py
+
+# every number again from mainnet at today's head block -> ends in PASS C1, PASS C2, PASS C3
+python3 scripts/rebuild.py
 ```
 
 Python 3.9 or newer, standard library only, nothing to install. The steps below say exactly what each command prints.
@@ -49,9 +55,9 @@ Python 3.9 or newer, standard library only, nothing to install. The steps below 
 ## What is new here
 
 Other entries in this hackathon (Toll Road, NEAR Toll Audit, Stakeout and others) already compare intents fees
-with issuance. This adds three things they do not: a year-long ledger of the NEAR locked under `intents.near`'s
-state, a block-level trace of every top-up of that collateral with the receipt that paid it, and who stands behind
-the payer.
+with issuance. What this adds is a year-long ledger of the NEAR locked under `intents.near`'s
+state, a block-level trace of every top-up of that collateral with the receipt that paid it, and the treasury behind
+the account that pays.
 
 ## Check it yourself
 
