@@ -9,7 +9,7 @@ If chain abstraction killed gas burn, what does the NEAR token actually capture?
 ## The thesis
 
 NEAR's newest sink, state collateral (10 NEAR per MB), is real, growing and measurable.
-It is also roughly 330x too small to offset issuance, it is locked rather than burned,
+It is also over 300x too small to offset issuance (the brief said "about 330x"; measured, it is 313x), it is locked rather than burned,
 and it is paid by a treasury bot rather than by users. We show exactly what would have to change.
 
 ## Ground rules for content
@@ -75,3 +75,4 @@ Decisions made without asking, per the brief.
 - **14:40 Schema amended (definitions only, no field changes).** Sticky window anchors, fixed-step checkpoints, and a trace window that may end before the head when rate-limited. Details in `data/SCHEMA.md`, "Amendments". Site and thesis are unaffected: they read the same fields.
 - **14:40 Recent history comes from ordinary RPC.** Measured: `near.api.pocket.network` serves state for roughly the last 150,000 blocks with no 429 at 6 parallel requests. `rebuild.py` uses it for anything younger than 140,000 blocks and keeps the rate-limited archival endpoints for older history only.
 - **14:46 Artifact frozen at block 224,528,333.** `rebuild.py` rewrites `data/artifact.json` at the current head on every run, so the committed file is the snapshot that `THESIS.md` and `README.md` quote. Nobody reruns the rebuild in this checkout until the final pass; a reader who reruns it gets newer numbers and can restore the snapshot with `git checkout data/`.
+- **15:25 Audit findings applied.** The cold audit found 3 blockers and 9 should-fix items; all are fixed except where noted. Changes of substance: (1) the verdict now includes the fee vaults, which gained 4.08M NEAR in the year, 40x the lock, and are held, not burned; leaving the largest flow out of the answer was the audit's strongest criticism. (2) "Pre-registered" is replaced by an honest description: thresholds were fixed before `rebuild.py` existed but after exploratory queries, so they are tripwires, not blind predictions. (3) "Largest new source of state" is removed; nothing in the artifact ranks contracts. (4) "Users do not pay" is scoped to the 3.3-day trace. (5) The trailing-year multiple is now accompanied by the recent pace (about 265x over the last three checkpoint intervals). Not fixed: the cosmetic 380px nits in sections 3 and 5.

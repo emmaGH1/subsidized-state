@@ -136,7 +136,7 @@ Adding a field is a schema change. If a value cannot be fetched, write `null`; n
 | `treasury.staking_pool` | string | `"zavodil.poolv1.near"` | |
 | `treasury.staked_near` | number | `get_account.staked_balance` | `pool_get_account` |
 | `treasury.unstaked_near` | number | `get_account.unstaked_balance` | `pool_get_account` |
-| `treasury.last_proposal_id` | int | `get_last_proposal_id` | `dao_get_proposals` |
+| `treasury.last_proposal_id` | int | `get_last_proposal_id`: the DAO's proposal count (ids run from 0 to this minus 1) | `dao_get_proposals` |
 | `refiller.account` | string | `"intents_refiller.near"` | |
 | `refiller.balance_near` | number | | `view_account` |
 | `refiller.access_key_count` | int | | `view_access_key_list` |
@@ -208,7 +208,7 @@ Inside an epoch no NEAR is minted, so `total_supply` in block headers only falls
 | `lock_near_per_year` | number | `lock.growth_365d.near_per_year` |
 | `net_issuance_near_per_year` | number | `issuance.d365.annualized_near` |
 | `lock_pct_of_issuance` | number | first / second × 100 |
-| `multiple` | number | second / first, 1 decimal. "About 330x" |
+| `multiple` | number | second / first, 1 decimal |
 | `state_gb_per_year_now` | number | `lock.growth_365d.gb_per_year` |
 | `state_gb_per_year_to_offset` | number | `net_issuance_near_per_year / (near_per_mb × 1000)` |
 | `near_per_gb` | number | `near_per_mb × 1000`, expected `10000` |

@@ -9,15 +9,16 @@ NEAR mainnet by one command, with no API keys.
 - **The thesis:** [THESIS.md](THESIS.md)
 - **The data:** [data/artifact.json](data/artifact.json), described field by field in [data/SCHEMA.md](data/SCHEMA.md)
 
-## The answer in four lines
+## The answer in five lines
 
 NEAR's newest sink is state collateral: 10 NEAR locked for every megabyte a contract stores.
-We measured it on the largest new source of state, `intents.near`.
+We measured it on `intents.near`, the contract behind NEAR Intents.
 
-1. **It is real and growing.** The locked amount rose at every one of 13 checkpoints across a year.
+1. **It is real and growing.** The locked amount rose between every pair of 13 checkpoints across a year.
 2. **It is over 300 times too small.** In the committed snapshot the lock grew by about 101 thousand NEAR a year while the supply grew by about 31.8 million.
 3. **It is locked, not burned.** Deleting state returns the NEAR. The only true burn is gas, about 1% of issuance.
-4. **Users do not pay it.** Every top-up of `intents.near` in the trace window came from one account, `intents_refiller.near`, which a DAO treasury funds.
+4. **The bigger flow is fees, and they are held, not burned.** Two fee vaults gained about 4.1 million NEAR in the same year, about 40 times the lock.
+5. **Users did not post the collateral in the window we traced.** Every top-up of `intents.near` in the last 3.3 days came from one account, `intents_refiller.near`, to which a DAO treasury has approved 55,000 NEAR.
 
 Other entries in this hackathon (Toll Road, NEAR Toll Audit, Tollkeeper, Stakeout and others) already cover
 intents fees against issuance. What this adds is the storage-collateral ledger, the refill trace, and who pays.
@@ -34,7 +35,7 @@ cd subsidized-state
 python3 scripts/rebuild.py
 ```
 
-You see a summary and three test lines, in about 15 to 40 seconds:
+You see a summary and three test lines, in about 10 to 40 seconds:
 
 ```
 subsidized state: rebuilt data/artifact.json
@@ -53,7 +54,7 @@ PASS C3  gas_burn.pct_of_net_issuance < 2.0 (observed 1.046)
 
 That output is from the committed snapshot. **Your numbers will differ slightly**, because the script reads the
 chain at the current head block: the head block, the locked amount and the supply all move every second, and
-the refill count changes as the 500,000-block window slides. The three tests should still say `PASS`.
+the refill count changes as the trace window (about 500,000 blocks) moves forward. The three tests should still say `PASS`.
 The script rewrites `data/artifact.json` and `data/history_cache.json`; `git checkout data/` restores the snapshot
 that `THESIS.md` quotes.
 
@@ -131,9 +132,11 @@ with a note if the API is down. Nothing in the thesis depends on it.
 Flags: `--fresh`, `--verify N`, `--budget SECONDS` (time allowed for optional history fetches, default 40),
 `--epochs N` (complete epochs to measure gas burn over, default 2).
 
-## The three pre-registered tests
+## The three tests
 
-Defined in [tests/claims.json](tests/claims.json) before the data was final, evaluated on every rebuild.
+Three claims with fixed thresholds, in [tests/claims.json](tests/claims.json), evaluated on every rebuild.
+They were defined in `data/SCHEMA.md` (commit `de791ab`) before `rebuild.py` existed, but after exploratory
+queries had shown the rough sizes. Treat them as tripwires for future rebuilds, not as blind predictions.
 
 | | Claim | Falsified if |
 |---|---|---|
@@ -143,8 +146,11 @@ Defined in [tests/claims.json](tests/claims.json) before the data was final, eva
 
 ## What this does not show
 
-- It measures one contract, `intents.near`. It is not a census of all state on NEAR.
-- The refill trace covers about 3.3 days, not the year. The link from the DAO's proposals to each refill is by account, not traced transfer by transfer.
+- It measures one contract, `intents.near`, against issuance for the whole network. It is not a census of all state on NEAR, and nothing here ranks contracts by state.
+- The multiple is a trailing-year average. The lock has been growing faster recently: over the last three checkpoint intervals it annualises to about 120 thousand NEAR, which is about 265x rather than 313x.
+- Fee vault inflows are not traced to their source. The artifact shows that the balances grew and that nothing was burned.
+- There is no before-and-after series for gas burn, so this does not test whether chain abstraction caused the low burn.
+- The refill trace covers about 3.3 days, not the year. The link from the DAO's proposals to each refill is by account, not traced transfer by transfer. The first approved proposal is from July 2026; who posted collateral before then is not shown.
 - "About a year" means the exact number of days in `issuance.d365.days`; every per-year figure is annualised by it.
 - Gas burn is measured over the two most recent complete epochs and the current partial one, then annualised.
 - Fee vault figures are net balance changes on chain, not gross inflows.
@@ -158,7 +164,7 @@ data/artifact.json        every number, with the block it was read at
 data/SCHEMA.md            every field: meaning, unit, source query
 data/history_cache.json   immutable historical reads (see above)
 data/artifact.sample.json first hand-assembled snapshot, used to build the site before rebuild.py existed
-tests/claims.json         the three pre-registered tests
+tests/claims.json         the three tests
 tests/test_artifact.py    offline consistency checks
 site/                     the static site (no build step); site/DESIGN.md is its spec
 PLAN.md                   how this was built, and every decision made along the way

@@ -130,7 +130,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 
 /* ---------- 2 · the lock ---------- */
 .s2 { display: flex; flex-direction: column; padding-bottom: 24px; }
-.s2 .hl { position: relative; z-index: 1; }
+.s2 .hl { position: relative; z-index: 1; pointer-events: none; }
 .s2 .big { position: absolute; top: calc(var(--strip-h) + 26px); right: var(--g); text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
 .s2 .bignum { font-size: 44px; }
 .s2 .copy { margin-top: 22px; }
@@ -247,3 +247,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .js-motion .s6 .answer, .js-motion .s6 .vfig, .js-motion .s6 .cases { opacity: 0; transform: translateY(12px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
 .js-motion .s6.in .answer, .js-motion .s6.in .vfig, .js-motion .s6.in .cases { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+/* drawings laid over copy must not swallow clicks: only painted marks take the pointer */
+.s3 svg.fix, .s4 .drawing svg { pointer-events: none; }
+.s3 svg.fix > *, .s4 .drawing svg > * { pointer-events: auto; }

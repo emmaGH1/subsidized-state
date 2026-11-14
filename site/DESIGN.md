@@ -134,7 +134,7 @@ Cut order if time runs short: section 4 animation, then the section 5 slider, th
 - Kicker (label, top-left): `subsidized state · an investment thesis on near, checked against the chain`
 - Question (serif, lowercase): `if chain abstraction killed gas burn, what does the near token actually capture?`
 - Thesis (lede, one paragraph):
-  `near's newest sink is state collateral: {constants.near_per_mb|int} near locked for every megabyte a contract stores. it is real, growing and measurable. in the last year its largest new source, intents.near, locked {gap.lock_near_per_year|near0} more near while the supply grew by {gap.net_issuance_near_per_year|m1}. that is {gap.multiple|x0} too small to offset issuance. it is locked, not burned. and it is paid by a [red]treasury bot[/red], not by users. this page shows the receipts and what would have to change.`
+  `near's newest sink is state collateral: {constants.near_per_mb|int} near locked for every megabyte a contract stores. it is real, growing and measurable. in the last year intents.near, the contract behind near intents, locked {gap.lock_near_per_year|near0} more near while the supply grew by {gap.net_issuance_near_per_year|m1}. that is {gap.multiple|x0} too small to offset issuance. it is locked, not burned. and it is paid by a [red]treasury bot[/red], not by users. this page shows the receipts and what would have to change.`
 - Link (label, underlined): `skip to verdict ↓` → `#verdict`
 - Bottom-right (label): `block {meta.head_block|int} · {meta.head_timestamp_utc|datetime} · every number is a link to its query`
 
@@ -280,7 +280,7 @@ A red path (`#ink-line`, 2px) leaves the treasury square, enters the refiller sq
 
 - Headline: `verdict`
 - The answer (serif, cover-question size, one sentence):
-  `today the near token captures a deposit, not a toll: {gap.lock_near_per_year|near0} near a year locked under state and {gas_burn.burned_near_per_year|near0} burned as gas, against {gap.net_issuance_near_per_year|m1} issued.`
+  `today the near token captures a deposit, not a toll: {gap.lock_near_per_year|near0} near a year locked under state and {gas_burn.burned_near_per_year|near0} burned as gas, against {gap.net_issuance_near_per_year|m1} issued. two fee vaults gained {vaults.buybacks.net_change_365d_near + vaults.fefunds.net_change_365d_near|m1} in the same year. that near is held, not burned.`
 - Three text columns (stacked at 380px), each a label-size heading and a short list in Inter 15px; lists use an en dash, no bullets-as-icons:
 
   **the case for**
@@ -302,7 +302,7 @@ A red path (`#ink-line`, 2px) leaves the treasury square, enters the refiller sq
   - `vault balances are burned and total supply falls by the same amount.`
   - `any of the three tests below fails on a rebuild.`
 
-- **the three tests** (label heading: `pre-registered tests · tests/claims.json`). One row per `claims[]` entry, plain text rows separated by hairlines:
+- **the three tests** (label heading: `three tests, thresholds fixed before the rebuild script existed · tests/claims.json`). One row per `claims[]` entry, plain text rows separated by hairlines:
   `{id}` · `{statement}` · for each check `{field} {op} {value} — observed {observed}` · result word `pass` or `fail` in ink (serif, 26px). A fail is set in ink like a pass; it is **not** red. The observed value is a query link.
 - **plain facts** (label heading: `also true at block {meta.head_block|int}`), one line each, every value a query link, no commentary:
   - `bridge-mng.near holds the TokenDeployer and TokenDepositer roles on omft.near. it has {facts.bridge_mng.access_key_count|int} access key, {facts.bridge_mng.full_access_key_count|int} of them full access, and no contract.`

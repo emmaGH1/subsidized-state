@@ -10,6 +10,14 @@ export const CALC = {
     formula: 'lock.checkpoints.length',
     under: 'lock.checkpoints[-1].locked_near',
   },
+  vaults_change_365d: {
+    v: D => {
+      const a = D.vaults.buybacks.net_change_365d_near, b = D.vaults.fefunds.net_change_365d_near;
+      return a == null || b == null ? null : a + b;
+    },
+    formula: 'vaults.buybacks.net_change_365d_near + vaults.fefunds.net_change_365d_near',
+    under: 'vaults.buybacks.net_change_365d_near',
+  },
   vaults_total: {
     v: D => {
       const a = D.vaults.buybacks.balance_near, b = D.vaults.fefunds.balance_near;
@@ -53,7 +61,7 @@ export function fmt(v, f) {
     case 'pct2': return (+v).toFixed(2) + '%';
     case 'pct1': return (+v).toFixed(1) + '%';
     case 'gb1': return (v / 1e9).toFixed(1);
-    case 'num1': return (+v).toFixed(1);
+    case 'num1': return sep(+v, 1);
     case 'usd0m': return '$' + Math.round(v / 1e6) + 'm';
     case 'date': case 'month': case 'datetime': {
       const d = new Date(v);

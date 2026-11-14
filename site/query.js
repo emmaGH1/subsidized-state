@@ -126,7 +126,7 @@ export function resolve(D, f, depth = 0) {
     return { ...r, src: 'dao_get_proposals', extra };
   }
   if (f.startsWith('issuance.') || f === 'gap.net_issuance_near_per_year' || f.startsWith('gap.')) {
-    const d = D.issuance.d365;
+    const d = f.includes('d30') ? D.issuance.d30 : D.issuance.d365;
     return { ...r, src: 'block_header_at_height', block: d.from_block,
       formula: `header total_supply at blocks ${fmt(d.from_block, 'int')} and ${fmt(d.to_block, 'int')}; the curl below is the first` };
   }
@@ -166,7 +166,7 @@ export function request(D, srcId, block, account) {
   if (!s) return null;
   if (s.method === 'GET') {
     const url = ENDPOINT(D, s.endpoint).replace('<block>', String(block));
-    return { url, get: true, curl: `curl -s --compressed '${url}'` };
+    return { url, get: true, curl: `curl -sL --compressed '${url}'` };
   }
   const url = ENDPOINT(D, s.endpoint);
   const body = { jsonrpc: '2.0', id: 1, method: s.method, params: subst(s.params, block, account) };
