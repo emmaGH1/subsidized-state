@@ -1,0 +1,956 @@
+{
+ "schema_version": "1.0",
+ "meta": {
+  "generated_at_utc": "2026-11-14T13:54:00Z",
+  "is_sample": true,
+  "head_block": 224520502,
+  "head_timestamp_utc": "2026-11-14T13:30:37Z",
+  "head_hash": "DF4e8XReYCiq1iYtrc4wnVdbPQ31dbroQRgu94fZFMoZ",
+  "endpoints": {
+   "live": "https://free.rpc.fastnear.com",
+   "archival": "https://archival-rpc.mainnet.fastnear.com",
+   "history": [
+    "archival_rpc",
+    "neardata"
+   ]
+  },
+  "runtime_seconds": 1398.4,
+  "network_calls": 374,
+  "cache_hits": 0,
+  "fresh": true,
+  "errors": []
+ },
+ "constants": {
+  "storage_amount_per_byte_yocto": "10000000000000000000",
+  "near_per_mb": 10.0,
+  "max_inflation_rate_pct": 2.5,
+  "protocol_version": 88,
+  "epoch_length_blocks": 43200
+ },
+ "lock": {
+  "account": "intents.near",
+  "checkpoints": [
+   {
+    "block": 172605418,
+    "timestamp_utc": "2025-11-14T13:30:40Z",
+    "storage_usage_bytes": 3557604850,
+    "locked_near": 35576.05,
+    "amount_near": 36269.53,
+    "free_near": 693.49
+   },
+   {
+    "block": 176931675,
+    "timestamp_utc": "2025-12-15T11:47:51Z",
+    "storage_usage_bytes": 4941475695,
+    "locked_near": 49414.76,
+    "amount_near": 50003.13,
+    "free_near": 588.37
+   },
+   {
+    "block": 181257932,
+    "timestamp_utc": "2026-01-15T12:42:23Z",
+    "storage_usage_bytes": 5641199211,
+    "locked_near": 56411.99,
+    "amount_near": 57091.12,
+    "free_near": 679.13
+   },
+   {
+    "block": 185584189,
+    "timestamp_utc": "2026-02-14T23:59:57Z",
+    "storage_usage_bytes": 6395013580,
+    "locked_near": 63950.14,
+    "amount_near": 64622.02,
+    "free_near": 671.88
+   },
+   {
+    "block": 189910446,
+    "timestamp_utc": "2026-03-17T08:36:32Z",
+    "storage_usage_bytes": 7009286258,
+    "locked_near": 70092.86,
+    "amount_near": 70876.64,
+    "free_near": 783.77
+   },
+   {
+    "block": 194236703,
+    "timestamp_utc": "2026-04-16T10:03:32Z",
+    "storage_usage_bytes": 7762521109,
+    "locked_near": 77625.21,
+    "amount_near": 78180.58,
+    "free_near": 555.37
+   },
+   {
+    "block": 198562960,
+    "timestamp_utc": "2026-05-16T11:14:15Z",
+    "storage_usage_bytes": 8425244991,
+    "locked_near": 84252.45,
+    "amount_near": 84787.55,
+    "free_near": 535.1
+   },
+   {
+    "block": 202889217,
+    "timestamp_utc": "2026-06-16T02:13:44Z",
+    "storage_usage_bytes": 9158683652,
+    "locked_near": 91586.84,
+    "amount_near": 92217.94,
+    "free_near": 631.1
+   },
+   {
+    "block": 207215474,
+    "timestamp_utc": "2026-07-16T13:22:38Z",
+    "storage_usage_bytes": 9902575157,
+    "locked_near": 99025.75,
+    "amount_near": 99790.01,
+    "free_near": 764.26
+   },
+   {
+    "block": 211541731,
+    "timestamp_utc": "2026-08-16T05:52:49Z",
+    "storage_usage_bytes": 10741861418,
+    "locked_near": 107418.61,
+    "amount_near": 108018.69,
+    "free_near": 600.08
+   },
+   {
+    "block": 215867988,
+    "timestamp_utc": "2026-09-16T03:37:00Z",
+    "storage_usage_bytes": 11854382782,
+    "locked_near": 118543.83,
+    "amount_near": 119062.91,
+    "free_near": 519.08
+   },
+   {
+    "block": 220194245,
+    "timestamp_utc": "2026-10-16T07:42:36Z",
+    "storage_usage_bytes": 12761434521,
+    "locked_near": 127614.35,
+    "amount_near": 128158.98,
+    "free_near": 544.63
+   },
+   {
+    "block": 224520565,
+    "timestamp_utc": "2026-11-14T13:30:37Z",
+    "storage_usage_bytes": 13703264979,
+    "locked_near": 137032.65,
+    "amount_near": 137690.25,
+    "free_near": 657.6
+   }
+  ],
+  "growth_365d": {
+   "from_block": 172605418,
+   "to_block": 224520565,
+   "days": 365.0,
+   "bytes": 10145660129,
+   "near": 101456.6,
+   "near_per_year": 101456.6,
+   "gb_per_year": 10.146
+  },
+  "locked_share_of_balance_pct": 99.52,
+  "monotonic": true,
+  "sources": [
+   "view_account_at_block",
+   "block_header_at_height"
+  ]
+ },
+ "sawtooth": {
+  "account": "intents.near",
+  "window": {
+   "from_block": 224020502,
+   "to_block": 224520565,
+   "days": 3.516
+  },
+  "trace": [
+   {
+    "block": 224020502,
+    "free_near": 584.47
+   },
+   {
+    "block": 224030502,
+    "free_near": 562.25
+   },
+   {
+    "block": 224040502,
+    "free_near": 535.16
+   },
+   {
+    "block": 224050441,
+    "free_near": 503.86
+   },
+   {
+    "block": 224050442,
+    "free_near": 801.43
+   },
+   {
+    "block": 224050502,
+    "free_near": 802.76
+   },
+   {
+    "block": 224060502,
+    "free_near": 775.27
+   },
+   {
+    "block": 224070502,
+    "free_near": 738.96
+   },
+   {
+    "block": 224080502,
+    "free_near": 699.06
+   },
+   {
+    "block": 224090502,
+    "free_near": 659.2
+   },
+   {
+    "block": 224100502,
+    "free_near": 620.55
+   },
+   {
+    "block": 224110502,
+    "free_near": 583.18
+   },
+   {
+    "block": 224120502,
+    "free_near": 547.25
+   },
+   {
+    "block": 224130502,
+    "free_near": 513.57
+   },
+   {
+    "block": 224133037,
+    "free_near": 504.91
+   },
+   {
+    "block": 224133038,
+    "free_near": 804.86
+   },
+   {
+    "block": 224140502,
+    "free_near": 787.24
+   },
+   {
+    "block": 224150502,
+    "free_near": 764.59
+   },
+   {
+    "block": 224160502,
+    "free_near": 744.45
+   },
+   {
+    "block": 224170502,
+    "free_near": 721.52
+   },
+   {
+    "block": 224180502,
+    "free_near": 699.16
+   },
+   {
+    "block": 224190502,
+    "free_near": 669.68
+   },
+   {
+    "block": 224200502,
+    "free_near": 640.02
+   },
+   {
+    "block": 224210502,
+    "free_near": 602.87
+   },
+   {
+    "block": 224220502,
+    "free_near": 559.45
+   },
+   {
+    "block": 224230223,
+    "free_near": 503.36
+   },
+   {
+    "block": 224230224,
+    "free_near": 802.77
+   },
+   {
+    "block": 224230502,
+    "free_near": 800.68
+   },
+   {
+    "block": 224240502,
+    "free_near": 746.71
+   },
+   {
+    "block": 224250502,
+    "free_near": 700.51
+   },
+   {
+    "block": 224260502,
+    "free_near": 661.97
+   },
+   {
+    "block": 224270502,
+    "free_near": 632.75
+   },
+   {
+    "block": 224280502,
+    "free_near": 596.36
+   },
+   {
+    "block": 224290502,
+    "free_near": 567.67
+   },
+   {
+    "block": 224300502,
+    "free_near": 545.4
+   },
+   {
+    "block": 224310502,
+    "free_near": 515.44
+   },
+   {
+    "block": 224313479,
+    "free_near": 502.86
+   },
+   {
+    "block": 224313480,
+    "free_near": 803.43
+   },
+   {
+    "block": 224320502,
+    "free_near": 774.92
+   },
+   {
+    "block": 224330502,
+    "free_near": 735.15
+   },
+   {
+    "block": 224340502,
+    "free_near": 690.09
+   },
+   {
+    "block": 224350502,
+    "free_near": 646.16
+   },
+   {
+    "block": 224360502,
+    "free_near": 603.73
+   },
+   {
+    "block": 224370502,
+    "free_near": 561.41
+   },
+   {
+    "block": 224380502,
+    "free_near": 515.45
+   },
+   {
+    "block": 224382918,
+    "free_near": 502.92
+   },
+   {
+    "block": 224382919,
+    "free_near": 803.19
+   },
+   {
+    "block": 224390502,
+    "free_near": 768.11
+   },
+   {
+    "block": 224400502,
+    "free_near": 727.2
+   },
+   {
+    "block": 224410502,
+    "free_near": 690.34
+   },
+   {
+    "block": 224420502,
+    "free_near": 653.31
+   },
+   {
+    "block": 224430502,
+    "free_near": 620.41
+   },
+   {
+    "block": 224440502,
+    "free_near": 595.2
+   },
+   {
+    "block": 224450502,
+    "free_near": 573.72
+   },
+   {
+    "block": 224460502,
+    "free_near": 546.52
+   },
+   {
+    "block": 224470502,
+    "free_near": 519.2
+   },
+   {
+    "block": 224475666,
+    "free_near": 504.29
+   },
+   {
+    "block": 224475667,
+    "free_near": 804.59
+   },
+   {
+    "block": 224480502,
+    "free_near": 791.68
+   },
+   {
+    "block": 224490502,
+    "free_near": 761.05
+   },
+   {
+    "block": 224500502,
+    "free_near": 730.68
+   },
+   {
+    "block": 224510502,
+    "free_near": 695.62
+   },
+   {
+    "block": 224520565,
+    "free_near": 657.6
+   }
+  ],
+  "refills": [
+   {
+    "block": 224050442,
+    "timestamp_utc": "2026-11-11T10:05:19Z",
+    "free_before_near": 503.86,
+    "free_after_near": 801.43,
+    "amount_near": 297.59,
+    "receipt_id": "61KTes18PPG3MGpQGYNA9R7kkhHUWHhiHsRs5UPNAcM8",
+    "predecessor_id": "intents_refiller.near"
+   },
+   {
+    "block": 224133038,
+    "timestamp_utc": "2026-11-11T23:35:19Z",
+    "free_before_near": 504.91,
+    "free_after_near": 804.86,
+    "amount_near": 299.99,
+    "receipt_id": "13kHdM2vAvP4siDK3RvPG2V77e47xokKViDZUuuZQFpC",
+    "predecessor_id": "intents_refiller.near"
+   },
+   {
+    "block": 224230224,
+    "timestamp_utc": "2026-11-12T15:11:19Z",
+    "free_before_near": 503.36,
+    "free_after_near": 802.77,
+    "amount_near": 299.41,
+    "receipt_id": "DJL72JgQGYwYsRy3RUCunpWPw87b5K9dBTvPadM1PKwy",
+    "predecessor_id": "intents_refiller.near"
+   },
+   {
+    "block": 224313480,
+    "timestamp_utc": "2026-11-13T04:29:19Z",
+    "free_before_near": 502.86,
+    "free_after_near": 803.43,
+    "amount_near": 300.58,
+    "receipt_id": "BA5P85EkXsPVDwYc3u485cVcwArh6fnLTTxgePmbhysK",
+    "predecessor_id": "intents_refiller.near"
+   },
+   {
+    "block": 224382919,
+    "timestamp_utc": "2026-11-13T15:35:19Z",
+    "free_before_near": 502.92,
+    "free_after_near": 803.19,
+    "amount_near": 300.28,
+    "receipt_id": "4JrTGsZ7mMStswPeqUHCADBfZiPSuZysio644CvPPcP1",
+    "predecessor_id": "intents_refiller.near"
+   },
+   {
+    "block": 224475667,
+    "timestamp_utc": "2026-11-14T06:23:19Z",
+    "free_before_near": 504.29,
+    "free_after_near": 804.59,
+    "amount_near": 300.3,
+    "receipt_id": "J4rni9K2ebvKJeEVBocvrrJ1fsw7H5JYhS63YzM77VhW",
+    "predecessor_id": "intents_refiller.near"
+   }
+  ],
+  "refill_count": 6,
+  "refilled_near": 1798.15,
+  "refill_amount_median_near": 300.13,
+  "trigger_free_mean_near": 503.7,
+  "interval_blocks_mean": 85045,
+  "interval_hours_mean": 13.66,
+  "from_refiller_pct": 100.0,
+  "free_min_near": 502.86,
+  "free_max_near": 804.86,
+  "sources": [
+   "view_account_at_block",
+   "block_header_at_height",
+   "neardata_block"
+  ]
+ },
+ "payer": {
+  "treasury": {
+   "account": "dll-treasury.sputnik-dao.near",
+   "liquid_near": 23011.11,
+   "staking_pool": "zavodil.poolv1.near",
+   "staked_near": 328397.86,
+   "unstaked_near": 0.0,
+   "last_proposal_id": 133
+  },
+  "refiller": {
+   "account": "intents_refiller.near",
+   "balance_near": 10401.61,
+   "access_key_count": 12,
+   "has_contract": false
+  },
+  "proposals_to_refiller": [
+   {
+    "id": 74,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-07-17T08:04:47Z",
+    "description": ""
+   },
+   {
+    "id": 93,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-08-13T03:44:58Z",
+    "description": ""
+   },
+   {
+    "id": 99,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-08-20T14:36:49Z",
+    "description": ""
+   },
+   {
+    "id": 102,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-09-01T03:53:01Z",
+    "description": ""
+   },
+   {
+    "id": 103,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-09-09T03:39:24Z",
+    "description": ""
+   },
+   {
+    "id": 109,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-09-22T08:05:52Z",
+    "description": ""
+   },
+   {
+    "id": 111,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-10-01T08:31:51Z",
+    "description": ""
+   },
+   {
+    "id": 122,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-10-16T06:48:13Z",
+    "description": ""
+   },
+   {
+    "id": 124,
+    "amount_near": 5000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-11-02T10:45:55Z",
+    "description": ""
+   },
+   {
+    "id": 129,
+    "amount_near": 10000.0,
+    "status": "Approved",
+    "submitted_utc": "2026-11-09T17:13:57Z",
+    "description": ""
+   }
+  ],
+  "approved_to_refiller_near": 55000.0,
+  "approved_to_refiller_count": 10,
+  "sources": [
+   "view_account",
+   "pool_get_account",
+   "dao_get_proposals",
+   "view_access_key_list"
+  ]
+ },
+ "issuance": {
+  "total_supply_near": 1311676335.03,
+  "d365": {
+   "from_block": 172605418,
+   "to_block": 224520502,
+   "days": 365.0,
+   "supply_from_near": 1279940541.85,
+   "supply_to_near": 1311676335.03,
+   "net_near": 31735793.18,
+   "annualized_near": 31735796.94,
+   "annualized_pct": 2.4795
+  },
+  "d30": {
+   "from_block": 220083813,
+   "to_block": 224520502,
+   "days": 30.0,
+   "supply_from_near": 1309031519.34,
+   "supply_to_near": 1311676335.03,
+   "net_near": 2644815.69,
+   "annualized_near": 32178640.75,
+   "annualized_pct": 2.4582
+  },
+  "max_gross_near_per_year": 32791908.38,
+  "sources": [
+   "block_header_at_height",
+   "protocol_config"
+  ]
+ },
+ "gas_burn": {
+  "method": "total_supply in block headers only falls inside an epoch (minting happens at the epoch boundary), so first-block supply minus last-read supply is what the protocol burned.",
+  "epochs": [
+   {
+    "first_block": 224481137,
+    "last_block": 224520502,
+    "complete": false,
+    "supply_first_yocto": "1311676559659316056050032373585614",
+    "supply_last_yocto": "1311676335031175304508287273585616",
+    "burned_near": 224.63,
+    "seconds": 22449.7
+   }
+  ],
+  "burned_near_per_year": 315543.66,
+  "pct_of_net_issuance": 0.994,
+  "sources": [
+   "validators_epoch_start",
+   "block_header_at_height"
+  ]
+ },
+ "vaults": {
+  "buybacks": {
+   "account": "buybacks.multisignature.near",
+   "balance_near": 2281071.57,
+   "balance_30d_ago_near": 1994336.85,
+   "balance_365d_ago_near": 0.0,
+   "net_change_30d_near": 286734.72,
+   "net_change_365d_near": 2281071.57,
+   "inflow_method": "onchain_net_balance_change",
+   "num_confirmations": 2,
+   "access_key_count": 4,
+   "burned": false,
+   "sources": [
+    "view_account",
+    "view_account_at_block",
+    "multisig_confirmations",
+    "view_access_key_list"
+   ]
+  },
+  "fefunds": {
+   "account": "fefundsadmin.sputnik-dao.near",
+   "balance_near": 2016267.23,
+   "balance_30d_ago_near": 1903634.32,
+   "balance_365d_ago_near": 215138.48,
+   "net_change_30d_near": 112632.91,
+   "net_change_365d_near": 1801128.75,
+   "inflow_method": "onchain_net_balance_change",
+   "num_confirmations": null,
+   "access_key_count": null,
+   "burned": false,
+   "sources": [
+    "view_account",
+    "view_account_at_block",
+    "multisig_confirmations",
+    "view_access_key_list"
+   ]
+  }
+ },
+ "gap": {
+  "lock_near_per_year": 101456.6,
+  "net_issuance_near_per_year": 31735796.94,
+  "lock_pct_of_issuance": 0.3197,
+  "multiple": 312.8,
+  "state_gb_per_year_now": 10.146,
+  "state_gb_per_year_to_offset": 3173.6,
+  "near_per_gb": 10000,
+  "net_issuance_30d_annualized_near": 32178640.75,
+  "multiple_30d": 317.2
+ },
+ "facts": {
+  "omft_acl": {
+   "super_admins": [
+    "omft.near",
+    "intents.sputnik-dao.near"
+   ],
+   "roles": {
+    "TokenDeployer": {
+     "admins": [],
+     "grantees": [
+      "bridge-mng.near",
+      "int-dpl-dao.sputnik-dao.near"
+     ]
+    },
+    "TokenDepositer": {
+     "admins": [],
+     "grantees": [
+      "bridge-mng.near",
+      "int-mnt-dao.sputnik-dao.near"
+     ]
+    },
+    "UnpauseManager": {
+     "admins": [],
+     "grantees": []
+    },
+    "DAO": {
+     "admins": [],
+     "grantees": [
+      "intents.sputnik-dao.near"
+     ]
+    },
+    "PauseManager": {
+     "admins": [],
+     "grantees": []
+    }
+   }
+  },
+  "bridge_mng": {
+   "account": "bridge-mng.near",
+   "access_key_count": 1,
+   "full_access_key_count": 1,
+   "has_contract": false
+  },
+  "v1_signer": {
+   "threshold": 11,
+   "participants": 16
+  },
+  "omft_float": {
+   "contracts_queried": 112,
+   "total_usd": 239344270.55,
+   "zec_supply": 149767.91,
+   "zec_usd": 133161641.91,
+   "zec_share_pct": 55.64,
+   "third_party": true
+  }
+ },
+ "claims": [
+  {
+   "id": "C1",
+   "statement": "State collateral locked by intents.near over the trailing 365 days is under 1% of net NEAR issuance over the same window.",
+   "falsified_if": "gap.lock_pct_of_issuance is 1.0 or more.",
+   "checks": [
+    {
+     "field": "gap.lock_pct_of_issuance",
+     "op": "<",
+     "value": 1.0,
+     "observed": 0.3197,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "id": "C2",
+   "statement": "Every refill of intents.near in the trace window comes from intents_refiller.near, and there are at least 3.",
+   "falsified_if": "Fewer than 3 refills are found, or any refill has a different predecessor, or a receipt cannot be resolved.",
+   "checks": [
+    {
+     "field": "sawtooth.refill_count",
+     "op": ">=",
+     "value": 3,
+     "observed": 6,
+     "pass": true
+    },
+    {
+     "field": "sawtooth.from_refiller_pct",
+     "op": "==",
+     "value": 100,
+     "observed": 100.0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "id": "C3",
+   "statement": "Protocol burn measured from intra-epoch total_supply decline is under 2% of net issuance.",
+   "falsified_if": "gas_burn.pct_of_net_issuance is 2.0 or more.",
+   "checks": [
+    {
+     "field": "gas_burn.pct_of_net_issuance",
+     "op": "<",
+     "value": 2.0,
+     "observed": 0.994,
+     "pass": true
+    }
+   ],
+   "pass": true
+  }
+ ],
+ "sources": {
+  "block_final": {
+   "endpoint": "live",
+   "method": "block",
+   "params": {
+    "finality": "final"
+   },
+   "note": "head block header: height, timestamp, total_supply"
+  },
+  "block_header_at_height": {
+   "endpoint": "archival",
+   "method": "block",
+   "params": {
+    "block_id": "<block>"
+   },
+   "note": "header.total_supply and header.timestamp at a height; <block> is an integer"
+  },
+  "view_account": {
+   "endpoint": "live",
+   "method": "query",
+   "params": {
+    "request_type": "view_account",
+    "finality": "final",
+    "account_id": "<account>"
+   },
+   "note": "amount and storage_usage now"
+  },
+  "view_account_at_block": {
+   "endpoint": "archival",
+   "method": "query",
+   "params": {
+    "request_type": "view_account",
+    "block_id": "<block>",
+    "account_id": "<account>"
+   },
+   "note": "amount and storage_usage at a height; <block> is an integer"
+  },
+  "view_access_key_list": {
+   "endpoint": "live",
+   "method": "query",
+   "params": {
+    "request_type": "view_access_key_list",
+    "finality": "final",
+    "account_id": "<account>"
+   },
+   "note": "count keys[]"
+  },
+  "chunk_receipts": {
+   "endpoint": "archival",
+   "method": "chunk",
+   "params": {
+    "chunk_id": "<chunk_hash>"
+   },
+   "note": "receipts of one chunk; chunk hashes are in block.chunks[]"
+  },
+  "neardata_block": {
+   "endpoint": "https://mainnet.neardata.xyz/v0/block/<block>",
+   "method": "GET",
+   "params": null,
+   "note": "header, account_update state changes and executed receipts of one block"
+  },
+  "protocol_config": {
+   "endpoint": "live",
+   "method": "EXPERIMENTAL_protocol_config",
+   "params": {
+    "finality": "final"
+   },
+   "note": "runtime_config.storage_amount_per_byte, max_inflation_rate"
+  },
+  "validators_epoch_start": {
+   "endpoint": "live",
+   "method": "validators",
+   "params": [
+    null
+   ],
+   "note": "epoch_start_height of the current epoch"
+  },
+  "pool_get_account": {
+   "endpoint": "live",
+   "method": "query",
+   "params": {
+    "request_type": "call_function",
+    "finality": "final",
+    "account_id": "zavodil.poolv1.near",
+    "method_name": "get_account",
+    "args_base64": "eyJhY2NvdW50X2lkIjoiZGxsLXRyZWFzdXJ5LnNwdXRuaWstZGFvLm5lYXIifQ=="
+   },
+   "args": {
+    "account_id": "dll-treasury.sputnik-dao.near"
+   },
+   "note": "staked_balance of the treasury DAO"
+  },
+  "dao_get_proposals": {
+   "endpoint": "live",
+   "method": "query",
+   "params": {
+    "request_type": "call_function",
+    "finality": "final",
+    "account_id": "dll-treasury.sputnik-dao.near",
+    "method_name": "get_proposals",
+    "args_base64": "eyJmcm9tX2luZGV4IjowLCJsaW1pdCI6NTB9"
+   },
+   "args": {
+    "from_index": 0,
+    "limit": 50
+   },
+   "note": "page through from_index 0, 50, 100; filter kind.Transfer.receiver_id == intents_refiller.near"
+  },
+  "multisig_confirmations": {
+   "endpoint": "live",
+   "method": "query",
+   "params": {
+    "request_type": "call_function",
+    "finality": "final",
+    "account_id": "buybacks.multisignature.near",
+    "method_name": "get_num_confirmations",
+    "args_base64": "e30="
+   },
+   "args": {},
+   "note": "confirmations needed"
+  },
+  "omft_acl": {
+   "endpoint": "live",
+   "method": "query",
+   "params": {
+    "request_type": "call_function",
+    "finality": "final",
+    "account_id": "omft.near",
+    "method_name": "acl_get_permissioned_accounts",
+    "args_base64": "e30="
+   },
+   "args": {},
+   "note": "roles and grantees"
+  },
+  "signer_state": {
+   "endpoint": "live",
+   "method": "query",
+   "params": {
+    "request_type": "call_function",
+    "finality": "final",
+    "account_id": "v1.signer",
+    "method_name": "state",
+    "args_base64": "e30="
+   },
+   "args": {},
+   "note": "Running.parameters.threshold and participants"
+  },
+  "ft_total_supply": {
+   "endpoint": "live",
+   "method": "query",
+   "params": {
+    "request_type": "call_function",
+    "finality": "final",
+    "account_id": "zec.omft.near",
+    "method_name": "ft_total_supply",
+    "args_base64": "e30="
+   },
+   "args": {},
+   "note": "same call on every <token>.omft.near"
+  },
+  "oneclick_tokens": {
+   "endpoint": "https://1click.chaindefuser.com/v0/tokens",
+   "method": "GET",
+   "params": null,
+   "note": "third party: token list and USD prices. optional"
+  }
+ }
+}
