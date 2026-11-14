@@ -2,30 +2,60 @@
 
 **If chain abstraction killed gas burn, what does the NEAR token actually capture?**
 
-An investment thesis on NEAR, built at NEAR Hackathon (thesis track). Every number in it is re-derived from
-NEAR mainnet by one command, with no API keys.
+An investment thesis on NEAR, built at NEAR Hackathon (thesis track). Every number in it is read from NEAR
+mainnet by one command, with no API keys, and every number on the site links to the query behind it.
 
-- **Live site:** https://emmagh1.github.io/subsidized-state/
-- **The thesis:** [THESIS.md](THESIS.md)
-- **The data:** [data/artifact.json](data/artifact.json), described field by field in [data/SCHEMA.md](data/SCHEMA.md)
+**[Live site](https://emmagh1.github.io/subsidized-state/)** · **[The thesis](THESIS.md)** · **[The data](data/artifact.json)** · **[Every field explained](data/SCHEMA.md)**
 
-## The answer in five lines
+[![The cover of the live site: a year of new NEAR supply drawn as a square, with what was burned, held and locked drawn to scale inside it](site/shots/s1-1440.png)](https://emmagh1.github.io/subsidized-state/)
 
-NEAR's newest sink is state collateral: 10 NEAR locked for every megabyte a contract stores.
-We measured it on `intents.near`, the contract behind NEAR Intents.
+## The answer in 30 seconds
 
-1. **It is real and growing.** The locked amount rose between every pair of 13 checkpoints across a year.
-2. **It is over 300 times too small.** In the committed snapshot the lock grew by about 101 thousand NEAR a year while the supply grew by about 31.8 million.
-3. **It is locked, not burned.** Deleting state returns the NEAR. The only true burn is gas, about 1% of issuance.
-4. **The bigger flow is fees, and they are held, not burned.** Two fee vaults gained about 4.1 million NEAR in the same year, about 40 times the lock.
-5. **Users did not post the collateral in the window we traced.** Every top-up of `intents.near` in the last 30 days, 39 of 39, came from one account, `intents_refiller.near`, to which a DAO treasury has approved 55,000 NEAR.
+For every 100 NEAR of new supply last year, **1.05 was burned** as gas, **12.9 was held** in two fee vaults, and
+**0.32 was locked** as state collateral under `intents.near`, the contract behind NEAR Intents. None of the 12.9 or
+the 0.32 has left the supply. So today the token captures a deposit, not a toll.
 
-Other entries in this hackathon (Toll Road, NEAR Toll Audit, Stakeout and others) already cover
-intents fees against issuance. What this adds is the storage-collateral ledger, the refill trace, and who pays.
+| | Finding | The number | Where it comes from |
+|---|---|---|---|
+| 1 | **The lock is real and growing.** NEAR locks 10 NEAR for every megabyte a contract stores. | 137,061 NEAR locked under 13.7 GB of `intents.near` state, higher at each of 13 checkpoints across a year | `lock.checkpoints` |
+| 2 | **It is far too small to offset issuance.** | +101,492 NEAR a year against 31.75 million issued: 0.32%, so issuance is **313x** the lock | `gap.multiple` |
+| 3 | **It is locked, not burned.** Deleting the state returns the NEAR. | The only true burn, gas, is 332,164 NEAR a year: 1.05% of issuance | `gas_burn` |
+| 4 | **The bigger flow is fees, and it is held.** | Two fee vaults gained 4.08 million NEAR in the year, 40x the lock, and still hold it at the snapshot block | `vaults` |
+| 5 | **A treasury pays for the lock, not users.** | **39 of 39** top-ups of `intents.near` in 30 days came from `intents_refiller.near`, to which a DAO treasury has approved 55,000 NEAR in 10 proposals | `data/refills_30d.json`, `payer` |
+
+What would change the verdict is listed on the site and in [THESIS.md](THESIS.md#4-what-would-change-my-mind): the fee
+vaults burning what they hold, a different payer identified by receipt, the lock passing 1% of issuance, or gas burn
+passing 2%.
+
+## What it looks like
+
+| The refill trace: each red step is 300 NEAR from the same account | Who pays: treasury, refiller, contract |
+|---|---|
+| [![The spare balance of intents.near falling and being topped up by 300 NEAR six times in 3.3 days, with a strip of 39 top-ups over 30 days below](site/shots/sawtooth-1280.png)](https://emmagh1.github.io/subsidized-state/#sawtooth) | [![The DAO treasury, the refiller account and intents.near drawn to scale, joined by the red flow of approved NEAR](site/shots/s4-1280.png)](https://emmagh1.github.io/subsidized-state/#payer) |
+| **The gap: a year of issuance against what is burned, held and locked** | **The verdict, what to watch, and three tests** |
+| [![The gap section: 313x, with the issuance square and a slider toward break-even](site/shots/s5-1280.png)](https://emmagh1.github.io/subsidized-state/#gap) | [![The verdict section: a deposit, not a toll, beside a list of what to watch](site/shots/s6-1280.png)](https://emmagh1.github.io/subsidized-state/#verdict) |
+
+## Check it in one minute
+
+```
+git clone https://github.com/emmaGH1/subsidized-state && cd subsidized-state
+python3 -m unittest discover tests     # 15 offline checks of every derived number: "Ran 15 tests", "OK"
+python3 scripts/trace_refills.py       # the 30-day refill trace, from its cache: "39 top-ups ... from intents_refiller.near: 39"
+python3 scripts/rebuild.py             # every number again from mainnet at today's head block, ending in PASS C1, C2, C3
+```
+
+Python 3.9 or newer, standard library only, nothing to install. The steps below say exactly what each command prints.
+
+## What is new here
+
+Other entries in this hackathon (Toll Road, NEAR Toll Audit, Stakeout and others) already compare intents fees
+with issuance. This adds three things they do not: a year-long ledger of the NEAR locked under `intents.near`'s
+state, a block-level trace of every top-up of that collateral with the receipt that paid it, and who stands behind
+the payer.
 
 ## Check it yourself
 
-You need Python 3.9 or newer and an internet connection. Nothing to install.
+You need Python 3.9 or newer (tested on 3.9 and 3.13) and an internet connection. Nothing to install.
 
 ### 1. Rebuild the data
 
