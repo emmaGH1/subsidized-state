@@ -126,10 +126,10 @@ export function drawPayer(D, sec, { reduce }) {
     figure(ug, 'figure-stand', U.x, U.gy, figH());
     if (U.left) {
       line(ug, D, ['users'], U.x - 48, U.gy - lh - 2, 'lab', 'end');
-      line(ug, D, ['0 near of collateral in this window'], U.x - 48, U.gy - 2, '', 'end');
+      line(ug, D, ['not on this line'], U.x - 48, U.gy - 2, '', 'end');
     } else {
       line(ug, D, ['users'], U.x + 14, U.gy + fs + 10, 'lab', 'end');
-      line(ug, D, ['0 near of collateral in this window'], U.x + 14, U.gy + fs + 10 + lh, '', 'end');
+      line(ug, D, ['not on this line'], U.x + 14, U.gy + fs + 10 + lh, '', 'end');
     }
   }
 }

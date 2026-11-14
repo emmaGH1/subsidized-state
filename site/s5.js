@@ -68,7 +68,7 @@ function layoutLocked() {
   const s = Math.min(side, k(v));
   lock.setAttribute('y', gy - s); lock.setAttribute('width', s); lock.setAttribute('height', s);
   const big = s > side * 0.3;
-  const lx = big ? 10 : 0;
+  const lx = big ? 10 : 3;
   const ly = big ? gy - s + fs + 10 : gy - Math.max(s, figH()) - 10;
   lw.setAttribute('x', lx); lw.setAttribute('y', ly); lw.classList.toggle('paper', big);
   const a = lw.querySelector('a.n'); a.textContent = fmt(v, 'near0');

@@ -240,7 +240,8 @@ export function initStrip(D) {
     T.title.textContent = q.title && !f.startsWith('claims') ? q.title : `${q.title || f} = ${fmtd}`;
     T.meaning.textContent = [MEANING[norm(q.title || f)] || q.meaning || '', q.formula].filter(Boolean).join(' · ');
     const ts = q.ts || (block === D.meta.head_block ? D.meta.head_timestamp_utc : null);
-    T.read.textContent = `read at block ${fmt(block, 'int')}${ts ? ' · ' + fmt(ts, 'datetime') : ''} · source ${src}${D.meta.is_sample ? ' · sample artifact' : ''}`;
+    const liveSrc = D.sources && D.sources[src] && D.sources[src].endpoint === 'live';
+    T.read.textContent = `read at block ${fmt(block, 'int')}${ts ? ' · ' + fmt(ts, 'datetime') : ''} · source ${src}${liveSrc ? ' · the curl below reads the chain as it is now' : ''}${D.meta.is_sample ? ' · sample artifact' : ''}`;
     const extra = [...(q.extra || [])];
     if (q.refill !== undefined) {
       const rf = D.sawtooth.refills[q.refill];

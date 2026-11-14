@@ -221,7 +221,7 @@ The figure (`#figure-look-up`) stands on the ground line at the foot of the firs
   - `dll-treasury.sputnik-dao.near` / `{payer.treasury.staked_near|near0} near staked · {payer.treasury.liquid_near|near0} liquid`
   - `intents_refiller.near` / `{payer.refiller.balance_near|near0} near · {payer.refiller.access_key_count|int} keys · no contract`
   - `intents.near` / `{lock.checkpoints[-1].free_near|near0} near spare`
-  - `users` / `0 near of collateral in this window`
+  - `users` / `not on this line`
 - Flow labels (red, label): on the first link `{payer.approved_to_refiller_near|near0} near approved`; on the second `{sawtooth.refill_amount_median_near|near0} near per refill · {sawtooth.refilled_near|near0} in {sawtooth.window.days|num1} days`.
 
 **Drawing (SVG):** three ink squares whose **areas** are proportional to NEAR held: treasury (`staked_near + liquid_near`), refiller (`balance_near`), intents spare (`free_near` at head). One shared scale: `side = k × √near`, with `k` chosen so the treasury square is 46vw at 380px and 300px at 1280px. (Expect roughly 100 : 17 : 4 in side length.) `#ink-edge` on the squares.
