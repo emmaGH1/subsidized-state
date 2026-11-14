@@ -18,7 +18,7 @@ We measured it on `intents.near`, the contract behind NEAR Intents.
 2. **It is over 300 times too small.** In the committed snapshot the lock grew by about 101 thousand NEAR a year while the supply grew by about 31.8 million.
 3. **It is locked, not burned.** Deleting state returns the NEAR. The only true burn is gas, about 1% of issuance.
 4. **The bigger flow is fees, and they are held, not burned.** Two fee vaults gained about 4.1 million NEAR in the same year, about 40 times the lock.
-5. **Users did not post the collateral in the window we traced.** Every top-up of `intents.near` in the last 3.3 days came from one account, `intents_refiller.near`, to which a DAO treasury has approved 55,000 NEAR.
+5. **Users did not post the collateral in the window we traced.** Every top-up of `intents.near` in the last 30 days, 39 of 39, came from one account, `intents_refiller.near`, to which a DAO treasury has approved 55,000 NEAR.
 
 Other entries in this hackathon (Toll Road, NEAR Toll Audit, Stakeout and others) already cover
 intents fees against issuance. What this adds is the storage-collateral ledger, the refill trace, and who pays.
@@ -64,8 +64,9 @@ that `THESIS.md` quotes.
 python3 -m unittest discover tests
 ```
 
-You see `Ran 13 tests` and `OK`. These tests recompute every derived number in `data/artifact.json` from its
-inputs (locked NEAR from bytes, the gap arithmetic, the claim results) and check the file against the schema.
+You see `Ran 15 tests` and `OK`. These tests recompute every derived number in `data/artifact.json` from its
+inputs (locked NEAR from bytes, the gap arithmetic, the claim results), check the file against the schema, and
+check that the counts in `data/refills_30d.json` match its list of refills.
 
 ### 3. Spot-check the history cache against the chain
 
@@ -99,6 +100,26 @@ curl -s https://archival-rpc.mainnet.fastnear.com -H 'Content-Type: application/
 You see `"storage_usage": 13706086632`. Multiply by the protocol's storage price, 10^19 yoctoNEAR per byte
 (10 NEAR per MB), and you get the 137,060.87 NEAR in the output above.
 
+### 6. Rerun the 30-day refill trace
+
+```
+python3 scripts/trace_refills.py
+```
+
+This walks back 30 days from the head block in `data/artifact.json` and resolves the sender of every top-up.
+With the committed snapshot (run `git checkout data/` first if you rebuilt in step 1) you see some progress
+lines and then, in about a second:
+
+```
+refill trace: 39 top-ups of intents.near over 30.418 days (blocks 220030000 to 224528333)
+  from intents_refiller.near: 39   other senders: 0   unresolved: 0   total 11699.75 NEAR
+  network reads 0
+```
+
+It is instant because its reads are cached in `data/refills_30d_cache.json`. If you run it after a rebuild it
+extends to the new head, fetches the blocks it has not seen (a minute or two) and the counts move.
+`--fresh` refetches all of it: about 900 rate-limited archival reads, which took 25 minutes when we ran it.
+
 ## How the rebuild works
 
 `scripts/rebuild.py` is one file, Python standard library only. It reads:
@@ -108,6 +129,7 @@ You see `"storage_usage": 13706086632`. Multiply by the protocol's storage price
 | `intents.near` storage and balance at 13 points across a year | `view_account` at a block height |
 | The free balance every 2,500 blocks over the last 500,000 blocks, and every refill located to its exact block | `view_account` at a block height, then bisection |
 | The receipt and sender of each refill | the block's executed receipts |
+| Every top-up over 30 days (`scripts/trace_refills.py`, a separate file: `data/refills_30d.json`) | `view_account` every 10,000 blocks, bisection, then the block's executed receipts |
 | Treasury stake, refiller balance, DAO proposals | view calls on the staking pool and the Sputnik DAO |
 | Net issuance over about 365 and 30 days | `total_supply` in block headers |
 | Gas burn | the fall in `total_supply` inside an epoch, where nothing is minted |
@@ -150,7 +172,7 @@ queries had shown the rough sizes. Treat them as tripwires for future rebuilds, 
 - The multiple is a trailing-year average. The lock has been growing faster recently: over the last three checkpoint intervals it annualises to about 120 thousand NEAR, which is about 265x rather than 313x.
 - Fee vault inflows are not traced to their source. The artifact shows that the two balances grew and that the NEAR is still held there. It does not show whether other fee revenue was burned or spent along the way.
 - There is no before-and-after series for gas burn, so this does not test whether chain abstraction caused the low burn.
-- The refill trace covers about 3.3 days, not the year. The link from the DAO's proposals to each refill is by account, not traced transfer by transfer. The first approved proposal is from July 2026; who posted collateral before then is not shown.
+- The dense refill trace in the artifact covers about 3.3 days and the longer one 30.4 days, not the year. The longer trace samples every 10,000 blocks, so it would miss a top-up under 100 NEAR, or one cancelled out by more than 100 NEAR of new state inside a single step. The link from the DAO's proposals to each refill is by account, not traced transfer by transfer. The first approved proposal is from July 2026; who posted collateral before then is not shown.
 - "About a year" means the exact number of days in `issuance.d365.days`; every per-year figure is annualised by it.
 - Gas burn is measured over the two most recent complete epochs and the current partial one, then annualised.
 - Fee vault figures are net balance changes on chain, not gross inflows.
@@ -160,12 +182,16 @@ queries had shown the rough sizes. Treat them as tripwires for future rebuilds, 
 ```
 THESIS.md                 the argument: claim, evidence for, evidence against, what would change my mind
 scripts/rebuild.py        the one command
+scripts/trace_refills.py  the 30-day refill trace (writes data/refills_30d.json)
 data/artifact.json        every number, with the block it was read at
 data/SCHEMA.md            every field: meaning, unit, source query
 data/history_cache.json   immutable historical reads (see above)
+data/refills_30d.json     every top-up of intents.near over 30 days, with receipt and sender
+data/refills_30d_cache.json  the historical reads behind it
 data/artifact.sample.json first hand-assembled snapshot, used to build the site before rebuild.py existed
 tests/claims.json         the three tests
 tests/test_artifact.py    offline consistency checks
+tests/test_refills.py     offline checks of the 30-day refill file
 site/                     the static site (no build step); site/DESIGN.md is its spec
 PLAN.md                   how this was built, and every decision made along the way
 ```

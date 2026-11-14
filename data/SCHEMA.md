@@ -297,3 +297,17 @@ For `call_function`, `params` carries `args_base64` (base64 of the JSON args) an
 3. **The trace window can end before the head.** If archival endpoints refuse requests before the trace reaches the head, `sawtooth.window.to_block` is the last block of the most recent fully traced window and `meta.errors` says so. Running again resumes.
 
 Also: blocks younger than about 140,000 blocks are read from ordinary RPC nodes (`https://near.api.pocket.network`, `https://free.rpc.fastnear.com`), which keep recent state and do not rate-limit as hard. The query is identical to the archival one.
+
+## Companion file: data/refills_30d.json
+
+Written by `scripts/trace_refills.py`, not by `rebuild.py`, and not part of `artifact.json`. It ends at `meta.head_block` of the artifact it was run against.
+
+| Field | Type | Meaning |
+|---|---|---|
+| `window.from_block`, `.to_block`, `.from_utc`, `.to_utc`, `.days` | int, int, string, string, number | the traced window; `days` is measured from the two block timestamps |
+| `complete` | bool | false if the run ran out of time; the window then still ends at the head and starts where the trace stopped |
+| `grid_step_blocks`, `min_jump_near` | int, number | the sampling step (10,000 blocks) and the smallest rise in spare balance between two samples that counts as a top-up (100 NEAR) |
+| `refills[]` | list | one entry per top-up: `block`, `timestamp_utc`, `amount_near` (change in the whole account balance in that block), `free_before_near`, `free_after_near`, `receipt_id`, `predecessor_id` |
+| `refill_count`, `refilled_near` | int, number | length of `refills` and the sum of `amount_near` |
+| `from_refiller_count`, `other_sender_count`, `unresolved_count`, `from_refiller_pct` | int, int, int, number | senders by receipt: `intents_refiller.near`, anyone else, and receipts that could not be found |
+| `samples[]` | list | spare balance (`free_near`) at each grid block |

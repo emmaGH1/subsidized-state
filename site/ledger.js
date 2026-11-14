@@ -40,7 +40,7 @@ export function drawLedger(s, D, o) {
   const lock = el('rect', { class: 'lock', x: xL0, y: floor - ls0, width: ls0, height: ls0, fill: 'var(--red)' }, g);
   const sq = el('g', { class: 'speck' }, g);
   el('rect', { x: xV, y: floor - vs, width: vs, height: vs, fill: `url(#${pid})`, stroke: 'var(--ink)', 'stroke-width': 1.2 }, sq);
-  el('rect', { x: xB, y: floor - bs, width: bs, height: bs, fill: 'var(--ink)', filter: 'url(#ink-edge)' }, sq);
+  el('rect', { x: xB, y: floor - bs, width: bs, height: bs, fill: 'var(--ink)' }, sq);
 
   // labels: two or three lines each, ink text (small red text fails contrast), red leader for the lock
   const labs = el('g', { class: 'speck labs' }, g);

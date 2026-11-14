@@ -1,5 +1,16 @@
 # site/DESIGN.md — subsidized state
 
+> **Amended 14 Nov, 20:30 UTC. Where this note and the sections below disagree, this note wins.**
+> The identity is unchanged (ivory, ink, one red, lowercase serif, the small figure, hand-built SVG). The structure changed after a desktop review:
+> - **Cover answers first.** A smaller question, one bound answer sentence, and a square whose area is a year of net issuance with three squares to scale on its floor: hatched for the fee vaults' net gain, ink for gas burn, red for the state lock. The remainder is labelled "no offset measured here". The cover's ground is the real `sawtooth.trace` with red risers and the figure. `site/ledger.js` draws the square; `calc.vaults_pct_of_issuance` and `calc.uncaptured_pct` are derived in `site/lib.js`.
+> - **The gap** shows the same ledger drawing, large, with the slider growing the red square toward break-even.
+> - **Sections are at least one screen tall but may grow.** On short landscape screens the sawtooth stops panning and stacks; text never sits over a drawing.
+> - **Wayfinding.** Each section has a small chapter label ("01 — the lock"); the right-edge ticks name the current chapter briefly and on hover.
+> - **Verdict** gains "what to watch", four conditions bound to their fields.
+> - **Small red text is not used.** Red is for marks and large display text; text under about 18px is ink with a red underline.
+> - **30-day refill trace.** `site/r30.js` reads `../data/refills_30d.json` and, if it exists, adds one line and a tick strip to the sawtooth and who-pays sections.
+
+
 A static, six-screen illustrated essay. Not a dashboard. The reader scrolls through six full-screen
 drawings; each drawing is a chart whose marks are values from `data/artifact.json`.
 

@@ -21,14 +21,14 @@ https://emmagh1.github.io/subsidized-state/
 Built at NEAR HACKATHON @NEARProtocol #NEARHackathon
 ```
 
-Reply 1 (263 characters):
+Reply 1 (264 characters):
 
 ```
 The receipts, all from mainnet RPC:
 
 - intents.near locks 137,061 NEAR under 13.7 GB of state, up 101k in a year
 - supply grew 31.8M in the same year
-- each time its spare balance nears ~504 NEAR, 300 arrives from intents_refiller.near. 6 of 6 top-ups in 3.3 days
+- each time its spare balance nears ~504 NEAR, 300 arrives from intents_refiller.near. 39 of 39 top-ups in 30 days
 ```
 
 Reply 2 (152 characters):
